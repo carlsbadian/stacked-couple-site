@@ -4,7 +4,7 @@ This file gives Claude Code the context it needs to make on-brand edits to this 
 
 ## What this is
 
-A single-page marketing site for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X couple in Carlsbad, CA, documenting their real wellness/optimization protocols, training, and honest midlife experience. The site is a launch page: social link hub + email capture, with room to grow into full pages later.
+A single-page marketing site for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X couple in Southern California, documenting their real wellness/optimization protocols, training, and honest midlife experience. The site is a launch page: social link hub + email capture, with room to grow into full pages later.
 
 - **Live domain:** https://www.thestackedcouple.com
 - **Host:** Cloudflare Pages, auto-deploys from the `main` branch on every push
