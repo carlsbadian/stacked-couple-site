@@ -159,37 +159,6 @@
   .social .handle{font-family:var(--mono);font-size:12px;color:var(--stone)}
   .social .arrow{font-size:18px;color:var(--copper)}
 
-  /* ---------- PILLARS ---------- */
-  section.pillars{padding:110px 0 90px;position:relative}
-  .pillars .head{max-width:620px;margin-bottom:56px}
-  .pillars h2{
-    font-family:var(--serif);font-weight:400;letter-spacing:-0.02em;
-    font-size:clamp(34px,6vw,60px);line-height:1.02;margin:16px 0 18px;
-  }
-  .pillars .head p{color:rgba(250,247,242,0.7);font-size:17px}
-  /* stacked offset cards = the signature */
-  .stack-cards{display:flex;flex-direction:column;gap:0}
-  .pcard{
-    position:relative;
-    border-top:1px solid var(--line);
-    padding:40px 0;
-    display:grid;grid-template-columns:90px 1fr 1.1fr;gap:32px;align-items:start;
-    transition:background .25s ease;
-  }
-  .pcard:last-child{border-bottom:1px solid var(--line)}
-  .pcard:hover{background:rgba(74,127,165,0.07)}
-  .pcard .num{font-family:var(--mono);font-size:13px;color:var(--copper);padding-top:6px;letter-spacing:0.1em}
-  .pcard .ptitle{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:400;line-height:1}
-  .pcard .ptag{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-top:12px;display:block}
-  .pcard .pbody{color:rgba(250,247,242,0.78);font-size:16px}
-  .pcard ul{list-style:none;margin-top:14px}
-  .pcard li{padding-left:18px;position:relative;margin-bottom:7px;font-size:14.5px;color:rgba(250,247,242,0.66)}
-  .pcard li::before{content:"›";position:absolute;left:0;color:var(--steel)}
-  @media(max-width:760px){
-    .pcard{grid-template-columns:1fr;gap:14px;padding:34px 0}
-    .pcard .num{padding-top:0}
-  }
-
   /* ---------- ABOUT ---------- */
   section.about{
     background:var(--navy-deep);
@@ -314,83 +283,6 @@
         <div><div class="name">YouTube</div><div class="handle">@TheStackedCouple</div></div>
         <span class="arrow">↗</span>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- PILLARS -->
-<section class="pillars">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="label">What we cover</div>
-      <h2>Four pillars. Every post lives in one.</h2>
-      <p>Protocols, training, the science behind it, and the honest midlife conversation nobody else is having out loud.</p>
-    </div>
-    <div class="stack-cards">
-      <div class="pcard reveal">
-        <div class="num">01</div>
-        <div>
-          <div class="ptitle">The Stack</div>
-          <span class="ptag">Protocols &amp; Compounds</span>
-        </div>
-        <div class="pbody">
-          What we're running, why we chose it, how we dose it. Educational without being a manual.
-          <ul>
-            <li>Weekly protocol check-ins — what changed, why</li>
-            <li>Compound breakdowns in plain language</li>
-            <li>Honest side-effect diaries</li>
-            <li>Week 4 / Week 8 / Month 3 milestones</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pcard reveal">
-        <div class="num">02</div>
-        <div>
-          <div class="ptitle">The Sweat</div>
-          <span class="ptag">Training Life</span>
-        </div>
-        <div class="pbody">
-          Hot yoga, rucking, weight training. The actual work that makes the stack visible.
-          <ul>
-            <li>Coastal ruck POVs — Pacific views are free production</li>
-            <li>Hot yoga — the before/after energy difference</li>
-            <li>Lift sessions — form, weight, real progress</li>
-            <li>Sir Louie the Grey on the morning ruck</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pcard reveal">
-        <div class="num">03</div>
-        <div>
-          <div class="ptitle">The Science</div>
-          <span class="ptag">Research Made Human</span>
-        </div>
-        <div class="pbody">
-          Mechanisms in plain language. An exercise science and nutrition background makes this authentic — not bro science.
-          <ul>
-            <li>"What does it actually do?" explainers</li>
-            <li>Myth-busting — peptides aren't steroids</li>
-            <li>Bloodwork &amp; biomarker education</li>
-            <li>Why your 50s is the best time to intervene</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pcard reveal">
-        <div class="num">04</div>
-        <div>
-          <div class="ptitle">The Real</div>
-          <span class="ptag">Honest Midlife Conversation</span>
-        </div>
-        <div class="pbody">
-          The stuff nobody says out loud. Two careers, four kids, limited time, separate sleep rooms, a 70-lb Weimaraner.
-          <ul>
-            <li>Before photos — no apologies, no filters</li>
-            <li>What midlife decline actually feels like</li>
-            <li>Separate bedrooms as a sleep strategy</li>
-            <li>"45 minutes — here's what we do with it"</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </section>
