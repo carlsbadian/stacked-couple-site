@@ -1,0 +1,36 @@
+---
+/**
+ * Ascension Peptides affiliate badge — always paired with the
+ * research-use disclaimer wherever it appears.
+ */
+import { AFFILIATE } from '../config/site';
+import ResearchDisclaimer from './ResearchDisclaimer.astro';
+const a = AFFILIATE.ascension;
+---
+<div class="badge-block">
+  <div class="badge">
+    <div class="label">Our source</div>
+    <div class="row">
+      <span class="name">{a.name}</span>
+      <span class="code">Code <strong>{a.code}</strong> · {a.discount}</span>
+    </div>
+    {a.url ? (
+      <a class="btn btn-ghost" href={a.url} rel="sponsored noopener" target="_blank">
+        Visit {a.name} →
+      </a>
+    ) : (
+      <p class="pending">Link coming soon — the code works at checkout.</p>
+    )}
+  </div>
+  <ResearchDisclaimer />
+</div>
+
+<style>
+  .badge-block{display:grid;gap:18px}
+  .badge{border:1px solid var(--line);padding:28px;background:rgba(74,127,165,0.06)}
+  .badge .label{margin-bottom:12px}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;margin-bottom:18px}
+  .name{font-family:var(--serif);font-size:24px}
+  .code{font-family:var(--mono);font-size:14px;color:var(--copper)}
+  .pending{font-family:var(--mono);font-size:12.5px;color:var(--stone)}
+</style>

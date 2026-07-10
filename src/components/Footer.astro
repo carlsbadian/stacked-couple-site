@@ -1,0 +1,47 @@
+---
+import { SITE, SOCIAL, LEGAL_FOOTER } from '../config/site';
+const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube, SOCIAL.substack].filter(
+  (s) => s.url,
+);
+const year = new Date().getFullYear();
+---
+<footer class="site-footer on-dark">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="mark">{SITE.name}</div>
+        <p class="tagline">{SITE.tagline}</p>
+      </div>
+      <ul class="socials" aria-label="Follow us">
+        {socials.map((s) => (
+          <li>
+            <a href={s.url} rel="me noopener" target="_blank">
+              {s.label} <span class="handle">{s.handle}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <p class="legal">{LEGAL_FOOTER}</p>
+    <p class="copy">© {year} {SITE.name} · {SITE.location}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer{padding:64px 0 40px;border-top:1px solid var(--line-dark)}
+  .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:44px}
+  .mark{font-family:var(--serif);font-size:24px;margin-bottom:8px}
+  .tagline{font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber)}
+  .socials{list-style:none}
+  .socials a{
+    display:block;padding:6px 0;text-decoration:none;
+    font-family:var(--mono);font-size:13px;letter-spacing:0.08em;color:var(--cream);
+  }
+  .socials a:hover .handle{color:var(--amber)}
+  .handle{color:var(--stone);margin-left:10px}
+  .legal{
+    max-width:72ch;font-size:13px;color:rgba(250,247,242,0.6);
+    border-top:1px solid var(--line-dark);padding-top:28px;margin-bottom:16px;
+  }
+  .copy{font-family:var(--mono);font-size:12px;color:var(--stone)}
+</style>

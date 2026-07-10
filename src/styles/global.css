@@ -1,0 +1,105 @@
+/* ============================================================
+   THE STACKED COUPLE — global brand system
+   Six-color palette (locked). Navy leads. Cream is the default
+   background. Copper is for CTAs and key callouts — not decoration.
+   ============================================================ */
+
+:root{
+  --navy:#1B2F4A;        /* Primary — brand anchor */
+  --steel:#4A7FA5;       /* Secondary — accents */
+  --cream:#FAF7F2;       /* Base — backgrounds, negative space */
+  --copper:#A0522D;      /* Primary accent — CTAs, labels */
+  --amber:#C8973A;       /* Secondary accent — warmth, highlights */
+  --stone:#8A9099;       /* Supporting — subtext, dividers */
+
+  --line:rgba(27,47,74,0.14);          /* hairlines on cream */
+  --line-dark:rgba(250,247,242,0.16);  /* hairlines on navy */
+
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:Helvetica,'Helvetica Neue',Arial,sans-serif;
+  --mono:'SF Mono',Menlo,Consolas,monospace;
+
+  --wrap:1120px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--navy);
+  line-height:1.6;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-0.02em;line-height:1.08}
+h1{font-size:clamp(40px,7vw,76px)}
+h2{font-size:clamp(30px,5vw,52px)}
+h3{font-size:clamp(22px,3vw,30px)}
+
+.label{
+  font-family:var(--mono);font-size:12px;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--copper);
+}
+.on-dark .label{color:var(--amber)}
+
+a{color:inherit}
+:focus-visible{outline:3px solid var(--steel);outline-offset:3px;border-radius:2px}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+section{padding:clamp(64px,10vw,110px) 0}
+.on-dark{background:var(--navy);color:var(--cream)}
+.on-dark .muted{color:rgba(250,247,242,0.72)}
+.muted{color:var(--stone)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;font-family:var(--mono);font-size:13px;
+  letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
+  padding:16px 28px;border:1px solid var(--copper);cursor:pointer;
+  transition:background .2s ease,color .2s ease;
+}
+.btn-solid{background:var(--copper);color:var(--cream)}
+.btn-solid:hover{background:#8a4626}
+.btn-ghost{background:transparent;color:inherit}
+.btn-ghost:hover{background:rgba(160,82,45,0.12)}
+
+/* ---------- prose (MDX article body) ---------- */
+.prose{max-width:70ch}
+.prose h2{margin:2.2em 0 0.6em;font-size:clamp(26px,4vw,38px)}
+.prose h3{margin:1.8em 0 0.5em}
+.prose p{margin:0 0 1.2em}
+.prose ul,.prose ol{margin:0 0 1.4em;padding-left:1.3em}
+.prose li{margin-bottom:0.5em}
+.prose li::marker{color:var(--copper)}
+.prose strong{color:var(--navy)}
+.prose blockquote{
+  border-left:3px solid var(--copper);padding:0.4em 0 0.4em 1.2em;
+  font-family:var(--serif);font-size:1.15em;margin:1.6em 0;color:var(--navy);
+}
+.prose a{color:var(--copper);text-decoration-color:var(--amber);text-underline-offset:3px}
+.prose hr{border:none;border-top:1px solid var(--line);margin:2.5em 0}
+
+/* ---------- signature offset stack ---------- */
+.stack-offset{display:block}
+.stack-offset .line-1{display:block;color:var(--cream)}
+.stack-offset .line-2{display:block;color:var(--copper);transform:translateX(clamp(24px,6vw,88px));margin-top:-0.08em}
+
+/* ---------- utility ---------- */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid-2,.grid-4{grid-template-columns:1fr}}
+
+.eyebrow-rule{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.eyebrow-rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.on-dark .eyebrow-rule::after{background:var(--line-dark)}

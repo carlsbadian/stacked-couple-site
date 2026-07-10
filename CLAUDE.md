@@ -4,68 +4,72 @@ This file gives Claude Code the context it needs to make on-brand edits to this 
 
 ## What this is
 
-A single-page marketing site for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X couple in Southern California, documenting their real wellness/optimization protocols, training, and honest midlife experience. The site is a launch page: social link hub + email capture, with room to grow into full pages later.
+The web platform for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X couple in Southern California, documenting their real wellness/optimization protocols, training, and honest midlife experience.
 
 - **Live domain:** https://www.thestackedcouple.com
 - **Host:** Cloudflare Pages, auto-deploys from the `main` branch on every push
-- **Stack:** plain static HTML/CSS/JS — no framework, no build step. A single `index.html` plus image assets. Do not introduce a build tool, framework, or npm dependencies unless explicitly asked.
+- **Stack:** Astro 5 + MDX, static output, no client framework. Content is markdown/MDX so it can be managed by AI tools and later a git-based headless CMS (Sveltia/Decap).
+- **Source of truth for brand decisions:** `2026.07.09_StackedCouple_ConsolidatedWorkingDocs.docx` on the NAS (`/Volumes/ClaudeMaster/Claude/The Stacked Couple Website/`). Sections 1–7 govern the site; it is an INTERNAL DRAFT — **nothing publishes without Jenn's explicit written approval.**
 
-## Deploy workflow
+## Build & deploy workflow
 
-This repo auto-deploys. After editing, commit and push to `main`; Cloudflare rebuilds in under a minute. There is no build command — files are served as-is. Keep all asset paths **relative** (e.g. `favicon-32.png`, not `/favicon-32.png`) so they resolve correctly.
+- `npm run build` → static site in `dist/`. `npm run dev` for the dev server.
+- Git and builds run **only on this local copy** — never against the NAS mirror (git fails on the SMB mount).
+- Cloudflare Pages must be set to build command `npm run build`, output `dist`. (The pre-Astro site deployed raw files — if Pages settings haven't been updated, pushing Astro source to `main` will break the live site.)
+- Publishing gate: pushing `main` = live. Jenn holds editorial approval over all content with her face, voice, or name.
 
-## Brand positioning — the one rule that matters most
+## Brand positioning
 
-**Use "Gen X" and "midlife" for brand-level framing. Do not pin the brand to a specific age** ("mid-50s") in headlines, taglines, bio, or positioning copy. Specific ages (e.g. "54 and 55") are allowed only as *proof points* inside content — the realness is the selling point there — never as the brand's defining label. When in doubt, lead with "Midlife. Optimized." which pins no age at all.
+- **Tagline (LOCKED):** "Stacking and Tracking. Thriving in Midlife."
+- **Sub-line (LOCKED):** "Midlife on our own terms. Intentional. Supported. Stacked."
+- The old "Midlife. Optimized." tagline is retired — do not reintroduce it.
+- Use "Gen X" / "midlife" framing. Never pin the brand to a specific age. Never name the specific city — "Southern California," "SoCal," or "Pacific coast" only.
 
 ## Voice rules
 
-ALWAYS:
-- Direct, confident, honest — never preachy.
-- Concrete over vague: real numbers, real protocols, real results.
-- Show the body experience (sweat, effort, data) before naming it.
-- Both voices exist: Jenn's depth + Todd's directness. Frame midlife as optimization, not crisis.
+ALWAYS: direct, honest, clear, data-driven, uncurated. Treat the reader as an intelligent peer. Authority through specificity, not credentials. Both voices exist: Todd's is the method, Jenn's is the meaning.
 
-NEVER:
-- Coaching-industry buzzwords (manifest, high vibe, breakthrough).
-- Spiritual bypass or vague wellness speak.
-- Sycophantic or hype copy.
+NEVER: biohack/hack/hustle/grind · manifest/high vibe/quantum leap · boss babe · "10 steps to…" frameworks · "No BS" / "real results" filler · "anti-aging" (we are pro-vitality) · credentials on platform (exercise-science/premed stay off) · last names, specific city, kids/family detail, career specifics · anything from Jenn's separate In Truth brand.
 
 ## The compound-naming rule (important)
 
-Do **not** put specific peptide/compound names or dosing specifics in the live page text. Platforms suppress this content and it carries liability. The site teaches at a high level and drives to an email list; the actual compound-specific detail is meant to be delivered as a file sent post-signup, not hosted as live page text. Keep the "not medical advice" disclaimer block intact — never remove it.
+No specific peptide/compound names or dosing in live page text. The site teaches frameworks; compound-level detail is delivered via the email list and newsletter. Ascension Peptides may be named as the affiliate partner (code STACKED, 50% off) but **always** with the research-use disclaimer (`ResearchDisclaimer.astro` — the `AffiliateBadge` component pairs them automatically). Never remove the legal footer (in `Footer.astro`, sourced from `src/config/site.ts`).
 
-## Visual system — do not drift from this
+## Architecture
 
-**Colors (CSS variables already defined in `index.html`):**
-- Deep Navy `#1B2F4A` — primary, brand anchor, backgrounds
-- Steel Blue `#4A7FA5` — secondary, accents
-- Cream `#FAF7F2` — base, light sections, text on dark
-- Copper `#A0522D` — primary accent, CTAs, key callouts
-- Amber `#C8973A` — secondary accent, highlights
-- Rust `#B85A30` — texture/photography accent
-- Stone `#8A9099` — subtext, dividers
+- `src/config/site.ts` — single source of truth: tagline, socials, affiliate, legal footer, nav. TODO links (Substack, Ascension URL) get filled here.
+- `src/pages/` — routes per the approved blueprint: `index`, `about`, `work-with-us`, `get-the-guide`, `the-stacks/` (hub + `movement.mdx`, `fuel.mdx`, `mind.mdx`, `optimization/` with 4 category MDX + `toolkit.mdx`), `the-experiment/` (feed + `[slug]` dynamic route).
+- `src/content/experiment/` — blog articles (MDX, schema-validated). `src/content/config.ts` defines schemas for both `experiment` and the `stacks` pages.
+- Top-level nav stays lean: Home · The Stacks · The Experiment · About Us · Work With Us (+ "Get the Guide" CTA).
 
-**Typography:**
-- Headers & brand moments: Georgia / serif
-- Body & captions: Helvetica / sans-serif
-- Labels, data, eyebrows: monospace (utility face)
+## Content pillars (LOCKED)
 
-**Signature device:** the offset "stack" — layered/offset elements that echo the double meaning of *stacked* (physique + protocol + relationship). The hero "Midlife. / Optimized." offset is the centerpiece; keep it.
+**The Stacks → Movement · Fuel · Optimization · Mind.** Every piece of content lives in exactly one (`pillar` frontmatter field). Optimization contains: Peptide Protocols, Targeted Supplements, Tracking & Tech, Biomarker Labs — and hosts The Toolkit. The old pillar names (The Stack/The Sweat/The Science/The Real) are retired.
 
-Spend boldness in one place (the signature), keep everything else quiet. Maintain the quality floor: responsive to mobile, visible keyboard focus, `prefers-reduced-motion` respected.
+## Monetization model
 
-## Content pillars (for any new sections)
+1. **In-text affiliate links** inside MDX narrative content (only what's in our own stack).
+2. **The Toolkit** (`/the-stacks/optimization/toolkit/`) — public, ungated aggregator of gear/sources/codes.
+3. **Gated lead magnet** ("Get the Guide") — sells execution tools (dosage tracker, reconstitution cheat sheet, startup checklist), not links. Email capture via `EmailCapture.astro`.
 
-Four pillars, every piece of content lives in one: **The Stack** (protocols & compounds), **The Sweat** (training), **The Science** (research made human), **The Real** (honest midlife conversation).
+## Visual system
+
+Six colors (LOCKED — defined in `src/styles/global.css`): Deep Navy `#1B2F4A` (primary/anchor) · Steel Blue `#4A7FA5` (secondary) · Cream `#FAF7F2` (base) · Copper `#A0522D` (CTAs/labels — not decoration) · Amber `#C8973A` (warmth, sparingly) · Stone `#8A9099` (subtext/dividers). Navy leads every layout; the old Rust color is retired.
+
+Typography: Georgia/serif headers · Helvetica/sans body · monospace labels/data. **Signature device:** the offset "stack" — the hero's offset "Stacking and / Tracking." is the centerpiece; keep it. Spend boldness in one place, keep everything else quiet. Responsive, visible keyboard focus, `prefers-reduced-motion` respected.
 
 ## Social handles (keep these exact)
 
 - Instagram: https://instagram.com/thestackedcouple (@thestackedcouple)
 - TikTok: https://tiktok.com/@stacked.couple (@stacked.couple)
 - YouTube: https://youtube.com/@TheStackedCouple (@TheStackedCouple)
+- Substack: URL TBD — add in `src/config/site.ts` when live.
 
 ## Known open items
 
-- The email signup form currently captures to the browser console as a placeholder. It needs a real provider embed (Zoho Campaigns, Substack, ConvertKit, or Mailchimp) wired into the form's submit handler in `index.html`. Until then, do not claim the form "works."
-- `og:url` meta tag should be set to `https://www.thestackedcouple.com`.
+- Email capture is a console-log placeholder (`EmailCapture.astro`). Needs a real provider. Do not claim the form works.
+- Intake form (`work-with-us.astro`) has no backend — placeholder handler, same rule.
+- Ascension affiliate URL + Substack URL are empty TODOs in `src/config/site.ts`.
+- Toolkit item links are unlinked list items pending affiliate URLs.
+- The Experiment feed does not yet pull the Substack RSS (TODO in `the-experiment/index.astro`).
+- Cloudflare Pages build settings must be updated for Astro before the `astro-rebuild` branch merges to `main`.

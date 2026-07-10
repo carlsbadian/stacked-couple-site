@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../config/site';
+
+const categories = [
+  {
+    num: '3.1',
+    name: 'Peptide Protocols',
+    href: '/the-stacks/optimization/peptide-protocols/',
+    blurb: 'The compound frameworks, safely framed — what each earns its place for, and where the detail lives.',
+  },
+  {
+    num: '3.2',
+    name: 'Targeted Supplements',
+    href: '/the-stacks/optimization/targeted-supplements/',
+    blurb: 'Goal-specific micronutrient and performance add-ons — what we add for a specific outcome and why.',
+  },
+  {
+    num: '3.3',
+    name: 'Tracking & Tech',
+    href: '/the-stacks/optimization/tracking-tech/',
+    blurb: 'Wearables, smart scales, body scans, and the apps — what we measure and how we read the numbers.',
+  },
+  {
+    num: '3.4',
+    name: 'Biomarker Labs',
+    href: '/the-stacks/optimization/biomarker-labs/',
+    blurb: 'Blood work, diagnostics, and hormone panels. We don’t guess, we test.',
+  },
+];
+---
+<BaseLayout
+  title={`Optimization — ${SITE.name}`}
+  description="Pillar 3 — the data, biohacking, and tracking hub: peptide protocols, targeted supplements, tracking tech, and biomarker labs."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/the-stacks/">The Stacks</a></nav>
+      <div class="label">Pillar 03 — Optimization</div>
+      <h1>We don't guess.<br />We test.</h1>
+      <p class="lede">
+        Our data, biohacking, and tracking hub. Four categories, one rule: if it
+        can't be measured, it can't earn a permanent place in the stack.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="grid-2 cat-grid">
+        {categories.map((c) => (
+          <a class="cat" href={c.href}>
+            <span class="num">{c.num}</span>
+            <span class="name">{c.name}</span>
+            <span class="blurb">{c.blurb}</span>
+            <span class="go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="toolkit-banner on-dark">
+    <div class="wrap banner-inner">
+      <div>
+        <div class="label">The Toolkit</div>
+        <h2>Everything we actually use, in one place.</h2>
+        <p class="muted">
+          Sources, gear, and active discount codes — public and ungated on purpose.
+        </p>
+      </div>
+      <a class="btn btn-solid" href="/the-stacks/optimization/toolkit/">Open the Toolkit →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .crumbs{margin-bottom:22px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em}
+  .crumbs a{color:var(--stone);text-decoration:none;text-transform:uppercase}
+  .crumbs a:hover{color:var(--amber)}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:56ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .cat-grid{gap:24px}
+  .cat{
+    display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);
+    padding:32px 28px;text-decoration:none;min-height:210px;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .cat:hover{background:rgba(74,127,165,0.08);transform:translateY(-3px)}
+  .cat .num{font-family:var(--mono);font-size:12px;color:var(--copper);letter-spacing:0.14em}
+  .cat .name{font-family:var(--serif);font-size:27px}
+  .cat .blurb{font-size:15px;opacity:0.75;flex:1}
+  .cat .go{color:var(--copper);font-size:20px}
+  .toolkit-banner{padding:clamp(48px,7vw,72px) 0}
+  .banner-inner{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+  .banner-inner h2{margin:12px 0 10px;max-width:20ch}
+</style>

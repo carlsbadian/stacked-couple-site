@@ -3,3 +3,9 @@
 
 # Claude Code local config
 .claude/
+
+# Astro / Node
+node_modules/
+dist/
+.astro/
+npm-debug.log*

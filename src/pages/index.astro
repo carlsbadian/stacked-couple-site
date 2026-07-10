@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import AffiliateBadge from '../components/AffiliateBadge.astro';
+import { SITE, SOCIAL } from '../config/site';
+
+const pillars = [
+  {
+    num: '01',
+    name: 'Movement',
+    href: '/the-stacks/movement/',
+    blurb: 'Training frameworks, HIIT, weightlifting, and the workout logs behind them.',
+  },
+  {
+    num: '02',
+    name: 'Fuel',
+    href: '/the-stacks/fuel/',
+    blurb: 'Foundational nutrition, dietary frameworks, macro targets, and meal profiles.',
+  },
+  {
+    num: '03',
+    name: 'Optimization',
+    href: '/the-stacks/optimization/',
+    blurb: 'Our data, biohacking, and tracking hub — protocols, supplements, tech, and labs.',
+  },
+  {
+    num: '04',
+    name: 'Mind',
+    href: '/the-stacks/mind/',
+    blurb: 'Focus, cognitive stacks, sleep architecture — and the honest midlife conversation.',
+  },
+];
+const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube].filter((s) => s.url);
+---
+<BaseLayout>
+  <!-- HERO — the signature offset stack, new locked tagline -->
+  <section class="hero on-dark">
+    <div class="wrap">
+      <div class="label eyebrow">{SITE.name} · {SITE.location}</div>
+      <h1 class="stack-offset" aria-label={SITE.tagline}>
+        <span class="line-1">Stacking and</span>
+        <span class="line-2">Tracking.</span>
+      </h1>
+      <p class="thrive">Thriving in Midlife.</p>
+      <p class="subline">{SITE.subline}</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="/get-the-guide/">Get the Guide →</a>
+        <a class="btn btn-ghost" href="/the-stacks/">Explore the Stacks</a>
+      </div>
+      <dl class="status" aria-label="Current status">
+        <div><dt>Status</dt><dd>mid-protocol</dd></div>
+        <div><dt>Location</dt><dd>Pacific coast</dd></div>
+        <div><dt>Excuses</dt><dd>none</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">The Manifesto</span></div>
+      <div class="grid-2 manifesto">
+        <p class="lead">
+          We built our relationship on a shared obsession with feeling our best. Our
+          passion for health and vitality is one of the foundations of our marriage.
+          We refuse to accept the version of midlife everyone told us to expect.
+        </p>
+        <div>
+          <p>
+            That refusal drives everything we do. We stack. We track. And we built
+            this together so you don't have to figure it out alone.
+          </p>
+          <p>
+            The double meaning is the point. <strong>Stacked</strong> is the physique.
+            <strong>Stacked</strong> is the protocol. And <strong>stacked</strong> is two
+            people holding each other to the same standard — different goals, shared
+            discipline. This isn't a highlight reel. It's an experiment, run in
+            public, with the data shown.
+          </p>
+          <a class="more" href="/about/">More about us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STACKS — pillar overview -->
+  <section class="pillars on-dark">
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">The Stacks</span></div>
+      <h2>Four pillars. Every post lives in one.</h2>
+      <p class="pillars-lede">
+        Training and recovery, how we fuel, the data and compounds behind it, and the
+        honest midlife conversation nobody else is having out loud.
+      </p>
+      <div class="grid-4">
+        {pillars.map((p) => (
+          <a class="pillar-card" href={p.href}>
+            <span class="num">{p.num}</span>
+            <span class="name">{p.name}</span>
+            <span class="blurb">{p.blurb}</span>
+            <span class="go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GET THE GUIDE — email capture -->
+  <section>
+    <div class="wrap">
+      <EmailCapture />
+    </div>
+  </section>
+
+  <!-- OUR SOURCE — affiliate badge -->
+  <section class="source">
+    <div class="wrap">
+      <AffiliateBadge />
+    </div>
+  </section>
+
+  <!-- FOLLOW THE EXPERIMENT -->
+  <section class="follow on-dark">
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">Follow the Experiment</span></div>
+      <h2>We document everything.<br />Pick your platform.</h2>
+      <ul class="follow-list">
+        {socials.map((s) => (
+          <li>
+            <a href={s.url} rel="me noopener" target="_blank">
+              <span class="platform">{s.label}</span>
+              <span class="handle">{s.handle}</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero{padding:clamp(90px,14vw,160px) 0 clamp(64px,9vw,110px)}
+  .eyebrow{margin-bottom:34px}
+  .thrive{
+    font-family:var(--serif);font-size:clamp(24px,3.6vw,38px);
+    margin-top:26px;letter-spacing:-0.01em;
+  }
+  .subline{
+    font-family:var(--mono);font-size:clamp(12px,1.6vw,14px);
+    letter-spacing:0.16em;text-transform:uppercase;
+    color:rgba(250,247,242,0.66);margin-top:14px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:44px}
+  .status{
+    display:flex;gap:clamp(24px,5vw,64px);flex-wrap:wrap;
+    margin-top:clamp(48px,7vw,80px);border-top:1px solid var(--line-dark);padding-top:26px;
+  }
+  .status div{display:flex;gap:12px;align-items:baseline}
+  .status dt{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--stone);
+  }
+  .status dd{font-family:var(--mono);font-size:13px;color:var(--amber)}
+
+  .manifesto .lead{
+    font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.3;
+  }
+  .manifesto p{margin-bottom:1.2em}
+  .more{
+    font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--copper);text-decoration:none;
+  }
+  .more:hover{color:#8a4626}
+
+  .pillars h2{max-width:16ch;margin-bottom:18px}
+  .pillars-lede{max-width:58ch;color:rgba(250,247,242,0.72);margin-bottom:48px}
+  .pillar-card{
+    display:flex;flex-direction:column;gap:12px;text-decoration:none;
+    border:1px solid var(--line-dark);padding:28px 24px;min-height:230px;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .pillar-card:hover{background:rgba(74,127,165,0.12);transform:translateY(-3px)}
+  .pillar-card .num{font-family:var(--mono);font-size:12px;color:var(--copper);letter-spacing:0.14em}
+  .pillar-card .name{font-family:var(--serif);font-size:28px}
+  .pillar-card .blurb{font-size:14.5px;color:rgba(250,247,242,0.68);flex:1}
+  .pillar-card .go{color:var(--amber);font-size:18px}
+
+  .source{padding-top:0}
+
+  .follow h2{margin-bottom:40px}
+  .follow-list{list-style:none;border-top:1px solid var(--line-dark)}
+  .follow-list a{
+    display:flex;align-items:center;gap:22px;padding:22px 4px;text-decoration:none;
+    border-bottom:1px solid var(--line-dark);transition:background .2s ease;
+  }
+  .follow-list a:hover{background:rgba(74,127,165,0.1)}
+  .platform{font-family:var(--serif);font-size:24px;min-width:150px}
+  .handle{font-family:var(--mono);font-size:13px;color:var(--stone);flex:1}
+  .arrow{color:var(--copper);font-size:20px}
+</style>

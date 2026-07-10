@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import { SITE } from '../config/site';
+---
+<BaseLayout
+  title={`Get the Guide — ${SITE.name}`}
+  description="The Peptide Guide We Wish We'd Had — plus the printable dosage tracker, reconstitution cheat sheet, and startup checklist that make it doable."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">The Guide</div>
+      <h1>The breakdown social won't let us post.</h1>
+      <p class="lede">
+        Platforms suppress the specifics. So the detailed protocol breakdown lives
+        here — sent straight to your inbox, away from the algorithm.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap guide-grid">
+      <div class="what">
+        <div class="eyebrow-rule"><span class="label">What you get</span></div>
+        <ul>
+          <li>
+            <strong>The guide itself</strong> — a straightforward breakdown of the
+            compounds we use, what they do, and why we chose them.
+          </li>
+          <li><strong>A printable PDF dosage tracker</strong> — log it, don't guess it.</li>
+          <li><strong>A reconstitution cheat sheet</strong> — the math, done once, correctly.</li>
+          <li><strong>A startup checklist</strong> — everything in order before day one.</li>
+        </ul>
+        <p class="muted note">
+          The value is execution: the tools that make the protocol doable, not a pile
+          of links. Detailed protocol content continues in the newsletter.
+        </p>
+      </div>
+      <EmailCapture compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px;max-width:18ch}
+  .lede{max-width:56ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .guide-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+  @media(max-width:860px){.guide-grid{grid-template-columns:1fr}}
+  .what ul{list-style:none;margin:8px 0 24px}
+  .what li{
+    padding:16px 0 16px 30px;position:relative;border-bottom:1px solid var(--line);
+    font-size:16.5px;
+  }
+  .what li::before{content:"+";position:absolute;left:2px;color:var(--copper);font-family:var(--mono)}
+  .note{font-size:14px;max-width:52ch}
+</style>

@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+<BaseLayout
+  title={`About Us — ${SITE.name}`}
+  description="Two people in midlife who refused the default outcome and built a protocol, a practice, and a relationship around that refusal."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">About Us</div>
+      <h1>We are the experiment.<br />This is the data.</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap prose">
+      <p class="lead">
+        We built our relationship on a shared obsession with feeling our best. Our
+        passion for health and vitality is one of the foundations of our marriage. We
+        refuse to accept the version of midlife everyone told us to expect. That
+        refusal drives everything we do. We stack. We track. And we built this
+        together so you don't have to figure it out alone.
+      </p>
+      <p>
+        The double meaning is the point. <strong>Stacked</strong> is the physique.
+        <strong>Stacked</strong> is the protocol. And <strong>stacked</strong> is two
+        people holding each other to the same standard — different goals, shared
+        discipline. This isn't a highlight reel. It's an experiment, run in public,
+        with the data shown.
+      </p>
+    </div>
+  </section>
+
+  <section class="voices on-dark">
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">Why we started</span></div>
+      <div class="grid-2">
+        <article class="voice">
+          <h2>Todd</h2>
+          <p>
+            People in midlife don't need to give up on aging. The right stack —
+            peptides, movement, fuel, and mindset — lets your body feel better as you
+            age. There is a pathway. We're building it in public.
+          </p>
+        </article>
+        <article class="voice">
+          <h2>Jenn</h2>
+          <p>
+            People our age already come to us. They want to know what we're doing. We
+            look like the fit couple — and we know something they don't. I'm a cancer
+            survivor with genetic variants that predispose me to inflammation,
+            autoimmune issues, and Lyme markers. Genetically the odds were stacked
+            against me. If a peptide stack tips those odds back in my favor, I want to
+            share that.
+          </p>
+          <p>
+            We're also watching our aging parents struggle — a front-row seat to what
+            20 years from now looks like if we don't stay strong and active. That's
+            why we started.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap next">
+      <div>
+        <h2>Where to go from here</h2>
+        <p class="muted">The method lives in the Stacks. The ongoing log lives in the Experiment.</p>
+      </div>
+      <div class="next-ctas">
+        <a class="btn btn-solid" href="/the-stacks/">Explore the Stacks →</a>
+        <a class="btn btn-ghost" href="/the-experiment/">Read the Experiment</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin-top:16px}
+  .lead{font-family:var(--serif);font-size:clamp(21px,2.8vw,28px);line-height:1.35}
+  .voice h2{color:var(--amber);margin-bottom:16px}
+  .voice p{color:rgba(250,247,242,0.82);margin-bottom:1em}
+  .next{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+  .next h2{margin-bottom:8px}
+  .next-ctas{display:flex;gap:14px;flex-wrap:wrap}
+</style>

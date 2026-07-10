@@ -1,0 +1,84 @@
+---
+import { NAV } from '../config/site';
+const current = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? current === '/' : current.startsWith(href);
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="mark" aria-label="The Stacked Couple — home">The Stacked Couple</a>
+    <nav aria-label="Primary">
+      <ul>
+        {NAV.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a href="/get-the-guide/" class="btn btn-solid cta">Get the Guide</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Primary mobile" hidden>
+    <ul>
+      {NAV.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+      <li><a href="/get-the-guide/" class="mobile-cta">Get the Guide →</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header{
+    background:var(--navy);color:var(--cream);
+    border-bottom:1px solid var(--line-dark);
+    position:sticky;top:0;z-index:50;
+  }
+  .bar{display:flex;align-items:center;gap:28px;height:72px}
+  .mark{
+    font-family:var(--serif);font-size:19px;text-decoration:none;
+    letter-spacing:-0.01em;white-space:nowrap;margin-right:auto;
+  }
+  nav ul{display:flex;gap:26px;list-style:none}
+  nav a{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;text-decoration:none;color:rgba(250,247,242,0.82);
+    padding:6px 0;border-bottom:2px solid transparent;
+  }
+  nav a:hover{color:var(--cream)}
+  nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--copper)}
+  .cta{padding:11px 20px;font-size:12px}
+  .menu-toggle{display:none}
+
+  @media(max-width:960px){
+    nav[aria-label="Primary"],.cta{display:none}
+    .menu-toggle{
+      display:flex;flex-direction:column;gap:5px;background:none;
+      border:none;cursor:pointer;padding:8px;
+    }
+    .menu-toggle span{width:24px;height:2px;background:var(--cream);transition:transform .2s}
+    .mobile-nav{border-top:1px solid var(--line-dark);padding:8px 0 20px}
+    .mobile-nav ul{display:block;list-style:none}
+    .mobile-nav a{
+      display:block;padding:14px clamp(20px,5vw,48px);
+      font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
+      text-transform:uppercase;text-decoration:none;color:var(--cream);
+    }
+    .mobile-cta{color:var(--amber)!important}
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (nav) nav.hidden = open;
+  });
+</script>

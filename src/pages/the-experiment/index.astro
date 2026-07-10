@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE, SOCIAL } from '../../config/site';
+
+const posts = (await getCollection('experiment', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const pillarLabel: Record<string, string> = {
+  movement: 'Movement',
+  fuel: 'Fuel',
+  optimization: 'Optimization',
+  mind: 'Mind',
+};
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+/**
+ * TODO(Todd): when the Substack publication is live, add its RSS feed here
+ * (fetch + parse at build time) and interleave those entries into this feed
+ * with an "On Substack →" external marker. Config lives in src/config/site.ts.
+ */
+---
+<BaseLayout
+  title={`The Experiment — ${SITE.name}`}
+  description="The ongoing log: deep-dives, reviews, and protocol updates. Run in public, with the data shown."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">The Experiment</div>
+      <h1>The log, run in public.</h1>
+      <p class="lede">
+        Deep-dives, honest reviews, and protocol updates — every entry lives in one
+        of the four pillars. The compound-level detail continues in the newsletter.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      {posts.length === 0 ? (
+        <p class="muted empty">First entries are being written. Follow along on
+          <a href={SOCIAL.instagram.url}>Instagram</a> in the meantime.</p>
+      ) : (
+        <ul class="feed">
+          {posts.map((post) => (
+            <li>
+              <a class="entry" href={`/the-experiment/${post.id}/`}>
+                <span class="meta">
+                  <span class="pillar">{pillarLabel[post.data.pillar]}</span>
+                  <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+                </span>
+                <span class="title">{post.data.title}</span>
+                <span class="desc">{post.data.description}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:58ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .feed{list-style:none;border-top:1px solid var(--line)}
+  .entry{
+    display:block;padding:30px 4px;border-bottom:1px solid var(--line);
+    text-decoration:none;transition:background .2s ease;
+  }
+  .entry:hover{background:rgba(74,127,165,0.07)}
+  .meta{display:flex;gap:18px;align-items:baseline;margin-bottom:10px}
+  .pillar{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--copper);
+  }
+  time{font-family:var(--mono);font-size:12px;color:var(--stone)}
+  .title{display:block;font-family:var(--serif);font-size:clamp(24px,3vw,32px);margin-bottom:8px}
+  .desc{display:block;font-size:15.5px;opacity:0.75;max-width:70ch}
+  .empty{padding:40px 0}
+  .empty a{color:var(--copper)}
+</style>

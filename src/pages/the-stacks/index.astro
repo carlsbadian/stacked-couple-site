@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../config/site';
+
+const pillars = [
+  {
+    num: '01',
+    name: 'Movement',
+    href: '/the-stacks/movement/',
+    tag: 'Training Life',
+    blurb: 'Training frameworks, HIIT, weightlifting, and workout logs — the training life of two busy people making it happen.',
+  },
+  {
+    num: '02',
+    name: 'Fuel',
+    href: '/the-stacks/fuel/',
+    tag: 'Nutrition Frameworks',
+    blurb: 'Foundational nutrition, dietary frameworks, macro targets, and meal profiles. Framework over daily detail.',
+  },
+  {
+    num: '03',
+    name: 'Optimization',
+    href: '/the-stacks/optimization/',
+    tag: 'Data · Biohacking · Tracking',
+    blurb: 'The data hub: peptide protocols, targeted supplements, tracking tech, and biomarker labs. We don’t guess, we test.',
+  },
+  {
+    num: '04',
+    name: 'Mind',
+    href: '/the-stacks/mind/',
+    tag: 'Focus · Sleep · The Conversation',
+    blurb: 'Focus, cognitive stacks, and sleep architecture — plus the honest midlife conversation that makes or breaks everything else.',
+  },
+];
+---
+<BaseLayout
+  title={`The Stacks — ${SITE.name}`}
+  description="The Stacks is the method: Movement, Fuel, Optimization, Mind. Four pillars — every post lives in exactly one."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">The Stacks</div>
+      <h1>Four pillars.<br />Every post lives in one.</h1>
+      <p class="lede">
+        Movement · Fuel · Optimization · Mind. Training and recovery, how we fuel,
+        the data and compounds behind it, and the honest midlife conversation nobody
+        else is having out loud.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="pillar-list">
+        {pillars.map((p) => (
+          <a class="row" href={p.href}>
+            <span class="num">{p.num}</span>
+            <span class="name-tag">
+              <span class="name">{p.name}</span>
+              <span class="tag">{p.tag}</span>
+            </span>
+            <span class="blurb">{p.blurb}</span>
+            <span class="go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:60ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .pillar-list{border-top:1px solid var(--line)}
+  .row{
+    display:grid;grid-template-columns:70px 240px 1fr 40px;gap:28px;align-items:center;
+    padding:34px 4px;border-bottom:1px solid var(--line);text-decoration:none;
+    transition:background .2s ease;
+  }
+  .row:hover{background:rgba(74,127,165,0.08)}
+  .num{font-family:var(--mono);font-size:13px;color:var(--copper);letter-spacing:0.12em}
+  .name{display:block;font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);line-height:1.05}
+  .tag{
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--amber);margin-top:8px;
+  }
+  .blurb{font-size:15.5px;color:var(--navy);opacity:0.78}
+  .go{color:var(--copper);font-size:22px}
+  @media(max-width:820px){
+    .row{grid-template-columns:1fr;gap:10px}
+    .go{display:none}
+  }
+</style>
