@@ -15,7 +15,7 @@ const pillarLabel: Record<string, string> = {
 };
 
 const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 /**
  * TODO(Todd): when the Substack publication is live, add its RSS feed here
@@ -35,6 +35,19 @@ const fmt = (d: Date) =>
         Deep-dives, honest reviews, and protocol updates — every entry lives in one
         of the four pillars. The compound-level detail continues in the newsletter.
       </p>
+    </div>
+  </section>
+
+  <section class="slogan-sec">
+    <div class="wrap">
+      <img
+        class="slogan"
+        src="/brand/slogan-experiment.png"
+        alt="Midlife on our terms. We are the experiment."
+        width="900"
+        height="378"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -67,6 +80,8 @@ const fmt = (d: Date) =>
   .page-hero{padding:clamp(64px,9vw,110px) 0}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:58ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .slogan-sec{padding-bottom:0}
+  .slogan{display:block;width:min(560px,100%);height:auto}
   .feed{list-style:none;border-top:1px solid var(--line)}
   .entry{
     display:block;padding:30px 4px;border-bottom:1px solid var(--line);

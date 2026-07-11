@@ -36,7 +36,17 @@ import { SITE } from '../config/site';
           of links. Detailed protocol content continues in the newsletter.
         </p>
       </div>
-      <EmailCapture compact />
+      <div class="side">
+        <EmailCapture compact />
+        <img
+          class="lockup"
+          src="/brand/logo-lockup.webp"
+          alt="The Stacked Couple logo — four stacked chevrons in navy, steel blue, copper, and amber. Est. 2026. Stacking & Tracking. Thriving in Midlife."
+          width="720"
+          height="779"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -54,4 +64,9 @@ import { SITE } from '../config/site';
   }
   .what li::before{content:"+";position:absolute;left:2px;color:var(--copper);font-family:var(--mono)}
   .note{font-size:14px;max-width:52ch}
+  .side{display:grid;gap:28px}
+  .lockup{
+    display:block;width:min(340px,80%);height:auto;margin:0 auto;
+    border:1px solid var(--line);
+  }
 </style>

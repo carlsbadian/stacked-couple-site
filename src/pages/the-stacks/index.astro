@@ -49,7 +49,31 @@ const pillars = [
     </div>
   </section>
 
-  <section>
+  <section class="lockup-sec">
+    <div class="wrap lockup-grid">
+      <img
+        src="/brand/pennants-lockup.webp"
+        alt="The Stacked Couple wordmark above four pillar pennants: Movement Stack, Mind Stack, Fuel Stack, Optimization Stack."
+        width="1100"
+        height="1018"
+        loading="lazy"
+      />
+      <div class="lockup-copy">
+        <div class="eyebrow-rule"><span class="label">The architecture</span></div>
+        <p>
+          The Stacks is the overarching concept — four pillars sit under it, and every
+          post lives in exactly one. No orphan content, no vibes-only categories: if
+          it doesn't fit a pillar, it doesn't ship.
+        </p>
+        <p class="muted">
+          Pick a pillar below, or start with the ongoing log in
+          <a href="/the-experiment/">The Experiment</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="list-sec">
     <div class="wrap">
       <div class="pillar-list">
         {pillars.map((p) => (
@@ -72,6 +96,16 @@ const pillars = [
   .page-hero{padding:clamp(64px,9vw,110px) 0}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:60ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .lockup-sec{padding-bottom:0}
+  .lockup-grid{
+    display:grid;grid-template-columns:minmax(280px,440px) 1fr;
+    gap:clamp(32px,5vw,72px);align-items:center;
+  }
+  @media(max-width:760px){.lockup-grid{grid-template-columns:1fr}}
+  .lockup-grid img{display:block;width:100%;height:auto;border:1px solid var(--line)}
+  .lockup-copy p{max-width:52ch;margin-bottom:1em;font-size:17px}
+  .lockup-copy a{color:var(--copper)}
+  .list-sec{padding-top:clamp(40px,6vw,64px)}
   .pillar-list{border-top:1px solid var(--line)}
   .row{
     display:grid;grid-template-columns:70px 240px 1fr 40px;gap:28px;align-items:center;
