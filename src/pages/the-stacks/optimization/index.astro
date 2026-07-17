@@ -36,12 +36,24 @@ const categories = [
   <section class="page-hero on-dark">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/the-stacks/">The Stacks</a></nav>
-      <div class="label">Pillar 03 — Optimization</div>
-      <h1>We don't guess.<br />We test.</h1>
-      <p class="lede">
-        Our data, biohacking, and tracking hub. Four categories, one rule: if it
-        can't be measured, it can't earn a permanent place in the stack.
-      </p>
+      <div class="hero-row">
+        <div>
+          <div class="label">Pillar 03 — Optimization</div>
+          <h1>We don't guess.<br />We test.</h1>
+          <p class="lede">
+            Our data, biohacking, and tracking hub. Four categories, one rule: if it
+            can't be measured, it can't earn a permanent place in the stack.
+          </p>
+        </div>
+        <img
+          class="pennant"
+          src="/brand/pillar-optimization.webp"
+          alt="Optimization Stack pennant"
+          width="360"
+          height="527"
+          loading="eager"
+        />
+      </div>
     </div>
   </section>
 
@@ -81,6 +93,9 @@ const categories = [
   .crumbs a:hover{color:var(--amber)}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:56ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .hero-row{display:flex;gap:clamp(24px,5vw,64px);align-items:center;justify-content:space-between}
+  .pennant{width:clamp(90px,12vw,140px);height:auto;flex-shrink:0}
+  @media(max-width:640px){.pennant{display:none}}
   .cat-grid{gap:24px}
   .cat{
     display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);

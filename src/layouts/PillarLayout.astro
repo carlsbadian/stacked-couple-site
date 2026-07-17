@@ -18,6 +18,10 @@ interface Props {
 }
 const { frontmatter } = Astro.props;
 const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
+// Pennant badge only on the top-level pillar pages (eyebrow "Pillar NN — …"),
+// not on the Optimization category pages.
+const showPennant = eyebrow.startsWith('Pillar');
+const pennant = `/brand/pillar-${frontmatter.pillar}.webp`;
 ---
 <BaseLayout title={`${frontmatter.title} — ${SITE.name}`} description={frontmatter.description}>
   <section class="pillar-hero on-dark">
@@ -28,9 +32,23 @@ const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
           <><span aria-hidden="true">·</span><a href="/the-stacks/optimization/">Optimization</a></>
         )}
       </nav>
-      <div class="label">{eyebrow}</div>
-      <h1>{frontmatter.title}</h1>
-      <p class="lede">{frontmatter.description}</p>
+      <div class="hero-row">
+        <div>
+          <div class="label">{eyebrow}</div>
+          <h1>{frontmatter.title}</h1>
+          <p class="lede">{frontmatter.description}</p>
+        </div>
+        {showPennant && (
+          <img
+            class="pennant"
+            src={pennant}
+            alt={`${frontmatter.title} Stack pennant`}
+            width="360"
+            height="560"
+            loading="eager"
+          />
+        )}
+      </div>
     </div>
   </section>
   <section>
@@ -48,4 +66,7 @@ const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
   .crumbs span{margin:0 10px;color:var(--stone)}
   h1{margin:14px 0 18px}
   .lede{max-width:62ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .hero-row{display:flex;gap:clamp(24px,5vw,64px);align-items:center;justify-content:space-between}
+  .pennant{width:clamp(90px,12vw,140px);height:auto;flex-shrink:0}
+  @media(max-width:640px){.pennant{display:none}}
 </style>

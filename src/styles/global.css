@@ -93,6 +93,9 @@ section{padding:clamp(64px,10vw,110px) 0}
 .stack-offset{display:block}
 .stack-offset .line-1{display:block;color:var(--cream)}
 .stack-offset .line-2{display:block;color:var(--copper);transform:translateX(clamp(24px,6vw,88px));margin-top:-0.08em}
+@media(max-width:480px){
+  .stack-offset .line-2{transform:translateX(14px)}
+}
 
 /* ---------- utility ---------- */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px)}

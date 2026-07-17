@@ -30,7 +30,7 @@ const pillars = [
     blurb: 'Focus, cognitive stacks, sleep architecture — and the honest midlife conversation.',
   },
 ];
-const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube].filter((s) => s.url);
+const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => s.url);
 ---
 <BaseLayout>
   <!-- HERO — the signature offset stack, new locked tagline -->
@@ -125,9 +125,14 @@ const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube].filter((s) => 
     </div>
   </section>
 
-  <!-- OUR SOURCE — affiliate badge -->
+  <!-- OUR STACK — affiliate section -->
   <section class="source">
     <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">Our Stack</span></div>
+      <p class="stack-lede">
+        We only recommend what's in our own stack. Our trusted source for peptides —
+        use our code for 50% off.
+      </p>
       <AffiliateBadge />
     </div>
   </section>
@@ -153,7 +158,11 @@ const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube].filter((s) => 
 </BaseLayout>
 
 <style>
-  .hero{padding:clamp(90px,14vw,160px) 0 clamp(64px,9vw,110px)}
+  .hero{
+    padding:clamp(90px,14vw,160px) 0 clamp(64px,9vw,110px);
+    background-image:url('/brand/pattern-dark.webp');
+    background-size:420px auto;
+  }
   .eyebrow{margin-bottom:34px}
   .thrive{
     font-family:var(--serif);font-size:clamp(24px,3.6vw,38px);
@@ -206,6 +215,7 @@ const socials = [SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.youtube].filter((s) => 
   .pillar-card .go{color:var(--amber);font-size:18px}
 
   .source{padding-top:0}
+  .stack-lede{max-width:58ch;font-size:17px;margin-bottom:28px}
 
   .follow h2{margin-bottom:40px}
   .follow-list{list-style:none;border-top:1px solid var(--line-dark)}

@@ -6,7 +6,10 @@ const isActive = (href: string) =>
 ---
 <header class="site-header">
   <div class="wrap bar">
-    <a href="/" class="mark" aria-label="The Stacked Couple — home">The Stacked Couple</a>
+    <a href="/" class="mark" aria-label="The Stacked Couple — home">
+      <img src="/brand/chevron.webp" alt="" width="200" height="220" class="mark-chevron" />
+      <span>The Stacked Couple</span>
+    </a>
     <nav aria-label="Primary">
       <ul>
         {NAV.map((item) => (
@@ -43,7 +46,9 @@ const isActive = (href: string) =>
   .mark{
     font-family:var(--serif);font-size:19px;text-decoration:none;
     letter-spacing:-0.01em;white-space:nowrap;margin-right:auto;
+    display:flex;align-items:center;gap:12px;
   }
+  .mark-chevron{width:26px;height:auto}
   nav ul{display:flex;gap:26px;list-style:none}
   nav a{
     font-family:var(--mono);font-size:12px;letter-spacing:0.14em;
@@ -59,7 +64,8 @@ const isActive = (href: string) =>
     nav[aria-label="Primary"],.cta{display:none}
     .menu-toggle{
       display:flex;flex-direction:column;gap:5px;background:none;
-      border:none;cursor:pointer;padding:8px;
+      border:none;cursor:pointer;padding:14px 10px;min-width:44px;min-height:44px;
+      justify-content:center;align-items:center;
     }
     .menu-toggle span{width:24px;height:2px;background:var(--cream);transition:transform .2s}
     .mobile-nav{border-top:1px solid var(--line-dark);padding:8px 0 20px}

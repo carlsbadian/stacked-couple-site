@@ -3,34 +3,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../config/site';
 
 /**
- * Intake application — fields per the consolidated working doc (section 6).
+ * Intake application — copy per Jenn's "Intake - Work with us" draft
+ * (working docs, July 2026).
  * NOTE: no form backend is wired yet. Submissions log to the console as a
  * placeholder. TODO(Todd): connect a form handler (Formspark / Tally /
  * Cloudflare Worker → email) at the marked action.
  */
 
 const affecting = [
-  'Sleep disruption', 'Low energy / fatigue', 'Joint pain or injury', 'Slow recovery',
-  'Weight / body-composition shift', 'Muscle loss', 'Brain fog / focus',
-  'Mood or motivation', 'Hormonal changes', 'Digestive / gut', 'Stress or anxiety',
+  'Sleep disruption', 'Low energy or fatigue', 'Joint pain or injury',
+  'Slow recovery from training', 'Weight gain or body composition shift',
+  'Muscle loss', 'Brain fog or focus issues', 'Mood or motivation changes',
+  'Hormonal changes', 'Digestive or gut issues', 'Elevated stress or anxiety',
   'Optimizing from a solid base', 'Other',
 ];
 const training = [
-  'Weightlifting', 'Cardio', 'Rucking / walking', 'Yoga / Pilates',
-  'Recreational sports', 'Not training consistently', 'Other',
+  'Weightlifting', 'Cardio (running, cycling, etc.)', 'Rucking or walking',
+  'Yoga or Pilates', 'Recreational sports', 'Not training consistently right now',
+  'Other',
 ];
 const nutrition = [
-  'Whole foods / clean', 'Paleo / Whole30', 'Keto / low-carb', 'Carnivore',
-  'Intermittent fasting', 'Calorie / macro tracking', 'Plant-based',
-  'None right now', 'Other',
+  'Whole foods / clean eating', 'Paleo or Whole30', 'Keto or low carb',
+  'Carnivore', 'Intermittent fasting', 'Calorie or macro tracking',
+  'Plant-based', 'No particular approach right now', 'Other',
 ];
 const experience = [
-  'No experience', 'Researched but nothing run', 'Tried one or two with mixed results',
-  'Active protocol, want to optimize', 'Experienced (1yr+)',
+  'No experience — starting from zero',
+  "I've done research but haven't run anything yet",
+  "I've tried one or two compounds with mixed results",
+  'On an active protocol and want to optimize it',
+  'Experienced — running protocols for a year or more',
 ];
 const goals = [
-  'Fat loss', 'Muscle building / preservation', 'Tissue repair / healing',
-  'Sleep / recovery', 'Immune support', 'Cellular health / longevity',
+  'Fat loss', 'Muscle building or preservation', 'Tissue repair and healing',
+  'Sleep and recovery', 'Immune support', 'Cellular health and longevity',
   'Cognitive function', 'Hormone optimization', 'Other',
 ];
 ---
@@ -41,11 +47,11 @@ const goals = [
   <section class="page-hero on-dark">
     <div class="wrap">
       <div class="label">Work With Us</div>
-      <h1>Tell us where you're starting from.</h1>
+      <h1>Application to work with us</h1>
       <p class="lede">
         Take a few minutes to fill this out honestly. The more complete your answers,
         the better we can assess whether we're the right fit and what working together
-        would look like.
+        would actually look like.
       </p>
     </div>
   </section>
@@ -61,42 +67,38 @@ const goals = [
             <label>Email <input type="email" name="email" autocomplete="email" required /></label>
             <label>Phone (optional) <input type="tel" name="phone" autocomplete="tel" /></label>
             <label>Age <input type="number" name="age" min="18" max="120" required /></label>
-            <label>Gender (optional, your own words) <input type="text" name="gender" /></label>
+            <label>Gender (optional — your own words) <input type="text" name="gender" /></label>
             <label class="span-2">Location (city, state) <input type="text" name="location" required /></label>
           </div>
           <div class="radio-row" role="radiogroup" aria-labelledby="applying-label">
-            <span id="applying-label" class="sub-legend">Applying as</span>
+            <span id="applying-label" class="sub-legend">Are you applying as an individual or a couple?</span>
             <label><input type="radio" name="applying_as" value="just-me" required /> Just me</label>
-            <label><input type="radio" name="applying_as" value="partner" /> My partner and I</label>
+            <label><input type="radio" name="applying_as" value="partner" /> My partner and I — we're both in</label>
             <label><input type="radio" name="applying_as" value="partner-later" /> Just me for now, partner may join later</label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>What's currently affecting you</legend>
+          <legend>Health and lifestyle</legend>
+          <p class="q">Which of these are currently affecting you?</p>
           <p class="hint">Check all that apply.</p>
           <div class="check-grid">
             {affecting.map((item) => (
               <label><input type="checkbox" name="affecting" value={item} /> {item}</label>
             ))}
           </div>
-          <label class="block">Relevant health history (optional, brief)
+          <label class="block">Relevant health history (optional)
+            <span class="hint">Surgeries, chronic conditions, medications — anything that shapes how your body responds. Brief is fine.</span>
             <textarea name="health_history" rows="3"></textarea>
           </label>
-        </fieldset>
-
-        <fieldset>
-          <legend>Current training</legend>
+          <p class="q">Current training</p>
           <p class="hint">Check all that apply.</p>
           <div class="check-grid">
             {training.map((item) => (
               <label><input type="checkbox" name="training" value={item} /> {item}</label>
             ))}
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Nutrition approach</legend>
+          <p class="q">Nutrition approach</p>
           <div class="check-grid">
             {nutrition.map((item) => (
               <label><input type="checkbox" name="nutrition" value={item} /> {item}</label>
@@ -105,50 +107,53 @@ const goals = [
         </fieldset>
 
         <fieldset>
-          <legend>Where are you starting from</legend>
-          <p class="hint">Peptides / protocols experience.</p>
-          <div class="check-grid">
+          <legend>Peptides and protocols</legend>
+          <p class="q">Where are you starting from?</p>
+          <div class="check-grid stack-col">
             {experience.map((item) => (
               <label><input type="radio" name="experience" value={item} /> {item}</label>
             ))}
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>What are you looking to address</legend>
+          <p class="q">What are you looking to address?</p>
           <p class="hint">Check all that apply.</p>
           <div class="check-grid">
             {goals.map((item) => (
               <label><input type="checkbox" name="goals" value={item} /> {item}</label>
             ))}
           </div>
-          <label class="block">Current stack — compound, dose, frequency ("nothing yet" is fine)
+          <label class="block">What's your current stack?
+            <span class="hint">What are you running right now — compound, dose, frequency. "Nothing yet" is a fine answer.</span>
             <textarea name="current_stack" rows="3"></textarea>
           </label>
         </fieldset>
 
         <fieldset>
-          <legend>Goals &amp; readiness</legend>
-          <label class="block">Primary goals right now
+          <legend>Goals and readiness</legend>
+          <label class="block">What are your primary goals right now?
+            <span class="hint">Specific is more useful than general.</span>
             <textarea name="primary_goals" rows="3" required></textarea>
           </label>
           <label class="block">What does success look like in 90 days?
+            <span class="hint">What would make you say "this was worth it"?</span>
             <textarea name="success_90" rows="3"></textarea>
           </label>
           <label class="block">Why now?
+            <span class="hint">Something shifted or became urgent — what was it?</span>
             <textarea name="why_now" rows="2"></textarea>
           </label>
-          <label class="block">Anything that might get in the way? (travel, schedule, budget, skeptical partner)
+          <label class="block">Anything that might get in the way?
+            <span class="hint">Travel, schedule, budget, a skeptical partner — better to name it here.</span>
             <textarea name="obstacles" rows="2"></textarea>
           </label>
-          <label class="block">Anything else?
+          <label class="block">Anything else we should know before we connect?
+            <span class="hint">Open space — use it if you need it.</span>
             <textarea name="anything_else" rows="2"></textarea>
           </label>
         </fieldset>
 
         <p class="confidential">
-          All information is confidential and used solely to assess fit. For
-          educational purposes only — not medical advice.
+          All information shared here is confidential and used solely to assess fit.
+          For educational purposes only — not medical advice.
         </p>
         <button type="submit" class="btn btn-solid">Submit Application →</button>
       </form>
@@ -165,7 +170,9 @@ const goals = [
   legend{
     font-family:var(--serif);font-size:24px;padding:0 12px;margin-left:-12px;
   }
-  .hint{font-size:13.5px;color:var(--stone);margin:4px 0 16px}
+  .q{font-weight:bold;font-size:16px;margin:26px 0 4px}
+  .q:first-of-type{margin-top:4px}
+  .hint{display:block;font-size:13.5px;font-weight:normal;color:var(--stone);margin:4px 0 12px}
   label{display:block;font-size:15px;margin-bottom:14px}
   input[type="text"],input[type="email"],input[type="tel"],input[type="number"],textarea{
     display:block;width:100%;margin-top:6px;padding:12px 14px;font-size:16px;
@@ -176,10 +183,11 @@ const goals = [
   .check-grid{
     display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 20px;
   }
+  .check-grid.stack-col{grid-template-columns:1fr}
   .check-grid label,.radio-row label{
     display:flex;gap:10px;align-items:flex-start;font-size:15px;margin-bottom:8px;
   }
-  .check-grid input,.radio-row input{margin-top:4px;accent-color:var(--copper)}
+  .check-grid input,.radio-row input{margin-top:4px;accent-color:var(--copper);flex-shrink:0}
   .radio-row{margin-top:20px}
   .sub-legend{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
   .block{margin-top:18px}
