@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 /**
  * The four locked pillars. Every piece of content lives in exactly one.
- * The Stacks → Movement · Fuel · Optimization · Mind
+ * The Stacks → Optimization · Movement · Fuel · Mind
  */
 export const PILLARS = ['movement', 'fuel', 'optimization', 'mind'] as const;
 

@@ -7,21 +7,21 @@ import { SITE, SOCIAL } from '../config/site';
 const pillars = [
   {
     num: '01',
+    name: 'Optimization',
+    href: '/the-stacks/optimization/',
+    blurb: 'Our data, biohacking, and tracking hub — protocols, supplements, tech, and labs.',
+  },
+  {
+    num: '02',
     name: 'Movement',
     href: '/the-stacks/movement/',
     blurb: 'Training frameworks, HIIT, weightlifting, and the workout logs behind them.',
   },
   {
-    num: '02',
+    num: '03',
     name: 'Fuel',
     href: '/the-stacks/fuel/',
     blurb: 'Foundational nutrition, dietary frameworks, macro targets, and meal profiles.',
-  },
-  {
-    num: '03',
-    name: 'Optimization',
-    href: '/the-stacks/optimization/',
-    blurb: 'Our data, biohacking, and tracking hub — protocols, supplements, tech, and labs.',
   },
   {
     num: '04',
@@ -102,8 +102,8 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
       <div class="eyebrow-rule"><span class="label">The Stacks</span></div>
       <h2>Four pillars. Every post lives in one.</h2>
       <p class="pillars-lede">
-        Training and recovery, how we fuel, the data and compounds behind it, and the
-        honest midlife conversation nobody else is having out loud.
+        The data and compounds behind it all, training and recovery, how we fuel, and
+        the honest midlife conversation nobody else is having out loud.
       </p>
       <div class="grid-4">
         {pillars.map((p) => (

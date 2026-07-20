@@ -44,7 +44,7 @@ No specific peptide/compound names or dosing in live page text. The site teaches
 
 ## Content pillars (LOCKED)
 
-**The Stacks → Movement · Fuel · Optimization · Mind.** Every piece of content lives in exactly one (`pillar` frontmatter field). Optimization contains: Peptide Protocols, Targeted Supplements, Tracking & Tech, Biomarker Labs — and hosts The Toolkit. The old pillar names (The Stack/The Sweat/The Science/The Real) are retired.
+**The Stacks → Optimization · Movement · Fuel · Mind** (display order per Todd, 2026-07-17; the consolidated doc originally listed Movement first). Every piece of content lives in exactly one (`pillar` frontmatter field). Optimization contains: Peptide Protocols, Targeted Supplements, Tracking & Tech, Biomarker Labs — and hosts The Toolkit. The old pillar names (The Stack/The Sweat/The Science/The Real) are retired.
 
 ## Monetization model
 
