@@ -69,7 +69,7 @@ Typography: Georgia/serif headers · Helvetica/sans body · monospace labels/dat
 
 - Email capture is a console-log placeholder (`EmailCapture.astro`). Needs a real provider. Do not claim the form works.
 - Intake form (`work-with-us.astro`) has no backend — placeholder handler, same rule.
-- Ascension affiliate URL + Substack URL are empty TODOs in `src/config/site.ts`.
+- Substack URL is an empty TODO in `src/config/site.ts`. (Ascension affiliate URL is live: https://ascensionpeptides.com/ref/stackedcouple/ — auto-applies the 50% discount; code STACKED is the checkout fallback.)
 - Toolkit item links are unlinked list items pending affiliate URLs.
 - The Experiment feed does not yet pull the Substack RSS (TODO in `the-experiment/index.astro`).
 - Cloudflare Pages build settings must be updated for Astro before the `astro-rebuild` branch merges to `main`.

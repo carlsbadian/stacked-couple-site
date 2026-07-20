@@ -24,8 +24,7 @@ export const AFFILIATE = {
     name: 'Ascension Peptides',
     code: 'STACKED',
     discount: '50% off',
-    // TODO(Todd): replace with the live affiliate URL.
-    url: '',
+    url: 'https://ascensionpeptides.com/ref/stackedcouple/',
     disclaimer:
       'All compounds sold by Ascension Peptides are for research purposes only and are not intended for human consumption. The Stacked Couple is not responsible for how these compounds are used.',
   },
