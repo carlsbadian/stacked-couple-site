@@ -86,7 +86,7 @@ section{padding:clamp(64px,10vw,110px) 0}
   border-left:3px solid var(--copper);padding:0.4em 0 0.4em 1.2em;
   font-family:var(--serif);font-size:1.15em;margin:1.6em 0;color:var(--navy);
 }
-.prose a{color:var(--copper);text-decoration-color:var(--amber);text-underline-offset:3px}
+.prose a:not(.btn){color:var(--copper);text-decoration-color:var(--amber);text-underline-offset:3px}
 .prose hr{border:none;border-top:1px solid var(--line);margin:2.5em 0}
 
 /* ---------- signature offset stack ---------- */
