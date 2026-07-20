@@ -3,6 +3,14 @@ import { NAV } from '../config/site';
 const current = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? current === '/' : current.startsWith(href);
+
+const stacksSub = [
+  { label: 'Optimization', href: '/the-stacks/optimization/' },
+  { label: 'Movement', href: '/the-stacks/movement/' },
+  { label: 'Fuel', href: '/the-stacks/fuel/' },
+  { label: 'Mind', href: '/the-stacks/mind/' },
+  { label: 'The Toolkit', href: '/the-stacks/optimization/toolkit/', divider: true },
+];
 ---
 <header class="site-header">
   <div class="wrap bar">
@@ -12,13 +20,30 @@ const isActive = (href: string) =>
     </a>
     <nav aria-label="Primary">
       <ul>
-        {NAV.map((item) => (
-          <li>
-            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
-              {item.label}
-            </a>
-          </li>
-        ))}
+        {NAV.map((item) =>
+          item.href === '/the-stacks/' ? (
+            <li class="has-sub">
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label} <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <ul class="submenu">
+                {stacksSub.map((s) => (
+                  <li class:list={[{ divider: s.divider }]}>
+                    <a href={s.href} aria-current={current.startsWith(s.href) ? 'page' : undefined}>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
       </ul>
     </nav>
     <a href="/get-the-guide/" class="btn btn-solid cta">Get the Guide</a>
@@ -29,7 +54,13 @@ const isActive = (href: string) =>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Primary mobile" hidden>
     <ul>
       {NAV.map((item) => (
-        <li><a href={item.href}>{item.label}</a></li>
+        <>
+          <li><a href={item.href}>{item.label}</a></li>
+          {item.href === '/the-stacks/' &&
+            stacksSub.map((s) => (
+              <li class="sub-item"><a href={s.href}>{s.label}</a></li>
+            ))}
+        </>
       ))}
       <li><a href="/get-the-guide/" class="mobile-cta">Get the Guide →</a></li>
     </ul>
@@ -49,7 +80,7 @@ const isActive = (href: string) =>
     display:flex;align-items:center;gap:12px;
   }
   .mark-chevron{width:26px;height:auto}
-  nav ul{display:flex;gap:26px;list-style:none}
+  nav[aria-label="Primary"] > ul{display:flex;gap:26px;list-style:none}
   nav a{
     font-family:var(--mono);font-size:12px;letter-spacing:0.14em;
     text-transform:uppercase;text-decoration:none;color:rgba(250,247,242,0.82);
@@ -57,6 +88,28 @@ const isActive = (href: string) =>
   }
   nav a:hover{color:var(--cream)}
   nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--copper)}
+  .caret{font-size:9px;color:var(--stone)}
+
+  /* dropdown */
+  .has-sub{position:relative}
+  /* padding keeps the hover bridge between trigger and panel */
+  nav[aria-label="Primary"] .submenu{
+    position:absolute;top:100%;left:-20px;padding-top:14px;
+    display:none;list-style:none;min-width:210px;z-index:60;
+  }
+  nav[aria-label="Primary"] .has-sub:hover .submenu,
+  nav[aria-label="Primary"] .has-sub:focus-within .submenu{display:block}
+  .submenu li{
+    background:var(--navy);border:1px solid var(--line-dark);border-top:none;
+  }
+  .submenu li:first-child{border-top:1px solid var(--line-dark)}
+  .submenu li.divider{border-top:1px solid var(--copper)}
+  .submenu a{
+    display:block;padding:13px 20px;border-bottom:none;font-size:12px;
+  }
+  .submenu a:hover{background:rgba(74,127,165,0.18);color:var(--cream)}
+  .submenu a[aria-current="page"]{color:var(--amber)}
+
   .cta{padding:11px 20px;font-size:12px}
   .menu-toggle{display:none}
 
@@ -75,6 +128,11 @@ const isActive = (href: string) =>
       font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
       text-transform:uppercase;text-decoration:none;color:var(--cream);
     }
+    .mobile-nav .sub-item a{
+      padding-left:calc(clamp(20px,5vw,48px) + 22px);
+      font-size:12px;color:rgba(250,247,242,0.72);
+    }
+    .mobile-nav .sub-item a::before{content:"› ";color:var(--copper)}
     .mobile-cta{color:var(--amber)!important}
   }
 </style>
