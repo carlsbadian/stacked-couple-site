@@ -9,7 +9,25 @@ The web platform for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X 
 - **Live domain:** https://www.thestackedcouple.com
 - **Host:** Cloudflare Pages, auto-deploys from the `main` branch on every push
 - **Stack:** Astro 5 + MDX, static output, no client framework. Content is markdown/MDX so it can be managed by AI tools and later a git-based headless CMS (Sveltia/Decap).
-- **Source of truth for brand decisions:** `2026.07.09_StackedCouple_ConsolidatedWorkingDocs.docx` on the NAS (`/Volumes/ClaudeMaster/Claude/The Stacked Couple Website/`). Sections 1–7 govern the site; it is an INTERNAL DRAFT — **nothing publishes without Jenn's explicit written approval.**
+- **Source of truth for brand decisions:** `2026.07.09_StackedCouple_ConsolidatedWorkingDocs.docx` on the NAS (see **NAS assets** below). Sections 1–7 govern the site; it is an INTERNAL DRAFT — **nothing publishes without Jenn's explicit written approval.**
+
+## NAS assets & source files
+
+Additional working files and brand assets live on the NAS at **`192.168.4.23`** (SMB share `ClaudeMaster`, mounted on macOS at `/Volumes/ClaudeMaster`). The project folder is:
+
+```
+/Volumes/ClaudeMaster/Claude NAS/The Stacked Couple Website/
+├── 2026.07.09_StackedCouple_ConsolidatedWorkingDocs.docx   # brand source of truth (Sections 1–7)
+├── files/                        # full mirror of this Astro repo (has its own .git — DO NOT build/git here; SMB breaks git)
+├── files.zip                     # zipped snapshot of the above
+└── The Stacked Couple Digital Assets/
+    └── Logo Assets/{SVG, PNG, JPG, PDF}   # logo exports in each format
+```
+
+Related brand docs also sit one level up in `/Volumes/ClaudeMaster/Claude NAS/The Stacked Couple Documents/` (`stacked_couple_brand_alignment*.pdf`, `THE STACKED COUPLE working docs.docx`).
+
+- The NAS must be mounted for these paths to resolve; if `/Volumes/ClaudeMaster` is missing, the share isn't connected.
+- **Always develop, build, and commit in this local working copy** — never against `files/` on the NAS (git/build fail on the SMB mount). Treat the NAS copy as a reference/asset store, not the working repo.
 
 ## Build & deploy workflow
 

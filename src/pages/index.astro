@@ -9,83 +9,71 @@ const pillars = [
     num: '01',
     name: 'Optimization',
     href: '/the-stacks/optimization/',
-    blurb: 'Our data, biohacking, and tracking hub — protocols, supplements, tech, and labs.',
+    blurb: 'Protocols, supplements, technology, and labs. Research-informed and built around real life.',
   },
   {
     num: '02',
     name: 'Movement',
     href: '/the-stacks/movement/',
-    blurb: 'Training frameworks, HIIT, weightlifting, and the workout logs behind them.',
+    blurb: 'Training frameworks. Strength, mobility, and recovery built for real life.',
   },
   {
     num: '03',
     name: 'Fuel',
     href: '/the-stacks/fuel/',
-    blurb: 'Foundational nutrition, dietary frameworks, macro targets, and meal profiles.',
+    blurb: 'Nutrition to support the protocols and the training. Whole food frameworks, protein targets, and what changes when you get it right.',
   },
   {
     num: '04',
     name: 'Mind',
     href: '/the-stacks/mind/',
-    blurb: 'Focus, cognitive stacks, sleep architecture — and the honest midlife conversation.',
+    blurb: 'Sleep, stress, and the mindset that makes everything else possible. The real conversations worth having.',
   },
 ];
 const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => s.url);
 ---
 <BaseLayout>
-  <!-- HERO — the signature offset stack, new locked tagline -->
+  <!-- HERO — brand name leads; tagline supports -->
   <section class="hero on-dark">
     <div class="wrap">
-      <div class="label eyebrow">{SITE.name} · {SITE.location}</div>
-      <h1 class="stack-offset" aria-label={SITE.tagline}>
-        <span class="line-1">Stacking and</span>
-        <span class="line-2">Tracking.</span>
-      </h1>
-      <p class="thrive">Thriving in Midlife.</p>
-      <p class="subline">{SITE.subline}</p>
+      <h1 class="brand-name">{SITE.name}</h1>
+      <p class="tagline" aria-label={SITE.tagline}>
+        <span>Stacking and Tracking.</span>
+        <span>Thriving in Midlife.</span>
+      </p>
       <div class="hero-ctas">
         <a class="btn btn-solid" href="/get-the-guide/">Get the Guide →</a>
         <a class="btn btn-ghost" href="/the-stacks/">Explore the Stacks</a>
       </div>
-      <dl class="status" aria-label="Current status">
-        <div><dt>Status</dt><dd>mid-protocol</dd></div>
-        <div><dt>Location</dt><dd>Pacific coast</dd></div>
-        <div><dt>Excuses</dt><dd>none</dd></div>
-      </dl>
     </div>
   </section>
 
-  <!-- MANIFESTO -->
+  <!-- WHO WE ARE -->
   <section>
     <div class="wrap">
-      <div class="eyebrow-rule"><span class="label">The Manifesto</span></div>
-      <div class="grid-2 manifesto">
-        <p class="lead">
-          We built our relationship on a shared obsession with feeling our best. Our
-          passion for health and vitality is one of the foundations of our marriage.
-          We refuse to accept the version of midlife everyone told us to expect.
-        </p>
-        <div>
-          <p>
-            That refusal drives everything we do. We stack. We track. And we built
-            this together so you don't have to figure it out alone.
-          </p>
-          <p>
-            The double meaning is the point. <strong>Stacked</strong> is the physique.
-            <strong>Stacked</strong> is the protocol. And <strong>stacked</strong> is two
-            people holding each other to the same standard — different goals, shared
-            discipline. This isn't a highlight reel. It's an experiment, run in
-            public, with the data shown.
-          </p>
-          <a class="more" href="/about/">More about us →</a>
-        </div>
+      <div class="eyebrow-rule"><span class="label">Who We Are</span></div>
+      <div class="whoweare-copy">
+        <p>We are Todd and Jenn. A couple who refused to accept the version of midlife everyone told us was inevitable.</p>
+        <p>We built our relationship on a shared obsession with feeling our best. Our passion for health and vitality is one of the foundations of our marriage.</p>
+        <p>We refuse the belief that the best version of ourselves is behind us. That midlife means less energy, less strength, less vitality.</p>
+        <p>That refusal drives everything we do.</p>
+        <p>We stack. We track. And we built this together so you don't have to figure it out alone.</p>
       </div>
+      <p class="manifesto-subline">{SITE.subline}</p>
     </div>
   </section>
 
   <!-- BRAND BAND -->
   <section class="brand-band">
     <div class="wrap">
+      <img
+        class="pennant-strip"
+        src="/brand/stacks-horizontal.webp"
+        alt="The four stacks: Optimization, Movement, Fuel, Mind."
+        width="1100"
+        height="415"
+        loading="lazy"
+      />
       <img
         src="/brand/website-banner.webp"
         alt="The Stacked Couple — Stacking & Tracking. Thriving in Midlife. Coastal sunset with the four stacks: Optimization, Movement, Fuel, Mind."
@@ -100,11 +88,7 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
   <section class="pillars on-dark">
     <div class="wrap">
       <div class="eyebrow-rule"><span class="label">The Stacks</span></div>
-      <h2>Four pillars. Every post lives in one.</h2>
-      <p class="pillars-lede">
-        The data and compounds behind it all, training and recovery, how we fuel, and
-        the honest midlife conversation nobody else is having out loud.
-      </p>
+      <p class="stacks-intro">Four stacks. Everything we test, track, and share.</p>
       <div class="grid-4">
         {pillars.map((p) => (
           <a class="pillar-card" href={p.href}>
@@ -130,24 +114,22 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
     <div class="wrap">
       <div class="eyebrow-rule"><span class="label">Our Stack</span></div>
       <p class="stack-lede">
-        We only recommend what's in our own stack. Our trusted source for peptides —
-        use our code for 50% off.
+        We did our research. Here's our source — use our code for 50% off.
       </p>
       <AffiliateBadge />
     </div>
   </section>
 
-  <!-- FOLLOW THE EXPERIMENT -->
+  <!-- FOLLOW THE STACK -->
   <section class="follow on-dark">
     <div class="wrap">
-      <div class="eyebrow-rule"><span class="label">Follow the Experiment</span></div>
-      <h2>We document everything.<br />Pick your platform.</h2>
+      <div class="eyebrow-rule"><span class="label">Follow the Stack</span></div>
+      <p class="follow-intro">We test, track, and share what we learn. Find us here.</p>
       <ul class="follow-list">
         {socials.map((s) => (
           <li>
             <a href={s.url} rel="me noopener" target="_blank">
-              <span class="platform">{s.label}</span>
-              <span class="handle">{s.handle}</span>
+              <span class="row-label"><span class="platform">{s.label}</span> — <span class="handle">{s.handle}</span></span>
               <span class="arrow" aria-hidden="true">→</span>
             </a>
           </li>
@@ -163,68 +145,75 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
     background-image:url('/brand/pattern-dark.webp');
     background-size:420px auto;
   }
-  .eyebrow{margin-bottom:34px}
-  .thrive{
-    font-family:var(--serif);font-size:clamp(24px,3.6vw,38px);
-    margin-top:26px;letter-spacing:-0.01em;
+  .brand-name{
+    font-family:var(--serif);font-size:clamp(46px,8vw,96px);
+    line-height:1.02;letter-spacing:-0.02em;color:var(--cream);
   }
-  .subline{
-    font-family:var(--mono);font-size:clamp(12px,1.6vw,14px);
-    letter-spacing:0.16em;text-transform:uppercase;
-    color:rgba(250,247,242,0.66);margin-top:14px;
+  .tagline{
+    font-family:var(--serif);font-size:clamp(21px,3vw,32px);
+    line-height:1.22;letter-spacing:-0.01em;margin-top:24px;
+    color:var(--amber);
   }
+  .tagline span{display:block}
   .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:44px}
-  .status{
-    display:flex;gap:clamp(24px,5vw,64px);flex-wrap:wrap;
-    margin-top:clamp(48px,7vw,80px);border-top:1px solid var(--line-dark);padding-top:26px;
-  }
-  .status div{display:flex;gap:12px;align-items:baseline}
-  .status dt{
-    font-family:var(--mono);font-size:11px;letter-spacing:0.22em;
-    text-transform:uppercase;color:var(--stone);
-  }
-  .status dd{font-family:var(--mono);font-size:13px;color:var(--amber)}
 
   .brand-band{padding-top:0}
   .brand-band img{
     display:block;width:100%;height:auto;
     border:1px solid var(--line);
   }
+  .pennant-strip{margin-bottom:clamp(20px,3vw,32px)}
 
-  .manifesto .lead{
-    font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.3;
+  .whoweare-copy{
+    font-family:var(--serif);font-size:clamp(16px,1.8vw,19px);
+    line-height:1.6;margin-top:clamp(20px,3vw,32px);max-width:66ch;
   }
-  .manifesto p{margin-bottom:1.2em}
+  .whoweare-copy p{margin-bottom:1em}
+  .whoweare-copy p:last-child{margin-bottom:0}
+  .manifesto-subline{
+    font-family:var(--serif);font-size:clamp(16px,1.8vw,19px);
+    color:var(--copper);margin-top:1em;
+    line-height:1.4;
+  }
   .more{
     font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--copper);text-decoration:none;
   }
   .more:hover{color:#8a4626}
 
-  .pillars h2{max-width:16ch;margin-bottom:18px}
-  .pillars-lede{max-width:58ch;color:rgba(250,247,242,0.72);margin-bottom:48px}
+  .stacks-intro{
+    font-family:var(--serif);font-size:clamp(17px,2vw,20px);
+    color:rgba(250,247,242,0.82);max-width:44ch;line-height:1.4;
+    margin-top:clamp(14px,2vw,20px);margin-bottom:clamp(32px,5vw,48px);
+  }
   .pillar-card{
     display:flex;flex-direction:column;gap:12px;text-decoration:none;
     border:1px solid var(--line-dark);padding:28px 24px;min-height:230px;
     transition:background .2s ease,transform .2s ease;
   }
   .pillar-card:hover{background:rgba(74,127,165,0.12);transform:translateY(-3px)}
-  .pillar-card .num{font-family:var(--mono);font-size:12px;color:var(--copper);letter-spacing:0.14em}
-  .pillar-card .name{font-family:var(--serif);font-size:28px}
-  .pillar-card .blurb{font-size:14.5px;color:rgba(250,247,242,0.68);flex:1}
+  .pillar-card .num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--copper);letter-spacing:0.14em}
+  .pillar-card .name{font-family:var(--serif);font-size:22px;display:block}
+  .pillar-card .blurb{font-size:17px;color:rgba(250,247,242,0.75);flex:1;line-height:1.55}
   .pillar-card .go{color:var(--amber);font-size:18px}
 
   .source{padding-top:0}
   .stack-lede{max-width:58ch;font-size:17px;margin-bottom:28px}
 
-  .follow h2{margin-bottom:40px}
+  .follow-intro{
+    font-family:var(--serif);font-size:clamp(17px,2vw,20px);
+    color:rgba(250,247,242,0.82);max-width:44ch;line-height:1.4;
+    margin-top:clamp(14px,2vw,20px);margin-bottom:clamp(24px,4vw,40px);
+  }
   .follow-list{list-style:none;border-top:1px solid var(--line-dark)}
   .follow-list a{
-    display:flex;align-items:center;gap:22px;padding:22px 4px;text-decoration:none;
+    display:flex;align-items:baseline;justify-content:space-between;gap:22px;
+    padding:22px 4px;text-decoration:none;
     border-bottom:1px solid var(--line-dark);transition:background .2s ease;
   }
   .follow-list a:hover{background:rgba(74,127,165,0.1)}
-  .platform{font-family:var(--serif);font-size:24px;min-width:150px}
-  .handle{font-family:var(--mono);font-size:13px;color:var(--stone);flex:1}
+  .row-label{color:var(--stone)}
+  .platform{font-family:var(--serif);font-size:22px;color:var(--cream)}
+  .handle{font-family:var(--mono);font-size:15px;color:var(--stone)}
   .arrow{color:var(--copper);font-size:20px}
 </style>

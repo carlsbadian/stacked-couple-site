@@ -14,7 +14,7 @@ interface Props {
   compact?: boolean;
 }
 const {
-  heading = 'The Peptide Guide We Wish We’d Had',
+  heading = 'The Peptide Guide We Wish We’d Had.',
   compact = false,
 } = Astro.props;
 ---
@@ -23,8 +23,8 @@ const {
   <h3>{heading}</h3>
   {!compact && (
     <p class="pitch">
-      A straightforward breakdown of the compounds we use, what they do, and why we
-      chose them. Yours when you join the list.
+      A reference guide to the compounds. What they are, what they do, and why your
+      stack will look nothing like ours. Yours when you join the list.
     </p>
   )}
   <form class="capture-form" novalidate>
@@ -40,8 +40,7 @@ const {
     <button type="submit" class="btn btn-solid">Get the Guide</button>
   </form>
   <p class="fine">
-    By subscribing you agree to receive future emails from The Stacked Couple.
-    We don’t spam. Unsubscribe anytime.
+    For research purposes only. Not medical advice. We don’t spam. Unsubscribe anytime.
   </p>
 </div>
 
@@ -62,7 +61,7 @@ const {
   }
   input[type='email']::placeholder{color:var(--stone)}
   input[type='email']:focus-visible{outline:3px solid var(--steel);outline-offset:2px}
-  .fine{font-size:12.5px;color:rgba(250,247,242,0.55)}
+  .fine{font-size:14px;color:rgba(250,247,242,0.62)}
   .sr-only{
     position:absolute;width:1px;height:1px;padding:0;margin:-1px;
     overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
