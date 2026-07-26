@@ -73,22 +73,22 @@ const stacksSub = [
     border-bottom:1px solid var(--line-dark);
     position:sticky;top:0;z-index:50;
   }
-  .bar{display:flex;align-items:center;gap:28px;height:72px}
+  .bar{display:flex;align-items:center;gap:22px;height:72px}
   .mark{
-    font-family:var(--serif);font-size:19px;text-decoration:none;
+    font-family:var(--wordmark);font-size:19px;text-decoration:none;
     letter-spacing:-0.01em;white-space:nowrap;margin-right:auto;
     display:flex;align-items:center;gap:12px;
   }
   .mark-chevron{width:26px;height:auto}
-  nav[aria-label="Primary"] > ul{display:flex;gap:26px;list-style:none}
+  nav[aria-label="Primary"] > ul{display:flex;gap:20px;list-style:none}
   nav a{
-    font-family:var(--mono);font-size:12px;letter-spacing:0.14em;
-    text-transform:uppercase;text-decoration:none;color:rgba(250,247,242,0.82);
+    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.06em;
+    text-transform:uppercase;text-decoration:none;color:var(--stone-light);
     padding:6px 0;border-bottom:2px solid transparent;
   }
   nav a:hover{color:var(--cream)}
   nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--copper)}
-  .caret{font-size:9px;color:var(--stone)}
+  .caret{font-size:10px;color:var(--stone-light)}
 
   /* dropdown */
   .has-sub{position:relative}
@@ -105,12 +105,12 @@ const stacksSub = [
   .submenu li:first-child{border-top:1px solid var(--line-dark)}
   .submenu li.divider{border-top:1px solid var(--copper)}
   .submenu a{
-    display:block;padding:13px 20px;border-bottom:none;font-size:12px;
+    display:block;padding:13px 20px;border-bottom:none;font-size:var(--fs-label);
   }
   .submenu a:hover{background:rgba(74,127,165,0.18);color:var(--cream)}
   .submenu a[aria-current="page"]{color:var(--amber)}
 
-  .cta{padding:11px 20px;font-size:12px}
+  .cta{padding:11px 18px;font-size:var(--fs-label)}
   .menu-toggle{display:none}
 
   @media(max-width:960px){
@@ -125,12 +125,12 @@ const stacksSub = [
     .mobile-nav ul{display:block;list-style:none}
     .mobile-nav a{
       display:block;padding:14px clamp(20px,5vw,48px);
-      font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
+      font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em;
       text-transform:uppercase;text-decoration:none;color:var(--cream);
     }
     .mobile-nav .sub-item a{
       padding-left:calc(clamp(20px,5vw,48px) + 22px);
-      font-size:12px;color:rgba(250,247,242,0.72);
+      font-size:var(--fs-label);color:var(--stone-light);
     }
     .mobile-nav .sub-item a::before{content:"› ";color:var(--copper)}
     .mobile-cta{color:var(--amber)!important}

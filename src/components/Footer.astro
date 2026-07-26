@@ -42,18 +42,18 @@ const year = new Date().getFullYear();
     margin:0 auto 52px;border:1px solid var(--line-dark);
   }
   .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:44px}
-  .mark{font-family:var(--serif);font-size:24px;margin-bottom:8px}
-  .tagline{font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber)}
+  .mark{font-family:var(--wordmark);font-size:24px;margin-bottom:8px}
+  .tagline{font-family:var(--sans);font-size:var(--fs-caption);color:var(--amber)}
   .socials{list-style:none}
   .socials a{
     display:block;padding:6px 0;text-decoration:none;
-    font-family:var(--mono);font-size:13px;letter-spacing:0.08em;color:var(--cream);
+    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em;color:var(--cream);
   }
   .socials a:hover .handle{color:var(--amber)}
-  .handle{color:var(--stone);margin-left:10px}
+  .handle{color:var(--stone-light);margin-left:10px}
   .legal{
-    max-width:72ch;font-size:13px;color:rgba(250,247,242,0.6);
+    max-width:var(--measure);font-size:var(--fs-legal);color:var(--stone-light);
     border-top:1px solid var(--line-dark);padding-top:28px;margin-bottom:16px;
   }
-  .copy{font-family:var(--mono);font-size:12px;color:var(--stone)}
+  .copy{font-family:var(--mono);font-size:var(--fs-legal);color:var(--stone-light)}
 </style>

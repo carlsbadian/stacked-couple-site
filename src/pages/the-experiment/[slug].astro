@@ -55,16 +55,16 @@ const fmt = (d: Date) =>
 
 <style>
   .article-hero{padding:clamp(56px,8vw,90px) 0}
-  .crumbs{margin-bottom:26px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em}
-  .crumbs a{color:var(--stone);text-decoration:none;text-transform:uppercase}
+  .crumbs{margin-bottom:26px;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em}
+  .crumbs a{color:var(--stone-light);text-decoration:none;text-transform:uppercase}
   .crumbs a:hover{color:var(--amber)}
   .meta{display:flex;gap:20px;align-items:baseline;flex-wrap:wrap;margin-bottom:18px}
   .pillar{
-    font-family:var(--mono);font-size:11px;letter-spacing:0.2em;
+    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.16em;
     text-transform:uppercase;color:var(--amber);text-decoration:none;
   }
-  time,.updated{font-family:var(--mono);font-size:12px;color:var(--stone)}
+  time,.updated{font-family:var(--mono);font-size:var(--fs-legal);color:var(--stone-light)}
   h1{max-width:22ch}
-  .lede{max-width:60ch;font-size:19px;color:rgba(250,247,242,0.78);margin-top:16px}
-  .disclaimer{font-size:13px;color:var(--stone)}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light);margin-top:16px}
+  .disclaimer{font-size:var(--fs-legal);color:var(--stone-deep)}
 </style>

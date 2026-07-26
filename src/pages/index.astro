@@ -146,11 +146,11 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
     background-size:420px auto;
   }
   .brand-name{
-    font-family:var(--serif);font-size:clamp(46px,8vw,96px);
+    font-family:var(--serif);font-size:var(--fs-hero);
     line-height:1.02;letter-spacing:-0.02em;color:var(--cream);
   }
   .tagline{
-    font-family:var(--serif);font-size:clamp(21px,3vw,32px);
+    font-family:var(--serif);font-size:var(--fs-h3);
     line-height:1.22;letter-spacing:-0.01em;margin-top:24px;
     color:var(--amber);
   }
@@ -165,25 +165,19 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
   .pennant-strip{margin-bottom:clamp(20px,3vw,32px)}
 
   .whoweare-copy{
-    font-family:var(--serif);font-size:clamp(16px,1.8vw,19px);
-    line-height:1.6;margin-top:clamp(20px,3vw,32px);max-width:66ch;
+    font-family:var(--sans);font-size:var(--fs-body-lg);
+    line-height:var(--lh-body);margin-top:clamp(20px,3vw,32px);max-width:var(--measure);
   }
   .whoweare-copy p{margin-bottom:1em}
   .whoweare-copy p:last-child{margin-bottom:0}
   .manifesto-subline{
-    font-family:var(--serif);font-size:clamp(16px,1.8vw,19px);
-    color:var(--copper);margin-top:1em;
-    line-height:1.4;
+    font-family:var(--sans);font-size:var(--fs-body-lg);
+    color:var(--copper);margin-top:1em;line-height:var(--lh-body);
   }
-  .more{
-    font-family:var(--mono);font-size:13px;letter-spacing:0.14em;
-    text-transform:uppercase;color:var(--copper);text-decoration:none;
-  }
-  .more:hover{color:#8a4626}
 
   .stacks-intro{
-    font-family:var(--serif);font-size:clamp(17px,2vw,20px);
-    color:rgba(250,247,242,0.82);max-width:44ch;line-height:1.4;
+    font-family:var(--sans);font-size:var(--fs-body-lg);
+    color:var(--stone-light);max-width:44ch;line-height:var(--lh-body);
     margin-top:clamp(14px,2vw,20px);margin-bottom:clamp(32px,5vw,48px);
   }
   .pillar-card{
@@ -192,17 +186,17 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
     transition:background .2s ease,transform .2s ease;
   }
   .pillar-card:hover{background:rgba(74,127,165,0.12);transform:translateY(-3px)}
-  .pillar-card .num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--copper);letter-spacing:0.14em}
-  .pillar-card .name{font-family:var(--serif);font-size:22px;display:block}
-  .pillar-card .blurb{font-size:17px;color:rgba(250,247,242,0.75);flex:1;line-height:1.55}
+  .pillar-card .num{font-family:var(--mono);font-size:var(--fs-caption);font-weight:600;color:var(--copper-light);letter-spacing:0.14em}
+  .pillar-card .name{font-family:var(--serif);font-size:var(--fs-h4);color:var(--cream);display:block}
+  .pillar-card .blurb{font-family:var(--sans);font-size:var(--fs-body);color:var(--stone-light);flex:1;line-height:var(--lh-body)}
   .pillar-card .go{color:var(--amber);font-size:18px}
 
   .source{padding-top:0}
-  .stack-lede{max-width:58ch;font-size:17px;margin-bottom:28px}
+  .stack-lede{font-family:var(--sans);font-size:var(--fs-body-lg);max-width:var(--measure);margin-bottom:28px}
 
   .follow-intro{
-    font-family:var(--serif);font-size:clamp(17px,2vw,20px);
-    color:rgba(250,247,242,0.82);max-width:44ch;line-height:1.4;
+    font-family:var(--sans);font-size:var(--fs-body-lg);
+    color:var(--stone-light);max-width:44ch;line-height:var(--lh-body);
     margin-top:clamp(14px,2vw,20px);margin-bottom:clamp(24px,4vw,40px);
   }
   .follow-list{list-style:none;border-top:1px solid var(--line-dark)}
@@ -212,8 +206,8 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
     border-bottom:1px solid var(--line-dark);transition:background .2s ease;
   }
   .follow-list a:hover{background:rgba(74,127,165,0.1)}
-  .row-label{color:var(--stone)}
-  .platform{font-family:var(--serif);font-size:22px;color:var(--cream)}
-  .handle{font-family:var(--mono);font-size:15px;color:var(--stone)}
-  .arrow{color:var(--copper);font-size:20px}
+  .row-label{color:var(--stone-light)}
+  .platform{font-family:var(--serif);font-size:var(--fs-h4);color:var(--cream)}
+  .handle{font-family:var(--mono);font-size:var(--fs-caption);color:var(--stone-light)}
+  .arrow{color:var(--copper-light);font-size:20px}
 </style>

@@ -88,11 +88,11 @@ const categories = [
 
 <style>
   .page-hero{padding:clamp(64px,9vw,110px) 0}
-  .crumbs{margin-bottom:22px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em}
-  .crumbs a{color:var(--stone);text-decoration:none;text-transform:uppercase}
+  .crumbs{margin-bottom:22px;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em}
+  .crumbs a{color:var(--stone-light);text-decoration:none;text-transform:uppercase}
   .crumbs a:hover{color:var(--amber)}
   .page-hero h1{margin:16px 0 18px}
-  .lede{max-width:56ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
   .hero-row{display:flex;gap:clamp(24px,5vw,64px);align-items:center;justify-content:space-between}
   .pennant{width:clamp(90px,12vw,140px);height:auto;flex-shrink:0}
   @media(max-width:640px){.pennant{display:none}}
@@ -103,9 +103,9 @@ const categories = [
     transition:background .2s ease,transform .2s ease;
   }
   .cat:hover{background:rgba(74,127,165,0.08);transform:translateY(-3px)}
-  .cat .num{font-family:var(--mono);font-size:12px;color:var(--copper);letter-spacing:0.14em}
-  .cat .name{font-family:var(--serif);font-size:27px}
-  .cat .blurb{font-size:15px;opacity:0.75;flex:1}
+  .cat .num{font-family:var(--mono);font-size:var(--fs-label);color:var(--copper);letter-spacing:0.14em}
+  .cat .name{font-family:var(--serif);font-size:var(--fs-h4);color:var(--navy)}
+  .cat .blurb{font-size:var(--fs-body);color:var(--stone-deep);flex:1}
   .cat .go{color:var(--copper);font-size:20px}
   .toolkit-banner{padding:clamp(48px,7vw,72px) 0}
   .banner-inner{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}

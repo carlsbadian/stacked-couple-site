@@ -60,12 +60,12 @@ const pennant = `/brand/pillar-${frontmatter.pillar}.webp`;
 
 <style>
   .pillar-hero{padding:clamp(56px,8vw,90px) 0}
-  .crumbs{margin-bottom:26px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em}
-  .crumbs a{color:var(--stone);text-decoration:none;text-transform:uppercase}
+  .crumbs{margin-bottom:26px;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em}
+  .crumbs a{color:var(--stone-light);text-decoration:none;text-transform:uppercase}
   .crumbs a:hover{color:var(--amber)}
-  .crumbs span{margin:0 10px;color:var(--stone)}
+  .crumbs span{margin:0 10px;color:var(--stone-light)}
   h1{margin:14px 0 18px}
-  .lede{max-width:62ch;font-size:19px;color:rgba(250,247,242,0.78)}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
   .hero-row{display:flex;gap:clamp(24px,5vw,64px);align-items:center;justify-content:space-between}
   .pennant{width:clamp(90px,12vw,140px);height:auto;flex-shrink:0}
   @media(max-width:640px){.pennant{display:none}}
