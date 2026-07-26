@@ -18,7 +18,7 @@ const {
   compact = false,
 } = Astro.props;
 ---
-<div class:list={['capture', { compact }]}>
+<div class:list={['capture', 'on-dark', { compact }]}>
   <div class="label">Get the Guide</div>
   <h3>{heading}</h3>
   {!compact && (

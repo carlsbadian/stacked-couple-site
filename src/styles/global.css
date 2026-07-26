@@ -454,6 +454,9 @@ section{padding:clamp(64px,10vw,110px) 0}
 .on-dark .eyebrow,
 .on-dark .label{color:var(--amber)}
 
+/* section-header labels read a step larger than body (they act as headers here) */
+.label{font-size:clamp(16px,1.6vw,18px)}
+
 /* eyebrow rule line */
 .eyebrow-rule{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .eyebrow-rule .label{margin-bottom:0}
