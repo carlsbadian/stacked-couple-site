@@ -11,6 +11,34 @@ The web platform for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X 
 - **Stack:** Astro 5 + MDX, static output, no client framework. Content is markdown/MDX so it can be managed by AI tools and later a git-based headless CMS (Sveltia/Decap).
 - **Source of truth for brand decisions:** `2026.07.09_StackedCouple_ConsolidatedWorkingDocs.docx` on the NAS (see **NAS assets** below). Sections 1–7 govern the site; it is an INTERNAL DRAFT — **nothing publishes without Jenn's explicit written approval.**
 
+## Design system — read before any styling work
+
+`src/styles/global.css` is the single source of truth for all type and color. Read it — and the reference doc below — before changing anything visual. The reasoning lives in the file's own comments.
+
+@docs/design-system.md
+
+### Hard rules
+
+- **Never declare `font-family`, `font-size`, or a raw hex value in a component `<style>` block.** Astro scopes styles per file, so a local rule silently beats the global one — this caused heading-size drift. Use the CSS custom properties in `global.css`.
+- **No text below 14px anywhere** — disclaimers, captions, affiliate language, footer included. If a layout needs smaller, change the layout.
+- **Minimum font weight 400.** No 300 or lighter.
+- **Never use `--stone` as text** (fails contrast). Use `--stone-deep` on light grounds, `--stone-light` on navy.
+- **Never use `--copper` as text on navy** (2.41:1) — use `--copper-light`. **Never use `--amber` as text on cream/white** (2.47:1) — navy grounds only.
+- **Never set a full sentence in uppercase or in the mono face.** Four words max in caps. Mono is for eyebrows, labels, nav, and protocol/dose data only.
+- **Never remove a focus ring. Never justify text.**
+- **The wordmark uses `--wordmark`, not `--serif`.**
+- **Brand direction (Jenn, locked):** headings stay **regular weight** — no bold/heavy; buttons stay **square, copper, uppercase mono**. Repo-specific layout utilities live in the "section 15" block at the bottom of `global.css` — when re-syncing the design system from the cloud project, replace sections 01–14 and leave 15 intact.
+
+### Copy is not yours to rewrite
+
+Website copy is approved separately. Do not generate, rephrase, expand, or "improve" any user-facing copy. If copy seems wrong or a section is empty, flag it and stop — do not fill the gap.
+
+### Before reporting a styling task complete
+
+- `grep -rn "font-size:\|font-family:" src/ --include=*.astro` returns nothing outside `global.css` (small UI primitives — arrow glyphs, the wordmark size, form inputs — are the only allowed exceptions).
+- No computed text below 14px; no horizontal scroll at 200% zoom.
+- Every text/background pair measured against WCAG AA, not eyeballed.
+
 ## NAS assets & source files
 
 Additional working files and brand assets live on the NAS at **`192.168.4.23`** (SMB share `ClaudeMaster`, mounted on macOS at `/Volumes/ClaudeMaster`). The project folder is:
@@ -74,7 +102,7 @@ No specific peptide/compound names or dosing in live page text. The site teaches
 
 Six colors (LOCKED — defined in `src/styles/global.css`): Deep Navy `#1B2F4A` (primary/anchor) · Steel Blue `#4A7FA5` (secondary) · Cream `#FAF7F2` (base) · Copper `#A0522D` (CTAs/labels — not decoration) · Amber `#C8973A` (warmth, sparingly) · Stone `#8A9099` (subtext/dividers). Navy leads every layout; the old Rust color is retired.
 
-Typography: Georgia/serif headers · Helvetica/sans body · monospace labels/data. **Signature device:** the offset "stack" — the hero's offset "Stacking and / Tracking." is the centerpiece; keep it. Spend boldness in one place, keep everything else quiet. Responsive, visible keyboard focus, `prefers-reduced-motion` respected.
+Typography (see **Design system** above and `global.css` for the full token scale): Georgia headers (system font) · Atkinson Hyperlegible Next body · Atkinson Hyperlegible Mono labels/data. Headers stay regular weight — quiet and elegant, not bold. The homepage hero leads with the "The Stacked Couple" wordmark; the tagline supports it beneath. Responsive, visible keyboard focus, `prefers-reduced-motion` respected.
 
 ## Social handles (keep these exact)
 
