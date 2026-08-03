@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { getCollection } from 'astro:content';
 import { SITE, SOCIAL } from '../../config/site';
 
@@ -64,6 +65,14 @@ const fmt = (d: Date) =>
       )}
     </div>
   </section>
+
+  <section class="newsletter-sec">
+    <div class="wrap">
+      <div class="nl-constrain">
+        <NewsletterSignup />
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -92,4 +101,6 @@ const fmt = (d: Date) =>
   .desc{display:block;font-size:var(--fs-body);color:var(--stone-deep);max-width:var(--measure)}
   .empty{padding:40px 0}
   .empty a{color:var(--copper)}
+  .newsletter-sec{padding-top:0}
+  .nl-constrain{max-width:560px}
 </style>

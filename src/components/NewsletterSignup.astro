@@ -1,0 +1,39 @@
+---
+/**
+ * Newsletter sign-up — Circle form embed (uid 6aac2606, "Website
+ * Newsletter Opt-in"). Submissions land in the Circle audience.
+ * Form styling/copy live in Circle; this component supplies the cream
+ * panel so the form stays readable on navy grounds, plus the approved
+ * subscribe disclaimer.
+ *
+ * Pass `onDark` when placing on a navy ground (footer) so the
+ * disclaimer uses the navy-safe muted tint.
+ */
+interface Props {
+  onDark?: boolean;
+}
+const { onDark = false } = Astro.props;
+---
+<div class:list={['newsletter', { 'is-dark': onDark }]}>
+  <div class="label">Newsletter</div>
+  <div class="panel">
+    <div data-is-popup="false" data-circle-form-uid="6aac2606"></div>
+  </div>
+  <p class="fine">
+    By subscribing you agree to receive future emails from The Stacked Couple.
+    We don’t spam. Unsubscribe anytime.
+  </p>
+</div>
+
+<script is:inline>if(!window.circleFormsScriptLoaded){window.circleFormsScriptLoaded=true;const script=document.createElement('script');script.src='https://the-stacked-couple.circle.so/external/form-embeds.js';script.defer=true;document.head.appendChild(script)}</script>
+
+<style>
+  .newsletter .label{margin-bottom:14px}
+  .panel{
+    background:var(--cream);
+    border:1px solid var(--rule);
+    padding:clamp(14px,2.5vw,24px);
+  }
+  .fine{font-size:var(--fs-legal);color:var(--stone-deep);margin-top:12px}
+  .is-dark .fine{color:var(--stone-light)}
+</style>

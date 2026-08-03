@@ -1,5 +1,6 @@
 ---
 import { SITE, SOCIAL, LEGAL_FOOTER } from '../config/site';
+import NewsletterSignup from './NewsletterSignup.astro';
 const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.substack].filter(
   (s) => s.url,
 );
@@ -15,6 +16,9 @@ const year = new Date().getFullYear();
       height="192"
       loading="lazy"
     />
+    <div class="newsletter-slot">
+      <NewsletterSignup onDark />
+    </div>
     <div class="top">
       <div>
         <div class="mark">{SITE.name}</div>
@@ -41,6 +45,7 @@ const year = new Date().getFullYear();
     display:block;width:100%;height:auto;max-width:1100px;
     margin:0 auto 52px;border:1px solid var(--line-dark);
   }
+  .newsletter-slot{max-width:560px;margin-bottom:52px}
   .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:44px}
   .mark{font-family:var(--wordmark);font-size:24px;margin-bottom:8px}
   .tagline{font-family:var(--sans);font-size:var(--fs-caption);color:var(--amber)}
