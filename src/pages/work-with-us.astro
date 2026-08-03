@@ -3,42 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../config/site';
 
 /**
- * Intake application — copy per Jenn's "Intake - Work with us" draft
- * (working docs, July 2026).
- * NOTE: no form backend is wired yet. Submissions log to the console as a
- * placeholder. TODO(Todd): connect a form handler (Formspark / Tally /
- * Cloudflare Worker → email) at the marked action.
+ * Intake application — the form itself is a Tally embed (form id jaraL9),
+ * which now owns the full question set. Manage questions/copy in Tally,
+ * not here. The embed script is is:inline so Astro leaves it untouched.
  */
-
-const affecting = [
-  'Sleep disruption', 'Low energy or fatigue', 'Joint pain or injury',
-  'Slow recovery from training', 'Weight gain or body composition shift',
-  'Muscle loss', 'Brain fog or focus issues', 'Mood or motivation changes',
-  'Hormonal changes', 'Digestive or gut issues', 'Elevated stress or anxiety',
-  'Optimizing from a solid base', 'Other',
-];
-const training = [
-  'Weightlifting', 'Cardio (running, cycling, etc.)', 'Rucking or walking',
-  'Yoga or Pilates', 'Recreational sports', 'Not training consistently right now',
-  'Other',
-];
-const nutrition = [
-  'Whole foods / clean eating', 'Paleo or Whole30', 'Keto or low carb',
-  'Carnivore', 'Intermittent fasting', 'Calorie or macro tracking',
-  'Plant-based', 'No particular approach right now', 'Other',
-];
-const experience = [
-  'No experience — starting from zero',
-  "I've done research but haven't run anything yet",
-  "I've tried one or two compounds with mixed results",
-  'On an active protocol and want to optimize it',
-  'Experienced — running protocols for a year or more',
-];
-const goals = [
-  'Fat loss', 'Muscle building or preservation', 'Tissue repair and healing',
-  'Sleep and recovery', 'Immune support', 'Cellular health and longevity',
-  'Cognitive function', 'Hormone optimization', 'Other',
-];
 ---
 <BaseLayout
   title={`Work With Us — ${SITE.name}`}
@@ -57,152 +25,39 @@ const goals = [
   </section>
 
   <section>
-    <div class="wrap">
-      <form class="intake" novalidate>
-        <fieldset>
-          <legend>About you</legend>
-          <div class="grid-2">
-            <label>First name <input type="text" name="first_name" autocomplete="given-name" required /></label>
-            <label>Last name <input type="text" name="last_name" autocomplete="family-name" required /></label>
-            <label>Email <input type="email" name="email" autocomplete="email" required /></label>
-            <label>Phone (optional) <input type="tel" name="phone" autocomplete="tel" /></label>
-            <label>Age <input type="number" name="age" min="18" max="120" required /></label>
-            <label>Gender (optional — your own words) <input type="text" name="gender" /></label>
-            <label class="span-2">Location (city, state) <input type="text" name="location" required /></label>
-          </div>
-          <div class="radio-row" role="radiogroup" aria-labelledby="applying-label">
-            <span id="applying-label" class="sub-legend">Are you applying as an individual or a couple?</span>
-            <label><input type="radio" name="applying_as" value="just-me" required /> Just me</label>
-            <label><input type="radio" name="applying_as" value="partner" /> My partner and I — we're both in</label>
-            <label><input type="radio" name="applying_as" value="partner-later" /> Just me for now, partner may join later</label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Health and lifestyle</legend>
-          <p class="q">Which of these are currently affecting you?</p>
-          <p class="hint">Check all that apply.</p>
-          <div class="check-grid">
-            {affecting.map((item) => (
-              <label><input type="checkbox" name="affecting" value={item} /> {item}</label>
-            ))}
-          </div>
-          <label class="block">Relevant health history (optional)
-            <span class="hint">Surgeries, chronic conditions, medications — anything that shapes how your body responds. Brief is fine.</span>
-            <textarea name="health_history" rows="3"></textarea>
-          </label>
-          <p class="q">Current training</p>
-          <p class="hint">Check all that apply.</p>
-          <div class="check-grid">
-            {training.map((item) => (
-              <label><input type="checkbox" name="training" value={item} /> {item}</label>
-            ))}
-          </div>
-          <p class="q">Nutrition approach</p>
-          <div class="check-grid">
-            {nutrition.map((item) => (
-              <label><input type="checkbox" name="nutrition" value={item} /> {item}</label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Peptides and protocols</legend>
-          <p class="q">Where are you starting from?</p>
-          <div class="check-grid stack-col">
-            {experience.map((item) => (
-              <label><input type="radio" name="experience" value={item} /> {item}</label>
-            ))}
-          </div>
-          <p class="q">What are you looking to address?</p>
-          <p class="hint">Check all that apply.</p>
-          <div class="check-grid">
-            {goals.map((item) => (
-              <label><input type="checkbox" name="goals" value={item} /> {item}</label>
-            ))}
-          </div>
-          <label class="block">What's your current stack?
-            <span class="hint">What are you running right now — compound, dose, frequency. "Nothing yet" is a fine answer.</span>
-            <textarea name="current_stack" rows="3"></textarea>
-          </label>
-        </fieldset>
-
-        <fieldset>
-          <legend>Goals and readiness</legend>
-          <label class="block">What are your primary goals right now?
-            <span class="hint">Specific is more useful than general.</span>
-            <textarea name="primary_goals" rows="3" required></textarea>
-          </label>
-          <label class="block">What does success look like in 90 days?
-            <span class="hint">What would make you say "this was worth it"?</span>
-            <textarea name="success_90" rows="3"></textarea>
-          </label>
-          <label class="block">Why now?
-            <span class="hint">Something shifted or became urgent — what was it?</span>
-            <textarea name="why_now" rows="2"></textarea>
-          </label>
-          <label class="block">Anything that might get in the way?
-            <span class="hint">Travel, schedule, budget, a skeptical partner — better to name it here.</span>
-            <textarea name="obstacles" rows="2"></textarea>
-          </label>
-          <label class="block">Anything else we should know before we connect?
-            <span class="hint">Open space — use it if you need it.</span>
-            <textarea name="anything_else" rows="2"></textarea>
-          </label>
-        </fieldset>
-
-        <p class="confidential">
-          All information shared here is confidential and used solely to assess fit.
-          For educational purposes only — not medical advice.
+    <div class="form-container">
+      <iframe
+        data-tally-src="https://tally.so/embed/jaraL9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="966"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Application to work with us"
+      ></iframe>
+      <noscript>
+        <p class="fallback">
+          The application form needs JavaScript. You can also open it directly:
+          <a href="https://tally.so/r/jaraL9">tally.so/r/jaraL9</a>
         </p>
-        <button type="submit" class="btn btn-solid">Submit Application →</button>
-      </form>
+      </noscript>
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
 <style>
   .page-hero{padding:clamp(64px,9vw,110px) 0}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
-  .intake{max-width:820px}
-  fieldset{border:1px solid var(--line);padding:clamp(20px,3.5vw,36px);margin-bottom:36px}
-  legend{
-    font-family:var(--serif);font-size:var(--fs-h3);color:var(--navy);padding:0 12px;margin-left:-12px;
+  /* centered embed container — max-w-4xl mx-auto py-12 px-4 equivalent */
+  .form-container{
+    max-width:896px;
+    margin-inline:auto;
+    padding:48px 16px;
   }
-  .q{font-weight:bold;font-size:var(--fs-body);margin:26px 0 4px}
-  .q:first-of-type{margin-top:4px}
-  .hint{display:block;font-size:var(--fs-caption);font-weight:normal;color:var(--stone-deep);margin:4px 0 12px}
-  label{display:block;font-size:var(--fs-body);margin-bottom:14px}
-  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],textarea{
-    display:block;width:100%;margin-top:6px;padding:12px 14px;font-size:16px;
-    font-family:var(--sans);border:1px solid var(--line);background:#fff;color:var(--navy);
-  }
-  textarea{resize:vertical}
-  .span-2{grid-column:1 / -1}
-  .check-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 20px;
-  }
-  .check-grid.stack-col{grid-template-columns:1fr}
-  .check-grid label,.radio-row label{
-    display:flex;gap:10px;align-items:flex-start;font-size:var(--fs-body);margin-bottom:8px;
-  }
-  .check-grid input,.radio-row input{margin-top:4px;accent-color:var(--copper);flex-shrink:0}
-  .radio-row{margin-top:20px}
-  .sub-legend{display:block;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.12em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
-  .block{margin-top:18px}
-  .confidential{font-size:var(--fs-caption);color:var(--stone-deep);max-width:60ch;margin-bottom:28px}
+  .fallback{color:var(--text-muted)}
+  .fallback a{color:var(--accent)}
 </style>
-
-<script>
-  // Placeholder handler — no backend yet. TODO(Todd): wire a form service.
-  document.querySelector<HTMLFormElement>('.intake')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
-    console.log('[intake placeholder] would submit:', Object.fromEntries(new FormData(form)));
-    const note = document.createElement('p');
-    note.textContent = 'Applications open soon — this form is not yet live.';
-    note.style.cssText = 'font-family:var(--mono);font-size:14px;color:var(--copper);margin-top:14px';
-    form.append(note);
-  });
-</script>
