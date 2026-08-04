@@ -30,6 +30,14 @@ export const AFFILIATE = {
   },
 } as const;
 
+export const COMMUNITY = {
+  name: 'The Stacked Couple Community',
+  platform: 'Circle',
+  // Invitation link — signups land in the Circle community.
+  joinUrl:
+    'https://the-stacked-couple.circle.so/join?invitation_token=648be4f3f43c04ca9ee69da085f536317aa0ceae-dfc23318-9457-4326-90e8-9f357341918d',
+} as const;
+
 export const LEGAL_FOOTER =
   'The Stacked Couple shares our personal experience for educational and informational purposes only. Nothing here is medical advice. Consult your physician before beginning any new health protocol.';
 
@@ -38,5 +46,7 @@ export const NAV = [
   { label: 'The Stacks', href: '/the-stacks/' },
   { label: 'The Experiment', href: '/the-experiment/' },
   { label: 'About Us', href: '/about/' },
-  { label: 'Work With Us', href: '/work-with-us/' },
+  // Work With Us (/work-with-us/) is intentionally NOT in the nav: the page
+  // stays live as a hidden link for email marketing, post-join.
+  { label: 'Join the Community', href: '/join-community/' },
 ] as const;

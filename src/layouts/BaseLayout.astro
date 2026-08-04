@@ -7,10 +7,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  /** Keep the page out of search results (hidden/email-only pages). */
+  noindex?: boolean;
 }
 const {
   title = `${SITE.name} — ${SITE.tagline}`,
   description = SITE.subline,
+  noindex = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 ---
@@ -21,6 +24,7 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
 
     <link rel="preload" href="/fonts/atkinson-next.woff2" as="font" type="font/woff2" crossorigin />
