@@ -20,7 +20,7 @@ const { frontmatter } = Astro.props;
 const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
 // Pennant badge only on the top-level pillar pages (eyebrow "Pillar NN — …"),
 // not on the Optimization category pages.
-const showPennant = eyebrow.startsWith('Pillar');
+const showPennant = eyebrow.startsWith('Stack');
 const pennant = `/brand/pillar-${frontmatter.pillar}.webp`;
 ---
 <BaseLayout title={`${frontmatter.title} — ${SITE.name}`} description={frontmatter.description}>

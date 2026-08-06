@@ -456,6 +456,8 @@ section{padding:clamp(64px,10vw,110px) 0}
 
 /* section-header labels read a step larger than body (they act as headers here) */
 .label{font-size:clamp(16px,1.6vw,18px)}
+/* page-title eyebrows (above the big page H1) carry more size */
+.page-hero .label{font-size:clamp(18px,2.2vw,24px)}
 
 /* eyebrow rule line */
 .eyebrow-rule{display:flex;align-items:center;gap:16px;margin-bottom:20px}
@@ -487,8 +489,8 @@ h1,h2,h3,h4,h5,h6{font-weight:var(--fw-regular);letter-spacing:-0.01em}
 .btn.btn-ghost{background:transparent;color:inherit}
 .btn.btn-ghost:hover{background:rgba(160,82,45,0.12)}
 
-/* prose (MDX article/pillar body) */
-.prose{max-width:var(--measure)}
+/* prose (MDX article/pillar body). Inherits the .wrap max-width and left-aligns;
+   individual paragraphs are already capped at --measure by section 05. */
 .prose h2{margin:2.2em 0 0.6em}
 .prose h3{margin:1.8em 0 0.5em}
 .prose p{margin:0 0 1.2em}

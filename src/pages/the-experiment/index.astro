@@ -31,38 +31,10 @@ const fmt = (d: Date) =>
   <section class="page-hero on-dark">
     <div class="wrap">
       <div class="label">The Experiment</div>
-      <h1>The log, run in public.</h1>
       <p class="lede">
-        Deep-dives, honest reviews, and protocol updates — every entry lives in one
-        of the four pillars. The compound-level detail continues in the newsletter.
+        Be the first to know. Subscribe to our newsletter for protocols, updates on our
+        experiment, and the Circle community.
       </p>
-      <p class="slogan-line">
-        Midlife on our terms. <span class="hl">We are the experiment.</span>
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      {posts.length === 0 ? (
-        <p class="muted empty">First entries are being written. Follow along on
-          <a href={SOCIAL.instagram.url}>Instagram</a> in the meantime.</p>
-      ) : (
-        <ul class="feed">
-          {posts.map((post) => (
-            <li>
-              <a class="entry" href={`/the-experiment/${post.id}/`}>
-                <span class="meta">
-                  <span class="pillar">{pillarLabel[post.data.pillar]}</span>
-                  <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
-                </span>
-                <span class="title">{post.data.title}</span>
-                <span class="desc">{post.data.description}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   </section>
 

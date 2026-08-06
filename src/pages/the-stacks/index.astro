@@ -2,34 +2,30 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE } from '../../config/site';
 
-const pillars = [
+const stacks = [
   {
-    num: '01',
     name: 'Optimization',
     href: '/the-stacks/optimization/',
-    tag: 'Data · Biohacking · Tracking',
-    blurb: 'The data hub: peptide protocols, targeted supplements, tracking tech, and biomarker labs. We don’t guess, we test.',
+    icon: '/brand/pillar-optimization.webp',
+    blurb: "Peptides, supplements, wearables, tracking, and bloodwork. What we've researched and what we're running, so you don't figure it out alone.",
   },
   {
-    num: '02',
     name: 'Movement',
     href: '/the-stacks/movement/',
-    tag: 'Training Life',
-    blurb: 'Training frameworks, HIIT, weightlifting, and workout logs — the training life of two busy people making it happen.',
+    icon: '/brand/pillar-movement.webp',
+    blurb: "Strength, conditioning, and recovery. Sustainable and built around real life because we don't have unlimited gym time.",
   },
   {
-    num: '03',
     name: 'Fuel',
     href: '/the-stacks/fuel/',
-    tag: 'Nutrition Frameworks',
-    blurb: 'Foundational nutrition, dietary frameworks, macro targets, and meal profiles. Framework over daily detail.',
+    icon: '/brand/pillar-fuel.webp',
+    blurb: "Protein targets, meal structure, and what's fueling us in midlife.",
   },
   {
-    num: '04',
     name: 'Mind',
     href: '/the-stacks/mind/',
-    tag: 'Focus · Sleep · The Conversation',
-    blurb: 'Focus, cognitive stacks, and sleep architecture — plus the honest midlife conversation that makes or breaks everything else.',
+    icon: '/brand/pillar-mind.webp',
+    blurb: "Sleep, stress, and focus. The part we skipped and the foundation of the whole stack.",
   },
 ];
 ---
@@ -39,51 +35,19 @@ const pillars = [
 >
   <section class="page-hero on-dark">
     <div class="wrap">
-      <div class="label">The Stacks</div>
-      <h1>Four stacks.<br />Everything we test, track, and share.</h1>
-      <p class="lede">
-        Optimization · Movement · Fuel · Mind. The data and compounds behind it all,
-        training and recovery, how we fuel, and the honest midlife conversation
-        nobody else is having out loud.
-      </p>
-    </div>
-  </section>
-
-  <section class="lockup-sec">
-    <div class="wrap lockup-grid">
-      <img
-        src="/brand/stacks-horizontal.webp"
-        alt="The four stacks: Optimization, Movement, Fuel, Mind."
-        width="1100"
-        height="415"
-        loading="lazy"
-      />
-      <div class="lockup-copy">
-        <div class="eyebrow-rule"><span class="label">The architecture</span></div>
-        <p>
-          The Stacks is the overarching concept — four pillars sit under it, and every
-          post lives in exactly one. No orphan content, no vibes-only categories: if
-          it doesn't fit a pillar, it doesn't ship.
-        </p>
-        <p class="muted">
-          Pick a pillar below, or start with the ongoing log in
-          <a href="/the-experiment/">The Experiment</a>.
-        </p>
-      </div>
+      <h1>The Stacks</h1>
+      <p class="lede">Everything we test, track, and share.</p>
     </div>
   </section>
 
   <section class="list-sec">
     <div class="wrap">
       <div class="pillar-list">
-        {pillars.map((p) => (
-          <a class="row" href={p.href}>
-            <span class="num">{p.num}</span>
-            <span class="name-tag">
-              <span class="name">{p.name}</span>
-              <span class="tag">{p.tag}</span>
-            </span>
-            <span class="blurb">{p.blurb}</span>
+        {stacks.map((s) => (
+          <a class="row" href={s.href}>
+            <img class="stack-icon" src={s.icon} alt="" loading="lazy" />
+            <span class="name">{s.name}</span>
+            <span class="blurb">{s.blurb}</span>
             <span class="go" aria-hidden="true">→</span>
           </a>
         ))}
@@ -94,7 +58,7 @@ const pillars = [
 
 <style>
   .page-hero{padding:clamp(64px,9vw,110px) 0}
-  .page-hero h1{margin:16px 0 18px}
+  .page-hero h1{margin:16px 0 18px;color:var(--amber)}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
   .lockup-sec{padding-bottom:0}
   .lockup-grid{
@@ -113,7 +77,7 @@ const pillars = [
     transition:background .2s ease;
   }
   .row:hover{background:rgba(74,127,165,0.08)}
-  .num{font-family:var(--mono);font-size:var(--fs-label);color:var(--copper);letter-spacing:0.12em}
+  .stack-icon{width:52px;height:auto;display:block}
   .name{display:block;font-family:var(--serif);font-size:var(--fs-h3);color:var(--navy);line-height:1.05}
   .tag{
     display:block;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.16em;
