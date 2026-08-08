@@ -49,7 +49,8 @@ Additional working files and brand assets live on the NAS at **`192.168.4.23`** 
 ├── files/                        # full mirror of this Astro repo (has its own .git — DO NOT build/git here; SMB breaks git)
 ├── files.zip                     # zipped snapshot of the above
 └── The Stacked Couple Digital Assets/
-    └── Logo Assets/{SVG, PNG, JPG, PDF}   # logo exports in each format
+    ├── All Final Designs- THE STACKED COUPLE/   # CANONICAL assets (2026-08 delivery): real vectors (.ai/.eps/.pdf/.svg) + .jpg/.png renders — Logo/, ICON/, Badge logo/, Four stack Icon/, Four STACK BANNERS/, BRAND PATTERN/, SOCIAL MIDEA/, illustrations, Brand Design Guideline.pdf
+    └── Do Not Use - Old - Logo Assets/          # deprecated first-generation set — never source from here
 ```
 
 Related brand docs also sit one level up in `/Volumes/ClaudeMaster/Claude NAS/The Stacked Couple Documents/` (`stacked_couple_brand_alignment*.pdf`, `THE STACKED COUPLE working docs.docx`).

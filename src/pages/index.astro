@@ -66,19 +66,17 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
   <!-- BRAND BAND -->
   <section class="brand-band">
     <div class="wrap">
-      <img
-        class="pennant-strip"
-        src="/brand/stacks-horizontal.webp"
-        alt="The four stacks: Optimization, Movement, Fuel, Mind."
-        width="1100"
-        height="415"
-        loading="lazy"
-      />
+      <div class="pennant-row" aria-label="The four stacks: Optimization, Movement, Fuel, Mind" role="img">
+        <img src="/brand/stack-banner-optimization.svg" alt="" width="360" height="480" loading="lazy" />
+        <img src="/brand/stack-banner-movement.svg" alt="" width="360" height="480" loading="lazy" />
+        <img src="/brand/stack-banner-fuel.svg" alt="" width="360" height="480" loading="lazy" />
+        <img src="/brand/stack-banner-mind.svg" alt="" width="360" height="480" loading="lazy" />
+      </div>
       <img
         src="/brand/website-banner.webp"
-        alt="The Stacked Couple — Stacking & Tracking. Thriving in Midlife. Coastal sunset with the four stacks: Optimization, Movement, Fuel, Mind."
+        alt="The Stacked Couple — Stacking & Tracking. Thriving in Midlife. Coastal sunset banner."
         width="1600"
-        height="671"
+        height="667"
         loading="lazy"
       />
     </div>
@@ -142,8 +140,11 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
 <style>
   .hero{
     padding:clamp(90px,14vw,160px) 0 clamp(64px,9vw,110px);
-    background-image:url('/brand/pattern-dark.webp');
-    background-size:420px auto;
+    /* navy scrim over the brand pattern so hero text stays dominant */
+    background-image:
+      linear-gradient(rgba(27,47,74,0.85), rgba(27,47,74,0.85)),
+      url('/brand/pattern-dark.webp');
+    background-size:auto, 480px auto;
   }
   .brand-name{
     font-family:var(--serif);font-size:var(--fs-hero);
@@ -158,11 +159,17 @@ const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok].filter((s) => 
   .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:44px}
 
   .brand-band{padding-top:0}
-  .brand-band img{
+  .brand-band > .wrap > img{
     display:block;width:100%;height:auto;
     border:1px solid var(--line);
   }
-  .pennant-strip{margin-bottom:clamp(20px,3vw,32px)}
+  .pennant-row{
+    display:flex;gap:clamp(14px,3vw,32px);justify-content:center;
+    margin-bottom:clamp(20px,3vw,32px);
+  }
+  .pennant-row img{
+    display:block;width:clamp(64px,10vw,120px);height:auto;
+  }
 
   .whoweare-copy{
     font-family:var(--sans);font-size:var(--fs-body-lg);

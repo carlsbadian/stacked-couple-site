@@ -21,7 +21,7 @@ const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
 // Pennant badge only on the top-level pillar pages (eyebrow "Pillar NN — …"),
 // not on the Optimization category pages.
 const showPennant = eyebrow.startsWith('Stack');
-const pennant = `/brand/pillar-${frontmatter.pillar}.webp`;
+const pennant = `/brand/stack-banner-${frontmatter.pillar}.svg`;
 ---
 <BaseLayout title={`${frontmatter.title} — ${SITE.name}`} description={frontmatter.description}>
   <section class="pillar-hero on-dark">
@@ -44,7 +44,7 @@ const pennant = `/brand/pillar-${frontmatter.pillar}.webp`;
             src={pennant}
             alt={`${frontmatter.title} Stack pennant`}
             width="360"
-            height="560"
+            height="480"
             loading="eager"
           />
         )}
