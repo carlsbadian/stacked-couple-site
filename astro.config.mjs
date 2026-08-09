@@ -6,4 +6,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://www.thestackedcouple.com',
   integrations: [mdx()],
+  redirects: {
+    '/the-stacks/optimization/toolkit': '/toolkit',
+  },
 });

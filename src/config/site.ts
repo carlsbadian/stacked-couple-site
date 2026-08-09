@@ -44,6 +44,7 @@ export const LEGAL_FOOTER =
 export const NAV = [
   { label: 'Home', href: '/' },
   { label: 'The Stacks', href: '/the-stacks/' },
+  { label: 'The Toolkit', href: '/toolkit/' },
   { label: 'The Experiment', href: '/the-experiment/' },
   { label: 'About Us', href: '/about/' },
   // Work With Us (/work-with-us/) is intentionally NOT in the nav: the page

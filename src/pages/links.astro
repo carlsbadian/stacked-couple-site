@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, SOCIAL } from '../config/site';
+import { LINK_HUB_URLS } from '../config/toolkit';
+
+/**
+ * Hidden link-in-bio hub (/links) — mobile-first, no global chrome,
+ * noindex. Referenced from social bios only. Outbound partner URLs are
+ * config-driven (src/config/toolkit.ts + site.ts).
+ */
+
+interface Hub {
+  emoji: string;
+  text: string;
+  sub: string;
+  href: string;
+  external?: boolean;
+  affiliate?: boolean;
+  primary?: boolean;
+  pending?: boolean;
+}
+
+const buttons: Hub[] = [
+  {
+    emoji: '📄',
+    text: "Get The Peptide Guide We Wish We'd Had",
+    sub: 'Free Quick-Start Guide & Email Download',
+    href: '/get-the-guide/',
+    primary: true,
+  },
+  {
+    emoji: '🥂',
+    text: 'Join The Community',
+    sub: 'Connect inside our private Circle community',
+    href: LINK_HUB_URLS.community,
+    external: true,
+  },
+  {
+    emoji: '🔬',
+    text: 'Ascension Peptides — 50% OFF',
+    sub: 'Use Code STACKED at checkout',
+    href: LINK_HUB_URLS.ascension,
+    external: true,
+    affiliate: true,
+  },
+  {
+    emoji: '📱',
+    text: 'Regimen Protocol Tracking App',
+    sub: 'Use Code STACKED for subscription discount',
+    href: LINK_HUB_URLS.regimen,
+    external: true,
+    affiliate: true,
+    pending: !LINK_HUB_URLS.regimen,
+  },
+  {
+    emoji: '🧰',
+    text: 'Explore The Full Toolkit',
+    sub: 'View all vetted sources, supplies & baseline labs',
+    href: '/toolkit/',
+  },
+  {
+    emoji: '📋',
+    text: 'Work With Us / Application',
+    sub: 'Apply for private coaching & custom intake',
+    href: '/work-with-us/',
+  },
+];
+
+const socials = [SOCIAL.youtube, SOCIAL.instagram, SOCIAL.tiktok];
+const year = new Date().getFullYear();
+---
+<BaseLayout
+  title={`Links — ${SITE.name}`}
+  description={SITE.tagline}
+  noindex
+  bare
+>
+  <div class="hub on-dark">
+    <div class="col">
+      <!-- A. Profile header -->
+      <header class="profile">
+        <img class="avatar" src="/brand/badge.svg" alt="The Stacked Couple badge logo" width="220" height="220" />
+        <h1>{SITE.name}</h1>
+        <p class="tag">{SITE.tagline}</p>
+        <p class="loc">📍 {SITE.location}</p>
+      </header>
+
+      <!-- B. Stacked action buttons -->
+      <nav class="stack-links" aria-label="Links">
+        {buttons.map((b) =>
+          b.pending ? (
+            <span class="link-card pending" aria-disabled="true">
+              <span class="line1">{b.emoji} {b.text}</span>
+              <span class="line2">Link coming soon</span>
+            </span>
+          ) : (
+            <a
+              class:list={['link-card', { primary: b.primary }]}
+              href={b.href}
+              target={b.external ? '_blank' : undefined}
+              rel={b.external ? (b.affiliate ? 'noopener noreferrer sponsored' : 'noopener noreferrer') : undefined}
+            >
+              <span class="line1">{b.emoji} {b.text}</span>
+              <span class="line2">{b.sub}</span>
+            </a>
+          ),
+        )}
+      </nav>
+
+      <!-- C. Footer -->
+      <footer class="hub-foot">
+        <ul class="socials" aria-label="Follow us">
+          {socials.map((s) => (
+            <li>
+              <a href={s.url} rel="me noopener" target="_blank" aria-label={`${s.label} — ${s.handle}`}>
+                <span class="platform">{s.label}</span>
+                <span class="handle">{s.handle}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="legal">© {year} The Stacked Couple. For educational purposes only. Not medical advice.</p>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hub{
+    min-height:100vh;background:var(--navy);
+    display:flex;justify-content:center;
+    padding:clamp(28px,6vw,56px) 20px;
+  }
+  .col{width:100%;max-width:480px;display:flex;flex-direction:column;gap:28px}
+
+  .profile{text-align:center}
+  .avatar{width:112px;height:112px;margin:0 auto 16px;display:block}
+  .profile h1{font-size:var(--fs-h3);color:var(--cream);margin:0 0 6px}
+  .tag{font-family:var(--serif);color:var(--amber);margin:0 0 10px;font-size:var(--fs-body-lg)}
+  .loc{
+    font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--stone-light);margin:0;
+  }
+  .profile p{margin-inline:auto}
+
+  .stack-links{display:flex;flex-direction:column;gap:14px}
+  .link-card{
+    display:block;text-align:center;text-decoration:none;
+    border:1px solid var(--line-dark);padding:16px 18px;
+    background:rgba(250,247,242,0.04);
+    transition:background .2s ease,transform .15s ease;
+  }
+  .link-card:hover{background:rgba(74,127,165,0.18);transform:translateY(-2px)}
+  .link-card .line1{
+    display:block;font-family:var(--sans);font-weight:var(--fw-semibold);
+    font-size:var(--fs-body);color:var(--cream);
+  }
+  .link-card .line2{
+    display:block;font-size:var(--fs-legal);color:var(--stone-light);margin-top:4px;
+  }
+  .link-card.primary{
+    background:var(--copper);border-color:var(--copper);
+  }
+  .link-card.primary:hover{background:#8a4626}
+  .link-card.primary .line2{color:rgba(250,247,242,0.85)}
+  .link-card.pending{cursor:not-allowed;opacity:0.6}
+
+  .hub-foot{text-align:center;margin-top:8px}
+  .socials{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:6px}
+  .socials a{
+    text-decoration:none;font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--cream);letter-spacing:0.04em;
+  }
+  .socials a:hover .handle{color:var(--amber)}
+  .handle{color:var(--stone-light);margin-left:10px}
+  .legal{font-size:var(--fs-legal);color:var(--stone-light);margin:0}
+</style>

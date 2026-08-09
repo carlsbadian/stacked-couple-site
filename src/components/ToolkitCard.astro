@@ -1,0 +1,61 @@
+---
+/**
+ * One Toolkit directory card. Active items render a live outbound CTA
+ * (rel includes `sponsored` for affiliate compliance); placeholders and
+ * active items with no URL yet render a disabled-state button.
+ */
+import type { ToolkitItem } from '../config/toolkit';
+
+interface Props {
+  item: ToolkitItem;
+}
+const { item } = Astro.props;
+const live = !item.isPlaceholder && !!item.url;
+---
+<article class:list={['card', { placeholder: item.isPlaceholder }]}>
+  <div class="badges">
+    {item.badges.map((b) => (
+      <span class:list={['chip', { offer: /off|code/i.test(b) }]}>{b}</span>
+    ))}
+  </div>
+  <h3>{item.title}</h3>
+  <p class="desc">{item.description}</p>
+  {item.promo && <p class="promo">{item.promo}</p>}
+  {live ? (
+    <a class="btn btn-solid cta" href={item.url} target="_blank" rel="noopener noreferrer sponsored">
+      {item.cta}
+    </a>
+  ) : (
+    <span class="btn cta cta-disabled" aria-disabled="true">
+      {item.isPlaceholder ? item.cta : 'Download link coming soon'}
+    </span>
+  )}
+</article>
+
+<style>
+  .card{
+    display:flex;flex-direction:column;gap:14px;
+    border:1px solid var(--line);background:var(--white);
+    padding:clamp(22px,3vw,30px);
+  }
+  .card.placeholder{background:transparent;border-style:dashed}
+  .badges{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{
+    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.06em;
+    text-transform:uppercase;padding:4px 10px;
+    border:1px solid var(--line);color:var(--stone-deep);
+  }
+  .chip.offer{border-color:var(--copper);color:var(--copper)}
+  h3{margin:0}
+  .desc{color:var(--text-muted);flex:1;margin:0}
+  .promo{
+    font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--copper);border-left:3px solid var(--amber);
+    padding-left:12px;margin:0;
+  }
+  .cta{align-self:flex-start}
+  .cta-disabled{
+    border:1px solid var(--line);color:var(--stone-deep);
+    background:transparent;cursor:not-allowed;
+  }
+</style>

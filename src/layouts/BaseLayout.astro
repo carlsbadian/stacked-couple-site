@@ -9,11 +9,14 @@ interface Props {
   description?: string;
   /** Keep the page out of search results (hidden/email-only pages). */
   noindex?: boolean;
+  /** Render without the global header/footer (e.g. the /links hub). */
+  bare?: boolean;
 }
 const {
   title = `${SITE.name} — ${SITE.tagline}`,
   description = SITE.subline,
   noindex = false,
+  bare = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 ---
@@ -51,11 +54,11 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
+    {!bare && <Header />}
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    {!bare && <Footer />}
     <style>
       .skip-link{
         position:absolute;left:-9999px;top:0;z-index:100;
