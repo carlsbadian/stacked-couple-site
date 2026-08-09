@@ -10,7 +10,7 @@ interface Props {
   item: ToolkitItem;
 }
 const { item } = Astro.props;
-const live = !item.isPlaceholder && !!item.url;
+const live = !item.isPlaceholder && (!!item.url || !!item.stores);
 ---
 <article class:list={['card', { placeholder: item.isPlaceholder }]}>
   <div class="badges">
@@ -18,17 +18,34 @@ const live = !item.isPlaceholder && !!item.url;
       <span class:list={['chip', { offer: /off|code/i.test(b) }]}>{b}</span>
     ))}
   </div>
+  {item.logo && (
+    <img
+      class="partner-logo"
+      src={item.logo.src}
+      alt={item.logo.alt}
+      width={item.logo.width}
+      height={item.logo.height}
+      loading="lazy"
+    />
+  )}
   <h3>{item.title}</h3>
   <p class="desc">{item.description}</p>
   {item.promo && <p class="promo">{item.promo}</p>}
-  {live ? (
+  {live && item.stores ? (
+    <div class="store-badges">
+      <a href={item.stores.appStore} target="_blank" rel="noopener noreferrer sponsored">
+        <img src="/brand/partners/badge-app-store.svg" alt="Download on the App Store" width="120" height="40" loading="lazy" />
+      </a>
+      <a href={item.stores.googlePlay} target="_blank" rel="noopener noreferrer sponsored">
+        <img src="/brand/partners/badge-google-play.png" alt="Get it on Google Play" width="135" height="40" loading="lazy" />
+      </a>
+    </div>
+  ) : live ? (
     <a class="btn btn-solid cta" href={item.url} target="_blank" rel="noopener noreferrer sponsored">
       {item.cta}
     </a>
   ) : (
-    <span class="btn cta cta-disabled" aria-disabled="true">
-      {item.isPlaceholder ? item.cta : 'Download link coming soon'}
-    </span>
+    <span class="btn cta cta-disabled" aria-disabled="true">{item.cta}</span>
   )}
 </article>
 
@@ -58,4 +75,10 @@ const live = !item.isPlaceholder && !!item.url;
     border:1px solid var(--line);color:var(--stone-deep);
     background:transparent;cursor:not-allowed;
   }
+  .partner-logo{
+    display:block;width:min(180px,60%);height:auto;
+    /* white wordmark file variant is for dark grounds; this is the black one */
+  }
+  .store-badges{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .store-badges img{display:block;height:44px;width:auto}
 </style>

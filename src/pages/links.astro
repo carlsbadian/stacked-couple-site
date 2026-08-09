@@ -13,11 +13,12 @@ interface Hub {
   emoji: string;
   text: string;
   sub: string;
-  href: string;
+  href?: string;
   external?: boolean;
   affiliate?: boolean;
   primary?: boolean;
-  pending?: boolean;
+  /** Render as a card with official app-store badges instead of one link. */
+  stores?: { appStore: string; googlePlay: string };
 }
 
 const buttons: Hub[] = [
@@ -47,10 +48,10 @@ const buttons: Hub[] = [
     emoji: '📱',
     text: 'Regimen Protocol Tracking App',
     sub: 'Use Code STACKED for subscription discount',
-    href: LINK_HUB_URLS.regimen,
-    external: true,
-    affiliate: true,
-    pending: !LINK_HUB_URLS.regimen,
+    stores: {
+      appStore: LINK_HUB_URLS.regimenAppStore,
+      googlePlay: LINK_HUB_URLS.regimenGooglePlay,
+    },
   },
   {
     emoji: '🧰',
@@ -88,11 +89,19 @@ const year = new Date().getFullYear();
       <!-- B. Stacked action buttons -->
       <nav class="stack-links" aria-label="Links">
         {buttons.map((b) =>
-          b.pending ? (
-            <span class="link-card pending" aria-disabled="true">
+          b.stores ? (
+            <div class="link-card store-card">
               <span class="line1">{b.emoji} {b.text}</span>
-              <span class="line2">Link coming soon</span>
-            </span>
+              <span class="line2">{b.sub}</span>
+              <span class="store-badges">
+                <a href={b.stores.appStore} target="_blank" rel="noopener noreferrer sponsored">
+                  <img src="/brand/partners/badge-app-store.svg" alt="Download on the App Store" width="120" height="40" loading="lazy" />
+                </a>
+                <a href={b.stores.googlePlay} target="_blank" rel="noopener noreferrer sponsored">
+                  <img src="/brand/partners/badge-google-play.png" alt="Get it on Google Play" width="135" height="40" loading="lazy" />
+                </a>
+              </span>
+            </div>
           ) : (
             <a
               class:list={['link-card', { primary: b.primary }]}
@@ -163,7 +172,13 @@ const year = new Date().getFullYear();
   }
   .link-card.primary:hover{background:#8a4626}
   .link-card.primary .line2{color:rgba(250,247,242,0.85)}
-  .link-card.pending{cursor:not-allowed;opacity:0.6}
+  .store-card{cursor:default}
+  .store-card:hover{transform:none;background:rgba(250,247,242,0.04)}
+  .store-badges{
+    display:flex;gap:12px;justify-content:center;align-items:center;
+    flex-wrap:wrap;margin-top:12px;
+  }
+  .store-badges img{display:block;height:44px;width:auto}
 
   .hub-foot{text-align:center;margin-top:8px}
   .socials{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:6px}

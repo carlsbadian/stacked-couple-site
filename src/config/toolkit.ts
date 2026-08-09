@@ -7,6 +7,8 @@ import { AFFILIATE, COMMUNITY } from './site';
 
 export interface ToolkitItem {
   title: string;
+  /** Optional partner logo shown above the title (path under /brand). */
+  logo?: { src: string; alt: string; width: number; height: number };
   badges: string[];
   description: string;
   /** Shown as the highlighted offer line on active cards. */
@@ -15,6 +17,8 @@ export interface ToolkitItem {
   cta: string;
   /** Outbound or internal URL. Ignored while isPlaceholder is true. */
   url?: string;
+  /** App-store links — rendered as official store badges instead of a CTA. */
+  stores?: { appStore: string; googlePlay: string };
   isPlaceholder: boolean;
 }
 
@@ -50,14 +54,21 @@ export const TOOLKIT: ToolkitCategory[] = [
     items: [
       {
         title: 'Regimen App',
+        logo: {
+          src: '/brand/partners/regimen-wordmark-black.png',
+          alt: 'Regimen',
+          width: 1600,
+          height: 400,
+        },
         badges: ['Protocol Tracker', 'Code: STACKED'],
         description:
           'The exact app we use for auto-reconstitution calculations, half-life tracking, injection site rotation, and digital protocol logging.',
         promo: 'Use code STACKED for exclusive subscription discount.',
         cta: 'Download Regimen App →',
-        // TODO(Todd): supply the Regimen affiliate/download URL — the CTA
-        // renders as pending until this is filled in.
-        url: '',
+        stores: {
+          appStore: 'https://apps.apple.com/us/app/regimen-peptide-tracker/id6753905449',
+          googlePlay: 'https://play.google.com/store/apps/details?id=com.regimen.app&pcampaignid=web_share',
+        },
         isPlaceholder: false,
       },
     ],
@@ -119,5 +130,6 @@ export const TOOLKIT_META = {
 export const LINK_HUB_URLS = {
   ascension: AFFILIATE.ascension.url,
   community: COMMUNITY.joinUrl,
-  regimen: '', // TODO(Todd): same Regimen URL as above
+  regimenAppStore: 'https://apps.apple.com/us/app/regimen-peptide-tracker/id6753905449',
+  regimenGooglePlay: 'https://play.google.com/store/apps/details?id=com.regimen.app&pcampaignid=web_share',
 } as const;
