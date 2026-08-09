@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, COMMUNITY } from '../config/site';
+
+/**
+ * Post-submission thank-you page. The Work With Us Tally form (jaraL9)
+ * redirects here on completion (set in Tally: Settings → Redirect on
+ * completion → https://www.thestackedcouple.com/thank-you/).
+ * Hidden: noindex, not in nav.
+ */
+---
+<BaseLayout
+  title={`Application Received — ${SITE.name}`}
+  description="Your application is in. Check your email for the guide, and join the community."
+  noindex
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">Application Received</div>
+      <h1>You're in. Check your email.</h1>
+      <p class="lede">
+        Your application landed safely. The Peptide Guide We Wish We'd Had is on its
+        way to your inbox right now — if it hasn't arrived in a few minutes, check
+        your spam or promotions folder.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">While You Wait</span></div>
+      <div class="steps">
+        <article class="step">
+          <span class="num">01</span>
+          <h2>Open the guide</h2>
+          <p>
+            It's in your email. The starting-point breakdown — read it before we
+            connect and you'll get far more out of the conversation.
+          </p>
+        </article>
+        <article class="step">
+          <span class="num">02</span>
+          <h2>Join the community</h2>
+          <p>
+            The Stacked Couple Community on Circle is free — it's where the real
+            conversation happens. Introduce yourself and start a discussion; we're
+            in there daily.
+          </p>
+          <a class="btn btn-solid" href={COMMUNITY.joinUrl}>Join the Community →</a>
+        </article>
+        <article class="step">
+          <span class="num">03</span>
+          <h2>Browse the Toolkit</h2>
+          <p>
+            Everything we personally use and trust — our vetted sources, the
+            tracking app we run, and active discount codes, all in one place.
+          </p>
+          <a class="btn btn-ghost" href="/toolkit/">Open the Toolkit →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="next on-dark">
+    <div class="wrap">
+      <div class="eyebrow-rule"><span class="label">What Happens Next</span></div>
+      <p class="next-copy">
+        We read every application personally. If it looks like a fit, you'll hear
+        from us by email about what working together would look like. Either way —
+        the guide, the community, and the Toolkit are yours.
+      </p>
+      <p class="next-copy muted-line">
+        In the meantime, the log continues in
+        <a href="/the-experiment/">The Experiment</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
+  .steps{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;margin-top:8px;
+  }
+  .step{
+    display:flex;flex-direction:column;gap:12px;align-items:flex-start;
+    border:1px solid var(--line);padding:clamp(24px,3.5vw,36px);
+  }
+  .step .num{
+    font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--copper);letter-spacing:0.14em;
+  }
+  .step h2{font-size:var(--fs-h4);margin:0}
+  .step p{color:var(--text-muted);margin:0;flex:1}
+  .next{padding:clamp(48px,7vw,72px) 0}
+  .next-copy{max-width:var(--measure);color:var(--stone-light);margin:0 0 1em}
+  .next-copy a{color:var(--copper-light)}
+  .muted-line{margin-bottom:0}
+</style>
