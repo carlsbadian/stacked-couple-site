@@ -68,9 +68,9 @@ export const TOOLKIT: ToolkitCategory[] = [
           width: 1600,
           height: 400,
         },
-        badges: ['Protocol Tracker', 'Code: STACKED'],
+        badges: ['Peptide Tracker', 'Code: STACKED'],
         description:
-          'The exact app we use for auto-reconstitution calculations, half-life tracking, injection site rotation, and digital protocol logging.',
+          'The app we use to track our peptides. Dosing schedules, reconstitution math, half-life tracking, and injection site rotation.',
         promo: 'Use code STACKED for exclusive subscription discount.',
         cta: 'Download Regimen App →',
         // Regimen OneLink (AppsFlyer): device-routing + partner attribution.
