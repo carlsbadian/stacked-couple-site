@@ -5,6 +5,14 @@
  */
 import { AFFILIATE, COMMUNITY } from './site';
 
+/**
+ * Regimen partner OneLink for the Toolkit card. AppsFlyer routes the
+ * visitor to the right store by device; af_sub4 identifies the placement,
+ * so give other placements their own link rather than reusing this one.
+ */
+const REGIMEN_ONELINK_TOOLKIT =
+  'https://regimen.onelink.me/IFAf/website?pid=partner&c=stackedcouple&af_channel=partner&af_sub4=toolkit_card';
+
 export interface ToolkitItem {
   title: string;
   /** Optional partner logo shown above the title (path under /brand). */
@@ -65,9 +73,12 @@ export const TOOLKIT: ToolkitCategory[] = [
           'The exact app we use for auto-reconstitution calculations, half-life tracking, injection site rotation, and digital protocol logging.',
         promo: 'Use code STACKED for exclusive subscription discount.',
         cta: 'Download Regimen App →',
+        // Regimen OneLink (AppsFlyer): device-routing + partner attribution.
+        // Both badges point at it on purpose — it sends iOS to the App Store,
+        // Android to Google Play, and credits us via af_sub4=toolkit_card.
         stores: {
-          appStore: 'https://apps.apple.com/us/app/regimen-peptide-tracker/id6753905449',
-          googlePlay: 'https://play.google.com/store/apps/details?id=com.regimen.app&pcampaignid=web_share',
+          appStore: REGIMEN_ONELINK_TOOLKIT,
+          googlePlay: REGIMEN_ONELINK_TOOLKIT,
         },
         isPlaceholder: false,
       },
