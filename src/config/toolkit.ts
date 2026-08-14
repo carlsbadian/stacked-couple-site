@@ -15,8 +15,11 @@ const REGIMEN_ONELINK_TOOLKIT =
 
 export interface ToolkitItem {
   title: string;
-  /** Optional partner logo shown above the title (path under /brand). */
-  logo?: { src: string; alt: string; width: number; height: number };
+  /**
+   * Optional partner logo shown above the title (path under /brand).
+   * `href` makes it clickable — link it to the partner's own site.
+   */
+  logo?: { src: string; alt: string; width: number; height: number; href?: string };
   badges: string[];
   description: string;
   /** Shown as the highlighted offer line on active cards. */
@@ -67,6 +70,7 @@ export const TOOLKIT: ToolkitCategory[] = [
           alt: 'Regimen',
           width: 1600,
           height: 400,
+          href: 'https://helloregimen.com',
         },
         badges: ['Peptide Tracker', 'Code: STACKED'],
         description:

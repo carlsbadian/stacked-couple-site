@@ -18,16 +18,28 @@ const live = !item.isPlaceholder && (!!item.url || !!item.stores);
       <span class:list={['chip', { offer: /off|code/i.test(b) }]}>{b}</span>
     ))}
   </div>
-  {item.logo && (
-    <img
-      class="partner-logo"
-      src={item.logo.src}
-      alt={item.logo.alt}
-      width={item.logo.width}
-      height={item.logo.height}
-      loading="lazy"
-    />
-  )}
+  {item.logo &&
+    (item.logo.href ? (
+      <a class="logo-link" href={item.logo.href} target="_blank" rel="noopener noreferrer sponsored">
+        <img
+          class="partner-logo"
+          src={item.logo.src}
+          alt={item.logo.alt}
+          width={item.logo.width}
+          height={item.logo.height}
+          loading="lazy"
+        />
+      </a>
+    ) : (
+      <img
+        class="partner-logo"
+        src={item.logo.src}
+        alt={item.logo.alt}
+        width={item.logo.width}
+        height={item.logo.height}
+        loading="lazy"
+      />
+    ))}
   <h3>{item.title}</h3>
   <p class="desc">{item.description}</p>
   {item.promo && <p class="promo">{item.promo}</p>}
@@ -79,6 +91,8 @@ const live = !item.isPlaceholder && (!!item.url || !!item.stores);
     display:block;width:min(180px,60%);height:auto;
     /* white wordmark file variant is for dark grounds; this is the black one */
   }
+  .logo-link{display:block;transition:opacity .2s ease}
+  .logo-link:hover{opacity:0.72}
   .store-badges{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
   .store-badges img{display:block;height:44px;width:auto}
 </style>
