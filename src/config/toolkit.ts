@@ -13,6 +13,10 @@ import { AFFILIATE, COMMUNITY } from './site';
 const REGIMEN_ONELINK_TOOLKIT =
   'https://regimen.onelink.me/IFAf/website?pid=partner&c=stackedcouple&af_channel=partner&af_sub4=toolkit_card';
 
+/** Same OneLink for the /links bio hub, tagged as its own placement. */
+const REGIMEN_ONELINK_LINKS =
+  'https://regimen.onelink.me/IFAf/website?pid=partner&c=stackedcouple&af_channel=partner&af_sub4=links_page';
+
 export interface ToolkitItem {
   title: string;
   /**
@@ -145,6 +149,7 @@ export const TOOLKIT_META = {
 export const LINK_HUB_URLS = {
   ascension: AFFILIATE.ascension.url,
   community: COMMUNITY.joinUrl,
-  regimenAppStore: 'https://apps.apple.com/us/app/regimen-peptide-tracker/id6753905449',
-  regimenGooglePlay: 'https://play.google.com/store/apps/details?id=com.regimen.app&pcampaignid=web_share',
+  // Both badges use the OneLink — it routes by device and attributes the click.
+  regimenAppStore: REGIMEN_ONELINK_LINKS,
+  regimenGooglePlay: REGIMEN_ONELINK_LINKS,
 } as const;
