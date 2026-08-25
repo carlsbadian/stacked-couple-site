@@ -1,13 +1,13 @@
 ---
 /**
- * Newsletter sign-up — Circle form embed (uid 6aac2606, "Website
- * Newsletter Opt-in"). Submissions land in the Circle audience.
- * Form styling/copy live in Circle; this component supplies the cream
- * panel so the form stays readable on navy grounds, plus the approved
- * subscribe disclaimer.
+ * Newsletter sign-up — Tally form 9qYqAG (name + email side by side).
+ * Replaces the previous Circle embed.
  *
- * Pass `onDark` when placing on a navy ground (footer) so the
- * disclaimer uses the navy-safe muted tint.
+ * Tally renders its field text in dark charcoal, so the form sits on a
+ * light panel: readable on the navy footer AND consistent on the cream
+ * Experiment page. Button styling (copper) is set in Tally itself.
+ *
+ * Pass `onDark` on a navy ground so the disclaimer uses the navy-safe tint.
  */
 interface Props {
   onDark?: boolean;
@@ -17,7 +17,16 @@ const { onDark = false } = Astro.props;
 <div class:list={['newsletter', { 'is-dark': onDark }]}>
   <div class="label">Newsletter</div>
   <div class="panel">
-    <div data-is-popup="false" data-circle-form-uid="6aac2606"></div>
+    <iframe
+      data-tally-src="https://tally.so/embed/9qYqAG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      loading="lazy"
+      width="100%"
+      height="177"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="Newsletter"
+    ></iframe>
   </div>
   <p class="fine">
     By subscribing you agree to receive future emails from The Stacked Couple.
@@ -25,15 +34,17 @@ const { onDark = false } = Astro.props;
   </p>
 </div>
 
-<script is:inline>if(!window.circleFormsScriptLoaded){window.circleFormsScriptLoaded=true;const script=document.createElement('script');script.src='https://the-stacked-couple.circle.so/external/form-embeds.js';script.defer=true;document.head.appendChild(script)}</script>
+<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
 <style>
-  .newsletter .label{margin-bottom:14px}
+  .newsletter .label{margin-bottom:12px}
   .panel{
     background:var(--cream);
     border:1px solid var(--rule);
-    padding:clamp(14px,2.5vw,24px);
+    /* tight padding — the form is horizontal now, so it needs width, not height */
+    padding:clamp(10px,1.6vw,18px) clamp(12px,2vw,22px);
   }
-  .fine{font-size:var(--fs-legal);color:var(--stone-deep);margin-top:12px}
+  .panel iframe{display:block;width:100%;border:0}
+  .fine{font-size:var(--fs-legal);color:var(--stone-deep);margin-top:10px}
   .is-dark .fine{color:var(--stone-light)}
 </style>
