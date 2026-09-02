@@ -54,6 +54,16 @@ import { SITE } from '../config/site';
       <p>We're not clinicians. Nothing here is a prescription, and your stack won't look like ours.</p>
     </div>
   </section>
+
+  <section class="contact-cta on-dark">
+    <div class="wrap cta-inner">
+      <div>
+        <div class="label">Get in touch</div>
+        <h2>Questions? Reach out.</h2>
+      </div>
+      <a class="btn btn-solid" href="/contact/">Contact Us →</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -69,6 +79,9 @@ import { SITE } from '../config/site';
   .voice p{color:var(--stone-light);margin-bottom:1em}
   .banner-sec{padding-bottom:0}
   .banner-sec img{display:block;width:100%;height:auto;border:1px solid var(--line)}
+  .contact-cta{padding:clamp(48px,7vw,72px) 0}
+  .cta-inner{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+  .cta-inner h2{margin:12px 0 0}
   .next{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
   .next h2{margin-bottom:8px}
   .next-ctas{display:flex;gap:14px;flex-wrap:wrap}

@@ -24,6 +24,7 @@ const year = new Date().getFullYear();
       <div>
         <div class="mark">{SITE.name}</div>
         <p class="tagline">{SITE.tagline}</p>
+        <a class="contact-link" href="/contact/">Contact Us →</a>
       </div>
       <ul class="socials" aria-label="Follow us">
         {socials.map((s) => (
@@ -60,6 +61,13 @@ const year = new Date().getFullYear();
   .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:44px}
   .mark{font-family:var(--wordmark);font-size:24px;margin-bottom:8px}
   .tagline{font-family:var(--sans);font-size:var(--fs-caption);color:var(--amber)}
+  .contact-link{
+    display:inline-block;margin-top:16px;text-decoration:none;
+    font-family:var(--mono);font-size:var(--fs-label);
+    letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--copper-light);border-bottom:1px solid transparent;
+  }
+  .contact-link:hover{color:var(--amber);border-bottom-color:var(--copper)}
   .socials{list-style:none}
   .socials a{
     display:block;padding:6px 0;text-decoration:none;

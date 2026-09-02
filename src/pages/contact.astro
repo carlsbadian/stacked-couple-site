@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+
+/**
+ * Contact Us — standalone page carrying the Tally contact form (9qj7J4).
+ * Reached from the footer and the bottom of About Us; deliberately not in
+ * the main nav. Form questions/copy are managed in Tally, not here.
+ */
+---
+<BaseLayout
+  title={`Contact Us — ${SITE.name}`}
+  description="Get in touch with The Stacked Couple."
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <div class="label">Contact</div>
+      <h1>Contact Us</h1>
+      <p class="lede">
+        Questions, partnership enquiries, or something else — send it here and
+        we'll get back to you.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="form-wrap">
+        <iframe
+          data-tally-src="https://tally.so/embed/9qj7J4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="552"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Contact Us"
+        ></iframe>
+        <noscript>
+          <p class="fallback">
+            The contact form needs JavaScript. You can also open it directly:
+            <a href="https://tally.so/r/9qj7J4">tally.so/r/9qj7J4</a>
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
+  /* form sits on the cream page ground — Tally renders dark text, so no panel needed */
+  .form-wrap{max-width:720px}
+  .form-wrap iframe{display:block;width:100%;border:0}
+  .fallback{color:var(--text-muted)}
+  .fallback a{color:var(--accent)}
+</style>
