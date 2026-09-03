@@ -38,6 +38,18 @@ export const COMMUNITY = {
     'https://the-stacked-couple.circle.so/join?invitation_token=648be4f3f43c04ca9ee69da085f536317aa0ceae-dfc23318-9457-4326-90e8-9f357341918d',
 } as const;
 
+/**
+ * The lead-magnet PDF. Lives in public/downloads/ so it ships with the build.
+ * To publish a new revision: replace the file at the same path (keeps the URL
+ * stable for anyone who bookmarked it) and update `pages` / `sizeLabel`.
+ */
+export const GUIDE = {
+  name: 'The Peptide Guide We Wish We’d Had',
+  file: '/downloads/peptide-protocol-quick-start-guide.pdf',
+  pages: 10,
+  sizeLabel: '616 KB',
+} as const;
+
 export const LEGAL_FOOTER =
   'The Stacked Couple shares our personal experience for educational and informational purposes only. Nothing here is medical advice. Consult your physician before beginning any new health protocol.';
 
