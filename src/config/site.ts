@@ -45,7 +45,9 @@ export const COMMUNITY = {
  */
 export const GUIDE = {
   name: 'The Peptide Guide We Wish We’d Had',
-  file: '/downloads/peptide-protocol-quick-start-guide.pdf',
+  file: '/downloads/the-peptide-guide-we-wish-wed-had.pdf',
+  // What the file is called once it lands in the reader's Downloads folder.
+  downloadName: 'The Stacked Couple — The Peptide Guide We Wish We’d Had.pdf',
   pages: 10,
   sizeLabel: '616 KB',
 } as const;

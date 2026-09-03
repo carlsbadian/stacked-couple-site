@@ -23,7 +23,7 @@ import { SITE, COMMUNITY, GUIDE } from '../config/site';
         right now — if it hasn't arrived in a few minutes, check your spam or
         promotions folder. You can also download it straight from this page.
       </p>
-      <a class="btn btn-solid" href={GUIDE.file} download>Download the Guide (PDF) ↓</a>
+      <a class="btn btn-solid" href={GUIDE.file} download={GUIDE.downloadName}>Download the Guide (PDF) ↓</a>
       <p class="file-meta">PDF · {GUIDE.pages} pages · {GUIDE.sizeLabel}</p>
     </div>
   </section>
@@ -39,7 +39,7 @@ import { SITE, COMMUNITY, GUIDE } from '../config/site';
             It's in your email, and it's here. The starting-point breakdown — read
             it before we connect and you'll get far more out of the conversation.
           </p>
-          <a class="btn btn-ghost" href={GUIDE.file} download>Download the Guide ↓</a>
+          <a class="btn btn-ghost" href={GUIDE.file} download={GUIDE.downloadName}>Download the Guide ↓</a>
         </article>
         <article class="step">
           <span class="num">02</span>
