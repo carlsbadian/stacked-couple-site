@@ -5,14 +5,16 @@ import { SITE, COMMUNITY } from '../config/site';
 /**
  * Join the Community — copy is APPROVED verbatim from the working docs
  * ("Circle Community" tab, between the Approved COPY markers).
- * Do not edit the wording without approval. The Join Now button points
- * at the Circle invitation link in src/config/site.ts (COMMUNITY.joinUrl).
+ * Do not edit the wording without approval. The join buttons point at the
+ * Circle invitation link in src/config/site.ts (COMMUNITY.joinUrl).
  *
- * Deviation from the working docs (Todd, 2026-09-02): the hero eyebrow read
- * "The Lab", which made an internal nickname the first thing a first-time
- * visitor saw. It now reads "The Community"; The Lab is still named in the
- * free-line below, just no longer as the opening word. Needs Jenn's sign-off
- * before the working docs are treated as matching the site.
+ * Deviations from the working docs (Todd, 2026-09-02), pending Jenn's
+ * sign-off before the docs are treated as matching the site:
+ *   - Hero eyebrow read "The Lab", making an internal nickname the first
+ *     thing a first-time visitor saw. Now "The Community"; The Lab is still
+ *     named in the free-line below, just not as the opening word.
+ *   - Both CTAs read "Join Now"; now "Join for Free", matching the thank-you
+ *     page and putting the price in the button itself.
  */
 
 const inside = [
@@ -38,7 +40,7 @@ const inside = [
         social — compound names, the basics, vendor recommendations, and the
         foundation you need to start building your own stack.
       </p>
-      <a class="btn btn-solid join-cta" href={COMMUNITY.joinUrl}>Join Now →</a>
+      <a class="btn btn-solid join-cta" href={COMMUNITY.joinUrl}>Join for Free →</a>
     </div>
   </section>
 
@@ -50,7 +52,7 @@ const inside = [
           <li>{item}</li>
         ))}
       </ul>
-      <a class="btn btn-solid join-cta" href={COMMUNITY.joinUrl}>Join Now →</a>
+      <a class="btn btn-solid join-cta" href={COMMUNITY.joinUrl}>Join for Free →</a>
     </div>
   </section>
 </BaseLayout>
