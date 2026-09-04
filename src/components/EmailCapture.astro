@@ -4,10 +4,14 @@
  * The value proposition is execution and convenience: the printable
  * dosage tracker, reconstitution cheat sheet, and startup checklist.
  *
- * NOTE: no email provider is wired up yet. Submissions log to the
- * console as a placeholder. TODO(Todd): connect a provider (Substack /
- * ConvertKit / Mailchimp / Zoho) by setting `action` + hidden fields
- * per their embed docs — this component is the single place to do it.
+ * The form itself is a Circle form embed (uid fc9c8b46, the-stacked-couple
+ * .circle.so). Circle renders the field + button into the placeholder div
+ * and owns the submit, the success state, and the email that delivers the
+ * guide — none of that is configurable from this repo. Button label, success
+ * message and the delivery email are edited in Circle, not here.
+ *
+ * The loader must stay `is:inline` so Astro leaves it alone instead of
+ * bundling it as a module.
  */
 interface Props {
   heading?: string;
@@ -27,22 +31,21 @@ const {
       stack will look nothing like ours. Yours when you join the list.
     </p>
   )}
-  <form class="capture-form" novalidate>
-    <label class="sr-only" for={`email-${compact ? 'c' : 'f'}`}>Email address</label>
-    <input
-      id={`email-${compact ? 'c' : 'f'}`}
-      type="email"
-      name="email"
-      placeholder="you@example.com"
-      autocomplete="email"
-      required
-    />
-    <button type="submit" class="btn btn-solid">Get the Guide</button>
-  </form>
+  <div class="form-slot">
+    <div data-is-popup="false" data-circle-form-uid="fc9c8b46"></div>
+    <noscript>
+      <p class="fallback">
+        The signup form needs JavaScript. You can also join the community and pick
+        up the guide there: <a href="https://the-stacked-couple.circle.so/">the-stacked-couple.circle.so</a>
+      </p>
+    </noscript>
+  </div>
   <p class="fine">
     For research purposes only. Not medical advice. We don’t spam. Unsubscribe anytime.
   </p>
 </div>
+
+<script is:inline>if(!window.circleFormsScriptLoaded){window.circleFormsScriptLoaded=true;const script=document.createElement('script');script.src='https://the-stacked-couple.circle.so/external/form-embeds.js';script.defer=true;document.head.appendChild(script)}</script>
 
 <style>
   .capture{
@@ -53,34 +56,14 @@ const {
   h3{margin-bottom:14px}
   .pitch{font-size:var(--fs-body-lg);color:var(--stone-light);max-width:var(--measure);margin-bottom:26px}
   .compact .pitch{display:none}
-  .capture-form{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-  input[type='email']{
-    flex:1;min-width:220px;padding:15px 18px;font-size:16px;
-    font-family:var(--sans);border:1px solid var(--line-dark);
-    background:rgba(250,247,242,0.06);color:var(--cream);
+  /* Circle renders its form on white with dark type, so the embed gets a white
+     slot rather than the navy ground of .capture — matching the iframe's own
+     background keeps the seam invisible. */
+  .form-slot{
+    background:var(--white);margin-bottom:16px;
   }
-  input[type='email']::placeholder{color:var(--stone-light)}
-  input[type='email']:focus-visible{outline:3px solid var(--steel);outline-offset:2px}
+  .form-slot :global(iframe){display:block;width:100%;border:0}
   .fine{font-size:var(--fs-legal);color:var(--stone-light)}
-  .sr-only{
-    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
-  }
+  .fallback{font-size:var(--fs-body);color:var(--ink)}
+  .fallback a{color:var(--copper)}
 </style>
-
-<script>
-  // Placeholder handler — replace with the email provider embed.
-  document.querySelectorAll<HTMLFormElement>('.capture-form').forEach((form) => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = (form.querySelector('input[name="email"]') as HTMLInputElement)?.value;
-      if (!email || !email.includes('@')) return;
-      console.log('[email-capture placeholder] would subscribe:', email);
-      const note = document.createElement('p');
-      note.textContent = 'Almost live — the list opens soon. Check back shortly.';
-      note.style.cssText = 'font-family:var(--mono);font-size:14px;color:var(--amber);margin-top:10px';
-      form.after(note);
-      form.querySelectorAll('input,button').forEach((el) => el.setAttribute('disabled', ''));
-    });
-  });
-</script>
