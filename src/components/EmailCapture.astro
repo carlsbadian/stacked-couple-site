@@ -62,7 +62,11 @@ const {
   .form-slot{
     background:var(--white);margin-bottom:16px;
   }
-  .form-slot :global(iframe){display:block;width:100%;border:0}
+  /* Circle sizes the iframe itself and gets it wrong on first paint (312px
+     against ~400px of content), which clips the submit button behind an
+     internal scrollbar. The floor keeps the whole form reachable; Circle can
+     still grow past it. */
+  .form-slot :global(iframe){display:block;width:100%;border:0;min-height:430px}
   .fine{font-size:var(--fs-legal);color:var(--stone-light)}
   .fallback{font-size:var(--fs-body);color:var(--ink)}
   .fallback a{color:var(--copper)}
