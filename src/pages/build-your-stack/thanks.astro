@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SITE, COMMUNITY } from '../../config/site';
+import { SITE, COMMUNITY, GUIDE } from '../../config/site';
 
 /**
  * Post-submission confirmation for the Stack Assessment. The Tally form
@@ -10,31 +10,64 @@ import { SITE, COMMUNITY } from '../../config/site';
  * Hidden page: noindex, not in nav. Renamed from /thank-you/ (301 in
  * public/_redirects) — leave that redirect in place until the Tally redirect
  * has been repointed.
+ *
+ * The guide card offers the PDF directly because submitting the assessment
+ * also triggers a confirmation email carrying the same file.
+ *
+ * The three-card grid below is the shared pattern for every confirmation page
+ * on the site; the hero copy is what changes per context. The hero sub-line
+ * carries the whole what-happens-next arc, so there is no separate section.
  */
 ---
 <BaseLayout
   title={`Got it. — ${SITE.name}`}
-  description="We will read your Stack Assessment and send you a link to book your Stack Session within two days."
+  description="We read your Stack Assessment and send you a link to book your Stack Session. After the call, we deliver Your Stack Plan."
   noindex
 >
   <section class="page-hero on-dark">
     <div class="wrap">
       <h1>Got it.</h1>
       <p class="lede">
-        We will read your Stack Assessment and send you a link to book your Stack
-        Session within two days. It is 15–20 minutes, and we work from your
-        answers — so the more specific you were, the better the call.
+        We read your Stack Assessment personally, then send you a link to book your
+        Stack Session — 15 to 20 minutes, within 24 to 48 hours. After the call, we
+        deliver Your Stack Plan, built from your answers.
       </p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <p class="secondary">In the meantime, two things worth doing:</p>
-      <ul class="two-things">
-        <li><a href={COMMUNITY.joinUrl}>Join The Lab, our free community on Circle</a></li>
-        <li><a href="/get-the-guide/">Get the Guide</a></li>
-      </ul>
+      <p class="secondary">In the meantime, three things worth doing:</p>
+      <div class="steps">
+        <article class="step">
+          <span class="num">01</span>
+          <h2>Join the Community</h2>
+          <p>
+            The Stacked Couple Community on Circle is free, and it's where the real
+            conversation happens. Introduce yourself and start a discussion; we're
+            in there daily. Membership starts in <a href={COMMUNITY.joinUrl}>The Lab</a>.
+          </p>
+          <a class="btn btn-solid" href={COMMUNITY.joinUrl}>Join for Free →</a>
+        </article>
+        <article class="step">
+          <span class="num">02</span>
+          <h2>Open the guide</h2>
+          <p>
+            It's in your email, and it's here. The starting-point breakdown — read
+            it before we connect and you'll get far more out of the conversation.
+          </p>
+          <a class="btn btn-ghost" href={GUIDE.file} download={GUIDE.downloadName}>Download the Guide ↓</a>
+        </article>
+        <article class="step">
+          <span class="num">03</span>
+          <h2>Browse the Toolkit</h2>
+          <p>
+            Everything we personally use and trust — our vetted sources, the
+            tracking app we run, and active discount codes, all in one place.
+          </p>
+          <a class="btn btn-ghost" href="/toolkit/">Open the Toolkit →</a>
+        </article>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -43,8 +76,19 @@ import { SITE, COMMUNITY } from '../../config/site';
   .page-hero{padding:clamp(64px,9vw,110px) 0}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
-  .secondary{max-width:var(--measure);margin:0 0 12px}
-  .two-things{list-style:none;margin:0;padding:0;max-width:var(--measure)}
-  .two-things li{padding:14px 0;border-bottom:1px solid var(--line)}
-  .two-things a{color:var(--copper)}
+  .secondary{max-width:var(--measure);margin:0 0 20px}
+  .steps{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;margin-top:8px;
+  }
+  .step{
+    display:flex;flex-direction:column;gap:12px;align-items:flex-start;
+    border:1px solid var(--line);padding:clamp(24px,3.5vw,36px);
+  }
+  .step .num{
+    font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--copper);letter-spacing:0.14em;
+  }
+  .step h2{font-size:var(--fs-h4);margin:0}
+  .step p{color:var(--text-muted);margin:0;flex:1}
 </style>
