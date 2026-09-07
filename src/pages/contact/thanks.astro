@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConfirmationCards from '../../components/ConfirmationCards.astro';
+import { SITE } from '../../config/site';
+
+/**
+ * Post-submission confirmation for the contact form. The Tally form (9qj7J4)
+ * redirects here on completion (set in Tally: Settings → Redirect on
+ * completion → https://www.thestackedcouple.com/contact/thanks).
+ *
+ * Hidden page: noindex, not in nav — reachable only by submitting the form.
+ *
+ * guide="link" because the confirmation email for this flow is sent by
+ * Circle.so and does not carry the guide; offering a download here would
+ * promise a file that never arrives by email. Switch to "download" if that
+ * changes.
+ */
+---
+<BaseLayout
+  title={`Message received. — ${SITE.name}`}
+  description="Your message is in. We read every one ourselves and reply within 24 to 48 hours."
+  noindex
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <h1>Message received.</h1>
+      <p class="lede">
+        We read every message ourselves and reply within 24 to 48 hours. A
+        confirmation is on its way to your inbox — if it has not landed in a few
+        minutes, check your spam or promotions folder.
+      </p>
+    </div>
+  </section>
+
+  <ConfirmationCards guide="link" />
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
+</style>

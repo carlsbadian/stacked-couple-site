@@ -1,11 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../config/site';
 
 /**
  * Contact Us — standalone page carrying the Tally contact form (9qj7J4).
  * Reached from the footer and the bottom of About Us; deliberately not in
  * the main nav. Form questions/copy are managed in Tally, not here.
+ *
+ * On completion the form redirects to ./thanks/ (set in Tally).
  */
 ---
 <BaseLayout

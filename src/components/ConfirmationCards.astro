@@ -1,0 +1,92 @@
+---
+import { COMMUNITY, GUIDE } from '../config/site';
+
+/**
+ * The three-card grid shared by every confirmation page (Build Your Stack,
+ * Contact Us, and the newsletter/guide pages as they land). Edit a card here
+ * and every confirmation page follows.
+ *
+ * The hero above it is what changes per context — that copy stays on the page.
+ */
+interface Props {
+  /**
+   * 'download' offers the PDF straight away — only correct on a flow that also
+   * emails the guide, otherwise the card claims an email that never arrives.
+   * 'link' sends the reader to /get-the-guide/ to sign up for it.
+   */
+  guide?: 'download' | 'link';
+  /** Lead-in line above the grid. */
+  intro?: string;
+}
+const {
+  guide = 'link',
+  intro = 'In the meantime, three things worth doing:',
+} = Astro.props;
+---
+<section>
+  <div class="wrap">
+    <p class="secondary">{intro}</p>
+    <div class="steps">
+      <article class="step">
+        <span class="num">01</span>
+        <h2>Join the Community</h2>
+        <p>
+          The Stacked Couple Community on Circle is free, and it's where the real
+          conversation happens. Introduce yourself and start a discussion; we're
+          in there daily. Membership starts in <a href={COMMUNITY.joinUrl}>The Lab</a>.
+        </p>
+        <a class="btn btn-solid" href={COMMUNITY.joinUrl}>Join for Free →</a>
+      </article>
+
+      {guide === 'download' ? (
+        <article class="step">
+          <span class="num">02</span>
+          <h2>Open the guide</h2>
+          <p>
+            It's in your email, and it's here. The starting-point breakdown — read
+            it before we connect and you'll get far more out of the conversation.
+          </p>
+          <a class="btn btn-ghost" href={GUIDE.file} download={GUIDE.downloadName}>Download the Guide ↓</a>
+        </article>
+      ) : (
+        <article class="step">
+          <span class="num">02</span>
+          <h2>Get the Guide</h2>
+          <p>
+            {GUIDE.name}, plus the printable dosage tracker, reconstitution cheat
+            sheet, and startup checklist that make it doable.
+          </p>
+          <a class="btn btn-ghost" href="/get-the-guide/">Get the Guide →</a>
+        </article>
+      )}
+
+      <article class="step">
+        <span class="num">03</span>
+        <h2>Browse the Toolkit</h2>
+        <p>
+          Everything we personally use and trust — our vetted sources, the
+          tracking app we run, and active discount codes, all in one place.
+        </p>
+        <a class="btn btn-ghost" href="/toolkit/">Open the Toolkit →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .secondary{max-width:var(--measure);margin:0 0 20px}
+  .steps{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;margin-top:8px;
+  }
+  .step{
+    display:flex;flex-direction:column;gap:12px;align-items:flex-start;
+    border:1px solid var(--line);padding:clamp(24px,3.5vw,36px);
+  }
+  .step .num{
+    font-family:var(--mono);font-size:var(--fs-label);
+    color:var(--copper);letter-spacing:0.14em;
+  }
+  .step h2{font-size:var(--fs-h4);margin:0}
+  .step p{color:var(--text-muted);margin:0;flex:1}
+</style>
