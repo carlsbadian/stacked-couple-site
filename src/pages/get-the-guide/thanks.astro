@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConfirmationCards from '../../components/ConfirmationCards.astro';
+import { SITE, GUIDE } from '../../config/site';
+
+/**
+ * Post-signup confirmation for the guide. The Tally form (1AaLG4, embedded via
+ * EmailCapture) redirects here on completion (set in Tally: Settings →
+ * Redirect on completion → https://www.thestackedcouple.com/get-the-guide/thanks).
+ * Before this page existed the form finished on Tally's own success message.
+ *
+ * Hidden page: noindex, not in nav — reachable only by submitting the form.
+ *
+ * guide="none" because the hero hands the PDF over directly; a second download
+ * card underneath would just repeat it.
+ */
+---
+<BaseLayout
+  title={`You're in. Check your email. — ${SITE.name}`}
+  description={`${GUIDE.name} is on its way to your inbox — and you can download it straight from this page.`}
+  noindex
+>
+  <section class="page-hero on-dark">
+    <div class="wrap">
+      <h1>You're in. Check your email.</h1>
+      <p class="lede">
+        {GUIDE.name} is on its way to your inbox right now — if it hasn't arrived
+        in a few minutes, check your spam or promotions folder. You can also
+        download it straight from this page.
+      </p>
+      <a class="btn btn-solid" href={GUIDE.file} download={GUIDE.downloadName}>Download the Guide (PDF) ↓</a>
+      <p class="file-meta">PDF · {GUIDE.pages} pages · {GUIDE.sizeLabel}</p>
+    </div>
+  </section>
+
+  <ConfirmationCards
+    guide="none"
+    intro="If you're looking to get involved more, here's where to start:"
+  />
+</BaseLayout>
+
+<style>
+  .page-hero{padding:clamp(64px,9vw,110px) 0}
+  .page-hero h1{margin:16px 0 18px}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light);margin-bottom:28px}
+  .file-meta{
+    font-family:var(--mono);font-size:var(--fs-label);
+    letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--stone-light);margin-top:14px;
+  }
+</style>
