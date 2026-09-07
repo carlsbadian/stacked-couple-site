@@ -1,27 +1,31 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../config/site';
 
 /**
- * Intake application — the form itself is a Tally embed (form id jaraL9),
- * which now owns the full question set. Manage questions/copy in Tally,
+ * Build Your Stack. The Stack Assessment itself is a Tally embed (form id
+ * jaraL9), which owns the full question set — manage questions/copy in Tally,
  * not here. The embed script is is:inline so Astro leaves it untouched.
+ *
+ * Hidden page: noindex, deliberately not in NAV. Linked from email and the
+ * /links hub only. Renamed 2026-09-07; the former slug 301s here via
+ * public/_redirects.
  */
+
+/** Used for the meta/OG description and the sub-line under the H1. */
+const SUMMARY =
+  'Tell us where you are starting. We read every answer, then get on a 15-minute Stack Session with you and build your Phase 1 Stack Plan.';
 ---
 <BaseLayout
-  title={`Work With Us — ${SITE.name}`}
-  description="Apply to work with us directly. Honest answers, better fit."
+  title={`Build Your Stack | ${SITE.name}`}
+  description={SUMMARY}
   noindex
 >
   <section class="page-hero on-dark">
     <div class="wrap">
-      <div class="label">Work With Us</div>
-      <h1>Application to work with us</h1>
-      <p class="lede">
-        Take a few minutes to fill this out honestly. The more complete your answers,
-        the better we can assess whether we're the right fit and what working together
-        would actually look like.
-      </p>
+      <div class="label">Stack Assessment</div>
+      <h1>Build Your Stack</h1>
+      <p class="lede">{SUMMARY}</p>
     </div>
   </section>
 
@@ -35,14 +39,18 @@ import { SITE } from '../config/site';
         frameborder="0"
         marginheight="0"
         marginwidth="0"
-        title="Application to work with us"
+        title="Stack Assessment"
       ></iframe>
       <noscript>
         <p class="fallback">
-          The application form needs JavaScript. You can also open it directly:
+          The Stack Assessment needs JavaScript. You can also open it directly:
           <a href="https://tally.so/r/jaraL9">tally.so/r/jaraL9</a>
         </p>
       </noscript>
+      <p class="form-legal">
+        All information shared here is confidential and used solely to assess fit.
+        For educational purposes only — not medical advice.
+      </p>
     </div>
   </section>
 </BaseLayout>
@@ -61,4 +69,10 @@ import { SITE } from '../config/site';
   }
   .fallback{color:var(--text-muted)}
   .fallback a{color:var(--accent)}
+  .form-legal{
+    max-width:var(--measure);
+    margin-top:24px;
+    font-size:var(--fs-caption);
+    color:var(--text-muted);
+  }
 </style>

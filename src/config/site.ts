@@ -61,7 +61,7 @@ export const NAV = [
   { label: 'The Toolkit', href: '/toolkit/' },
   { label: 'The Experiment', href: '/the-experiment/' },
   { label: 'About Us', href: '/about/' },
-  // Work With Us (/work-with-us/) is intentionally NOT in the nav: the page
-  // stays live as a hidden link for email marketing, post-join.
+  // Build Your Stack (/build-your-stack/) is intentionally NOT in the nav: the
+  // page stays live as a hidden link for email marketing, post-join.
   { label: 'Join the Community', href: '/join-community/' },
 ] as const;

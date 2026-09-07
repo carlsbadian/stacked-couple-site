@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects. Permanent (301) unless noted.
+# Renamed 2026-09-07: Work With Us → Build Your Stack.
+/work-with-us       /build-your-stack/         301
+/work-with-us/      /build-your-stack/         301
+/thank-you          /build-your-stack/thanks/  301
+/thank-you/         /build-your-stack/thanks/  301
