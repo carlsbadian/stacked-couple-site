@@ -31,6 +31,11 @@ export const AFFILIATE = {
 } as const;
 
 export const COMMUNITY = {
+  // Paused 2026-09-25 (Circle group paused). While false, the community card,
+  // the /links button and the nav item are hidden. To bring it back: set true,
+  // restore src/pages/join-community.astro from git history, re-add the nav
+  // item, and drop the /join-community redirect in public/_redirects.
+  enabled: false,
   name: 'The Stacked Couple Community',
   platform: 'Circle',
   // Invitation link — signups land in the Circle community.
@@ -63,5 +68,4 @@ export const NAV = [
   { label: 'About Us', href: '/about/' },
   // Build Your Stack (/build-your-stack/) is intentionally NOT in the nav: the
   // page stays live as a hidden link for email marketing, post-join.
-  { label: 'Join the Community', href: '/join-community/' },
 ] as const;

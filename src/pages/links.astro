@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, SOCIAL } from '../config/site';
+import { SITE, SOCIAL, COMMUNITY } from '../config/site';
 import { LINK_HUB_URLS } from '../config/toolkit';
 
 /**
@@ -35,13 +35,17 @@ const buttons: Hub[] = [
     sub: 'Private Coaching',
     href: '/build-your-stack/',
   },
-  {
-    emoji: '🥂',
-    text: 'Join The Community for Free',
-    sub: 'Connect inside our private Circle community',
-    href: LINK_HUB_URLS.community,
-    external: true,
-  },
+  ...(COMMUNITY.enabled
+    ? [
+        {
+          emoji: '🥂',
+          text: 'Join The Community for Free',
+          sub: 'Connect inside our private Circle community',
+          href: LINK_HUB_URLS.community,
+          external: true,
+        },
+      ]
+    : []),
   {
     emoji: '🔬',
     text: 'Ascension Peptides — 50% OFF',

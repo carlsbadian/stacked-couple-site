@@ -4,3 +4,6 @@
 /work-with-us/      /build-your-stack/         301
 /thank-you          /build-your-stack/thanks/  301
 /thank-you/         /build-your-stack/thanks/  301
+# Community paused 2026-09-25 (Circle): send old join links to the newsletter.
+/join-community     /the-experiment/           302
+/join-community/    /the-experiment/           302

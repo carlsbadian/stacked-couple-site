@@ -23,7 +23,11 @@ interface Props {
 }
 const { guide = 'link', intro } = Astro.props;
 
-const kinds = ['community', ...(guide === 'none' ? [] : ['guide']), 'toolkit'];
+const kinds = [
+  ...(COMMUNITY.enabled ? ['community'] : []),
+  ...(guide === 'none' ? [] : ['guide']),
+  'toolkit',
+];
 const introLine =
   intro ?? `In the meantime, ${kinds.length === 2 ? 'two' : 'three'} things worth doing:`;
 ---
