@@ -45,7 +45,7 @@ const stacksSub = [
         )}
       </ul>
     </nav>
-    <a href="/get-the-guide/" class="btn btn-solid cta">Get the Guide</a>
+    <a href="/get-the-guide/" class="btn btn-solid cta">Get the Free Guide</a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -61,7 +61,7 @@ const stacksSub = [
             ))}
         </>
       ))}
-      <li><a href="/get-the-guide/" class="mobile-cta">Get the Guide →</a></li>
+      <li><a href="/get-the-guide/" class="mobile-cta">Get the Free Guide →</a></li>
     </ul>
   </nav>
 </header>
@@ -80,12 +80,13 @@ const stacksSub = [
   }
   .mark-chevron{width:26px;height:auto}
   nav[aria-label="Primary"] > ul{display:flex;gap:20px;list-style:none}
+  /* 2026-11 refresh: sentence-case sans nav (uppercase mono read as templated) */
   nav a{
-    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.06em;
-    text-transform:uppercase;text-decoration:none;color:var(--stone-light);
+    font-family:var(--sans);font-size:var(--fs-caption);font-weight:var(--fw-medium);
+    text-decoration:none;color:var(--cream);white-space:nowrap;
     padding:6px 0;border-bottom:2px solid transparent;
   }
-  nav a:hover{color:var(--cream)}
+  nav a:hover{color:var(--amber)}
   nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--copper)}
   .caret{font-size:10px;color:var(--stone-light)}
 
@@ -109,10 +110,11 @@ const stacksSub = [
   .submenu a:hover{background:rgba(74,127,165,0.18);color:var(--cream)}
   .submenu a[aria-current="page"]{color:var(--amber)}
 
-  .cta{padding:11px 18px;font-size:var(--fs-label)}
+  .cta{padding:11px 18px;font-size:var(--fs-label);min-height:44px;white-space:nowrap}
   .menu-toggle{display:none}
 
-  @media(max-width:960px){
+  /* five nav items + the CTA need ~1080px on one line; hand off to the menu below that */
+  @media(max-width:1100px){
     nav[aria-label="Primary"],.cta{display:none}
     .menu-toggle{
       display:flex;flex-direction:column;gap:5px;background:none;
@@ -124,8 +126,8 @@ const stacksSub = [
     .mobile-nav ul{display:block;list-style:none}
     .mobile-nav a{
       display:block;padding:14px clamp(20px,5vw,48px);
-      font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.08em;
-      text-transform:uppercase;text-decoration:none;color:var(--cream);
+      font-family:var(--sans);font-size:var(--fs-body);font-weight:var(--fw-medium);
+      text-decoration:none;color:var(--cream);
     }
     .mobile-nav .sub-item a{
       padding-left:calc(clamp(20px,5vw,48px) + 22px);

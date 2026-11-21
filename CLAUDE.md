@@ -27,11 +27,11 @@ The web platform for **The Stacked Couple** — a brand by Jenn & Todd, a Gen X 
 - **Never set a full sentence in uppercase or in the mono face.** Four words max in caps. Mono is for eyebrows, labels, nav, and protocol/dose data only.
 - **Never remove a focus ring. Never justify text.**
 - **The wordmark uses `--wordmark`, not `--serif`.**
-- **Brand direction (Jenn, locked):** headings stay **regular weight** — no bold/heavy; buttons stay **square, copper, uppercase mono**. Repo-specific layout utilities live in the "section 15" block at the bottom of `global.css` — when re-syncing the design system from the cloud project, replace sections 01–14 and leave 15 intact.
+- **Brand direction:** headings stay **regular weight** Georgia — no bold/heavy. Buttons are **square-cornered copper in sentence-case sans** (2026-11 refresh, Todd — the earlier uppercase-mono buttons and nav read as templated; don't restore them). Repo-specific layout utilities live in the "section 15" block at the bottom of `global.css` — when re-syncing the design system from the cloud project, replace sections 01–14 and leave 15 intact.
 
-### Copy is not yours to rewrite
+### Copy: benefit-first (2026-11 repositioning)
 
-Website copy is approved separately. Do not generate, rephrase, expand, or "improve" any user-facing copy. If copy seems wrong or a section is empty, flag it and stop — do not fill the gap.
+In Nov 2026 Todd repositioned the site: pages lead with **what the reader gets**, not Todd & Jenn's journey. Their story lives on `/about/`; everywhere else it's a short credibility note at most. Todd authorized rewriting copy toward that, and Jenn's review is not required before merge. Still: describe what people get, **never promise a health outcome**; never invent stats or results (real numbers go in `src/config/proof.ts`, supplied by Todd/Jenn); keep the voice rules and the compound-naming rule below. If copy needs facts you don't have, use a visible `[PLACEHOLDER]` and flag it.
 
 ### Before reporting a styling task complete
 
@@ -41,7 +41,7 @@ Website copy is approved separately. Do not generate, rephrase, expand, or "impr
 
 ## NAS assets & source files
 
-Additional working files and brand assets live on the NAS at **`192.168.4.23`** (SMB share `ClaudeMaster`, mounted on macOS at `/Volumes/ClaudeMaster`). The project folder is:
+Additional working files and brand assets live on the NAS at **`192.168.4.70`** (was `.23` before Nov 2026) (SMB share `ClaudeMaster`, mounted on macOS at `/Volumes/ClaudeMaster`). The project folder is:
 
 ```
 /Volumes/ClaudeMaster/Claude NAS/The Stacked Couple Website/
@@ -87,7 +87,8 @@ No specific peptide/compound names or dosing in live page text. The site teaches
 - `src/config/site.ts` — single source of truth: tagline, socials, affiliate, legal footer, nav. TODO links (Substack, Ascension URL) get filled here.
 - `src/pages/` — routes per the approved blueprint: `index`, `about`, `work-with-us`, `get-the-guide`, `the-stacks/` (hub + `movement.mdx`, `fuel.mdx`, `mind.mdx`, `optimization/` with 4 category MDX + `toolkit.mdx`), `the-experiment/` (feed + `[slug]` dynamic route).
 - `src/content/experiment/` — blog articles (MDX, schema-validated). `src/content/config.ts` defines schemas for both `experiment` and the `stacks` pages.
-- Top-level nav stays lean: Home · The Stacks · The Experiment · About Us · Work With Us (+ "Get the Guide" CTA).
+- `src/config/stacks.ts` — the four stacks (name, outcome headline, summary, color, icon), read by the homepage and `/the-stacks/`. `src/config/proof.ts` — Todd's and Jenn's tracked numbers and before/after photos for the homepage; unfilled fields render as visible placeholders.
+- Top-level nav: The Stacks · Build Your Stack · The Toolkit · The Experiment · About Us (+ "Get the Free Guide" CTA). The logo links home. Build Your Stack is public (it was a hidden email-only page before Nov 2026).
 
 ## Content pillars (LOCKED)
 
@@ -114,8 +115,9 @@ Typography (see **Design system** above and `global.css` for the full token scal
 
 ## Known open items
 
-- Email capture is a console-log placeholder (`EmailCapture.astro`). Needs a real provider. Do not claim the form works.
-- Intake form (`work-with-us.astro`) has no backend — placeholder handler, same rule.
+- Guide email capture is a live Tally form (`EmailCapture.astro`, form 1AaLG4); the Stack Assessment is Tally form jaraL9 on `/build-your-stack/`. Claude can't submit cross-origin Tally iframes — only Todd can test a submission end to end.
+- Homepage proof numbers and before/after photos (`src/config/proof.ts`) are unfilled — they render as `[PLACEHOLDER]`s. Must be filled before the benefit-first redesign ships to `main`.
+- Community: Circle is paused (`COMMUNITY.enabled = false`); a free WhatsApp community is planned but not built. Page 10 of the guide PDF still links to Circle.
 - Substack URL is an empty TODO in `src/config/site.ts`. (Ascension affiliate URL is live: https://ascensionpeptides.com/ref/stackedcouple/ — auto-applies the 50% discount; code STACKED is the checkout fallback.)
 - Toolkit item links are unlinked list items pending affiliate URLs.
 - The Experiment feed does not yet pull the Substack RSS (TODO in `the-experiment/index.astro`).

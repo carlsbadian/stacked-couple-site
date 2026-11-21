@@ -1,37 +1,24 @@
 ---
 /**
- * Gated lead-magnet email capture — "Get the Guide".
- * The value proposition is execution and convenience: the printable
- * dosage tracker, reconstitution cheat sheet, and startup checklist.
+ * The "Get the Guide" signup form — just the form panel and its fine print.
+ * Each page writes its own heading and pitch around it (2026-11 refresh), so
+ * the guide can be pitched in context instead of in one fixed box.
  *
  * The form is a Tally embed (1AaLG4). Tally owns the submit, the success
  * state, and the email that delivers the guide — button label, success
- * message and delivery are edited in Tally, not here. Replaces the earlier
- * placeholder handler, and the Circle embed that briefly stood in for it.
+ * message and delivery are edited in Tally, not here.
  *
- * Tally renders its field text in dark charcoal, so the form sits on a light
- * panel rather than on the navy ground of .capture — same treatment as
- * NewsletterSignup. The loader must stay `is:inline` so Astro leaves it
- * alone instead of bundling it as a module.
+ * Tally renders its field text in dark charcoal, so the form always sits on
+ * a light panel, even on a navy section. Pass `onDark` on a navy ground so
+ * the fine print switches to the navy-safe tint. The loader must stay
+ * `is:inline` so Astro leaves it alone instead of bundling it as a module.
  */
 interface Props {
-  heading?: string;
-  compact?: boolean;
+  onDark?: boolean;
 }
-const {
-  heading = 'The Peptide Guide We Wish We’d Had.',
-  compact = false,
-} = Astro.props;
+const { onDark = false } = Astro.props;
 ---
-<div class:list={['capture', 'on-dark', { compact }]}>
-  <div class="label">Get the Guide</div>
-  <h3>{heading}</h3>
-  {!compact && (
-    <p class="pitch">
-      A reference guide to the compounds. What they are, what they do, and why your
-      stack will look nothing like ours. Yours when you join the list.
-    </p>
-  )}
+<div class:list={['email-capture', { 'is-dark': onDark }]}>
   <div class="panel">
     <iframe
       data-tally-src="https://tally.so/embed/1AaLG4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
@@ -41,7 +28,7 @@ const {
       frameborder="0"
       marginheight="0"
       marginwidth="0"
-      title="Get the Guide"
+      title="Get the free guide"
     ></iframe>
     <noscript>
       <p class="fallback">
@@ -51,28 +38,20 @@ const {
     </noscript>
   </div>
   <p class="fine">
-    For research purposes only. Not medical advice. We don’t spam. Unsubscribe anytime.
+    Free. Unsubscribe anytime. For educational purposes only — not medical advice.
   </p>
 </div>
 
 <script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
 <style>
-  .capture{
-    background:var(--navy);color:var(--cream);
-    padding:clamp(32px,5vw,56px);border:1px solid var(--line-dark);
-  }
-  .capture .label{color:var(--amber);margin-bottom:14px}
-  h3{margin-bottom:14px}
-  .pitch{font-size:var(--fs-body-lg);color:var(--stone-light);max-width:var(--measure);margin-bottom:26px}
-  .compact .pitch{display:none}
   .panel{
     background:var(--cream);border:1px solid var(--rule);
     padding:clamp(10px,1.6vw,18px) clamp(12px,2vw,22px);
-    margin-bottom:14px;
   }
   .panel iframe{display:block;width:100%;border:0}
-  .fine{font-size:var(--fs-legal);color:var(--stone-light)}
+  .fine{font-size:var(--fs-legal);color:var(--stone-deep);margin:12px 0 0}
+  .is-dark .fine{color:var(--stone-light)}
   .fallback{font-size:var(--fs-body);color:var(--ink)}
   .fallback a{color:var(--copper)}
 </style>

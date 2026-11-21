@@ -7,25 +7,38 @@ import { SITE } from '../../config/site';
  * jaraL9), which owns the full question set — manage questions/copy in Tally,
  * not here. The embed script is is:inline so Astro leaves it untouched.
  *
- * Hidden page: noindex, deliberately not in NAV. Linked from email and the
- * /links hub only. Renamed 2026-09-07; the former slug 301s here via
- * public/_redirects.
+ * Public since the 2026-11 repositioning (was noindex and email-only): in the
+ * nav and linked from the homepage "How it works". Renamed 2026-09-07; the
+ * former slug 301s here via public/_redirects.
  */
 
 /** Used for the meta/OG description and the sub-line under the H1. */
 const SUMMARY =
   'Tell us where you are starting. We read every answer, then get on a 15-minute Stack Session with you and build your Phase 1 Stack Plan.';
+
+const youGet = [
+  { title: 'A plan built on you', body: 'Your goals, your history, and where you’re starting from — not someone else’s numbers.' },
+  { title: 'A 15-minute Stack Session', body: 'We talk through your answers and what to prioritize first.' },
+  { title: 'Your Phase 1 Stack Plan', body: 'What to start, what to track, and when to adjust.' },
+];
 ---
 <BaseLayout
   title={`Build Your Stack | ${SITE.name}`}
   description={SUMMARY}
-  noindex
 >
   <section class="page-hero on-dark">
     <div class="wrap">
       <div class="label">Stack Assessment</div>
       <h1>Build Your Stack</h1>
       <p class="lede">{SUMMARY}</p>
+      <ul class="you-get">
+        {youGet.map((g) => (
+          <li>
+            <span class="g-title">{g.title}</span>
+            <span class="g-body">{g.body}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -61,6 +74,16 @@ const SUMMARY =
   .page-hero{padding:clamp(64px,9vw,110px) 0}
   .page-hero h1{margin:16px 0 18px}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
+  .you-get{
+    list-style:none;margin:40px 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;
+  }
+  .you-get li{
+    display:flex;flex-direction:column;gap:6px;max-width:none;
+    padding-top:18px;border-top:1px solid var(--line-dark);
+  }
+  .g-title{font-family:var(--serif);font-size:var(--fs-h4);color:var(--cream)}
+  .g-body{font-size:var(--fs-body);color:var(--stone-light)}
   /* centered embed container — max-w-4xl mx-auto py-12 px-4 equivalent */
   .form-container{
     max-width:896px;

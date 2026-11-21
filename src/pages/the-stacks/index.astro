@@ -1,56 +1,54 @@
 ---
+/**
+ * The Stacks hub. Stack names, outcomes, summaries, colors and icons all come
+ * from src/config/stacks.ts — the same source the homepage reads.
+ */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE } from '../../config/site';
-
-const stacks = [
-  {
-    name: 'Optimization',
-    href: '/the-stacks/optimization/',
-    icon: '/brand/stack-icon-optimization.svg',
-    blurb: "Peptides, supplements, wearables, tracking, and bloodwork. What we've researched and what we're running, so you don't figure it out alone.",
-  },
-  {
-    name: 'Mind',
-    href: '/the-stacks/mind/',
-    icon: '/brand/stack-icon-mind.svg',
-    blurb: "Sleep, stress, and focus. The part we skipped and the foundation of the whole stack.",
-  },
-  {
-    name: 'Fuel',
-    href: '/the-stacks/fuel/',
-    icon: '/brand/stack-icon-fuel.svg',
-    blurb: "Protein targets, meal structure, and what's fueling us in midlife.",
-  },
-  {
-    name: 'Movement',
-    href: '/the-stacks/movement/',
-    icon: '/brand/stack-icon-movement.svg',
-    blurb: "Strength, conditioning, and recovery. Sustainable and built around real life because we don't have unlimited gym time.",
-  },
-];
+import { STACKS } from '../../config/stacks';
 ---
 <BaseLayout
   title={`The Stacks — ${SITE.name}`}
-  description="The Stacks is the method: Optimization, Mind, Fuel, Movement."
+  description="Four stacks — Optimization, Mind, Fuel, Movement — and one plan built around you. Start where you'll feel it most."
 >
   <section class="page-hero on-dark">
     <div class="wrap">
-      <h1>The Stacks</h1>
-      <p class="lede">Everything we test, track, and share.</p>
+      <div class="label">The Stacks</div>
+      <h1>Four stacks. One plan, built around you.</h1>
+      <p class="lede">
+        Every plan draws from the same four areas: optimization, mind, fuel, and
+        movement. Start where you’ll feel it most.
+      </p>
     </div>
   </section>
 
   <section class="list-sec">
     <div class="wrap">
-      <div class="pillar-list">
-        {stacks.map((s) => (
+      <div class="stack-list">
+        {STACKS.map((s) => (
           <a class="row" href={s.href}>
-            <img class="stack-icon" src={s.icon} alt="" loading="lazy" />
-            <span class="name">{s.name}</span>
-            <span class="blurb">{s.blurb}</span>
+            <img class="stack-icon" src={s.icon} alt="" width="64" height="64" loading="lazy" />
+            <span class="names">
+              <span class="name">{s.name}</span>
+              <span class="outcome">{s.outcome}</span>
+            </span>
+            <span class="summary">{s.summary}</span>
             <span class="go" aria-hidden="true">→</span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="start on-dark">
+    <div class="wrap start-inner">
+      <div>
+        <p class="kicker">Not sure where to start?</p>
+        <h2>Tell us where you are. We’ll help you pick.</h2>
+      </div>
+      <div class="start-ctas">
+        <a class="btn btn-solid" href="/build-your-stack/">Build Your Stack</a>
+        <a class="btn btn-ghost" href="/get-the-guide/">Get the Free Guide</a>
       </div>
     </div>
   </section>
@@ -58,35 +56,32 @@ const stacks = [
 
 <style>
   .page-hero{padding:clamp(64px,9vw,110px) 0}
-  .page-hero h1{margin:16px 0 18px;color:var(--amber)}
+  .page-hero h1{margin:16px 0 18px;max-width:16em}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
-  .lockup-sec{padding-bottom:0}
-  .lockup-grid{
-    display:grid;grid-template-columns:minmax(300px,520px) 1fr;
-    gap:clamp(32px,5vw,72px);align-items:center;
-  }
-  @media(max-width:760px){.lockup-grid{grid-template-columns:1fr}}
-  .lockup-grid img{display:block;width:100%;height:auto}
-  .lockup-copy p{max-width:52ch;margin-bottom:1em;font-size:var(--fs-body)}
-  .lockup-copy a{color:var(--copper)}
   .list-sec{padding-top:clamp(40px,6vw,64px)}
-  .pillar-list{border-top:1px solid var(--line)}
+  .stack-list{border-top:1px solid var(--line)}
   .row{
-    display:grid;grid-template-columns:70px 240px 1fr 40px;gap:28px;align-items:center;
+    display:grid;grid-template-columns:72px minmax(220px,320px) 1fr 32px;gap:28px;align-items:center;
     padding:34px 4px;border-bottom:1px solid var(--line);text-decoration:none;
     transition:background .2s ease;
   }
   .row:hover{background:rgba(74,127,165,0.08)}
-  .stack-icon{width:52px;height:auto;display:block}
-  .name{display:block;font-family:var(--serif);font-size:var(--fs-h3);color:var(--navy);line-height:1.05}
-  .tag{
-    display:block;font-family:var(--mono);font-size:var(--fs-label);letter-spacing:0.16em;
-    text-transform:uppercase;color:var(--copper);margin-top:8px;
+  .stack-icon{width:60px;height:60px;object-fit:contain;display:block}
+  .names{display:flex;flex-direction:column;gap:6px}
+  .name{
+    font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--fw-semibold);
+    letter-spacing:var(--track-label);text-transform:uppercase;color:var(--stone-deep);
   }
-  .blurb{font-size:var(--fs-body);color:var(--stone-deep)}
-  .go{color:var(--copper);font-size:22px}
+  .outcome{font-family:var(--serif);font-size:var(--fs-h3);color:var(--navy);line-height:1.15}
+  .summary{font-size:var(--fs-body);color:var(--ink)}
+  .go{color:var(--copper);font-size:var(--fs-h4)}
   @media(max-width:820px){
-    .row{grid-template-columns:1fr;gap:10px}
+    .row{grid-template-columns:1fr;gap:12px}
     .go{display:none}
   }
+
+  .start{padding:clamp(56px,7vw,88px) 0}
+  .start-inner{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between}
+  .start h2{margin:0;max-width:18em}
+  .start-ctas{display:flex;flex-wrap:wrap;gap:14px}
 </style>

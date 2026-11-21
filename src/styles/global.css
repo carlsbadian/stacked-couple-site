@@ -474,20 +474,44 @@ section{padding:clamp(64px,10vw,110px) 0}
 /* heading weight — kept regular (per brand direction: no bold/heavy) */
 h1,h2,h3,h4,h5,h6{font-weight:var(--fw-regular);letter-spacing:-0.01em}
 
-/* buttons — current brand look kept: square, copper, uppercase mono */
+/* buttons — 2026-11 refresh (Todd): still square-cornered and copper, now in
+   sentence-case sans instead of uppercase mono, which read as templated.
+   Ghost buttons take their border from their text color, so one class works
+   on cream (navy) and on navy (cream). */
 .btn{
-  font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--fw-semibold);
-  letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
-  padding:16px 28px;border-radius:0;border:1px solid var(--copper);
-  min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  font-family:var(--sans);font-size:var(--fs-body);font-weight:var(--fw-semibold);
+  letter-spacing:0;text-transform:none;text-decoration:none;line-height:1.2;
+  padding:15px 26px;border-radius:2px;border:1.5px solid var(--copper);
+  min-height:52px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
   transition:background .2s ease,color .2s ease;
 }
 .btn + .btn{margin-left:0}
 /* two-class specificity so button text beats the global `a` / `.on-dark a` color */
 .btn.btn-solid{background:var(--copper);color:var(--cream)}
-.btn.btn-solid:hover{background:#8a4626;color:var(--cream)}
-.btn.btn-ghost{background:transparent;color:inherit}
+.btn.btn-solid:hover{background:var(--copper-dark);color:var(--cream)}
+.btn.btn-ghost{background:transparent;color:var(--navy);border-color:currentColor}
+.on-dark .btn.btn-ghost{color:var(--cream)}
 .btn.btn-ghost:hover{background:rgba(160,82,45,0.12)}
+
+/* 2026-11 refresh tokens */
+:root{
+  --copper-dark:     #8A4626;   /* solid-button hover */
+  --wrap-wide:       1200px;    /* homepage container */
+  --placeholder-bg:  #ECE6DD;   /* photo/data slots awaiting real content */
+  --placeholder-line:#B9AFA2;
+  --shadow-lift:     0 24px 60px rgba(0,0,0,0.28);
+}
+
+/* a .wrap that runs a little wider, for the homepage */
+.wrap-wide{max-width:var(--wrap-wide)}
+
+/* section kicker — small mono label above a section heading */
+.kicker{
+  font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--fw-semibold);
+  letter-spacing:var(--track-label);text-transform:uppercase;
+  color:var(--copper);margin:0 0 14px;
+}
+.on-dark .kicker{color:var(--amber)}
 
 /* prose (MDX article/pillar body). Inherits the .wrap max-width and left-aligns;
    individual paragraphs are already capped at --measure by section 05. */

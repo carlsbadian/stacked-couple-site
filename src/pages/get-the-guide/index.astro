@@ -1,69 +1,117 @@
 ---
+/**
+ * Get the Guide — the #1 conversion (2026-11 repositioning).
+ * The form sits in the hero, above the fold. "What's inside" lists what the
+ * PDF actually contains (checked against the 10-page guide, 2026-11-21) — if
+ * the guide is revised, re-check this list against it. No compound names on
+ * the page: those live in the guide itself.
+ */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EmailCapture from '../../components/EmailCapture.astro';
-import { SITE } from '../../config/site';
+import { SITE, GUIDE } from '../../config/site';
+
+const inside = [
+  { title: 'Peptides 101', body: 'What a peptide actually is, and why it gets so much attention in midlife.' },
+  { title: 'The four-stack framework', body: 'Where peptides fit — and why they amplify your foundation rather than replace it.' },
+  { title: 'What’s being studied', body: 'A plain-language directory, with the regulatory status of each.' },
+  { title: 'Blends, decoded', body: 'What’s inside the common pre-mixed vials, and why single compounds teach you more.' },
+  { title: 'Reconstitution math', body: 'The numbers that decide your dose, explained once and done right.' },
+  { title: 'A startup checklist', body: 'Everything in order before day one.' },
+  { title: 'Hard lessons', body: 'The mistakes we made, so you don’t have to.' },
+  { title: 'A printable tracking page', body: 'Because if you don’t track it, it didn’t happen.' },
+];
 ---
 <BaseLayout
-  title={`Get the Guide — ${SITE.name}`}
-  description="The Peptide Guide We Wish We'd Had — plus the printable dosage tracker, reconstitution cheat sheet, and startup checklist that make it doable."
+  title={`Get the Free Guide — ${SITE.name}`}
+  description="What peptides actually are, how the legal side works, what's being studied, and what to sort out before you spend a dollar. Free, straight to your inbox."
 >
   <section class="page-hero on-dark">
-    <div class="wrap">
-      <div class="label">The Guide</div>
-      <h1>The breakdown social won't let us post.</h1>
-      <p class="lede">
-        Platforms suppress the specifics. So the detailed protocol breakdown lives
-        here — sent straight to your inbox, away from the algorithm.
-      </p>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="label">Free guide</div>
+        <h1>Start with the guide we wish we’d had.</h1>
+        <p class="lede">
+          What peptides actually are, how the legal side works, what’s being studied,
+          and what to sort out before you spend a dollar.
+        </p>
+        <p class="facts">{GUIDE.name} · {GUIDE.pages} pages · PDF · Free</p>
+      </div>
+      <div class="hero-form">
+        <p class="form-intro">Where should we send it?</p>
+        <EmailCapture onDark />
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="wrap guide-grid">
-      <div class="what">
-        <div class="eyebrow-rule"><span class="label">What you get</span></div>
-        <ul>
+    <div class="wrap">
+      <p class="kicker">What’s inside</p>
+      <h2>Everything we wish we’d known before we started researching.</h2>
+      <ul class="inside">
+        {inside.map((item) => (
           <li>
-            <strong>The guide itself</strong> — a straightforward breakdown of the
-            compounds we use, what they do, and why we chose them.
+            <span class="i-title">{item.title}</span>
+            <span class="i-body">{item.body}</span>
           </li>
-          <li><strong>A printable PDF dosage tracker</strong> — log it, don't guess it.</li>
-          <li><strong>A reconstitution cheat sheet</strong> — the math, done once, correctly.</li>
-          <li><strong>A startup checklist</strong> — everything in order before day one.</li>
-        </ul>
-        <p class="muted note">
-          The value is execution: the tools that make the protocol doable, not a pile
-          of links. Detailed protocol content continues in the newsletter.
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="wont on-dark">
+    <div class="wrap wont-grid">
+      <div>
+        <p class="kicker">What you won’t find</p>
+        <h2>Doses. A plan. Anyone’s numbers presented as your answer.</h2>
+        <p class="wont-body">
+          Your stack gets built on your history, your labs, and your goals. That’s
+          what Build Your Stack is for — once you’ve read the guide.
         </p>
       </div>
-      <div class="side">
-        <EmailCapture compact />
-        <img
-          class="lockup"
-          src="/brand/logo-horizontal.svg"
-          alt="The Stacked Couple — four stacked chevrons beside the wordmark. Stacking & Tracking. Thriving in Midlife."
-          width="640"
-          height="221"
-          loading="lazy"
-        />
+      <div class="wont-ctas">
+        <a class="btn btn-solid" href="/build-your-stack/">Build Your Stack</a>
       </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <p class="why-line">
+        Why email? Platforms suppress the specifics, so the details live in your
+        inbox, away from the algorithm.
+      </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .page-hero{padding:clamp(64px,9vw,110px) 0}
-  .page-hero h1{margin:16px 0 18px;max-width:18ch}
-  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
-  .guide-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
-  @media(max-width:860px){.guide-grid{grid-template-columns:1fr}}
-  .what ul{list-style:none;margin:8px 0 24px}
-  .what li{
-    padding:16px 0 16px 30px;position:relative;border-bottom:1px solid var(--line);
-    font-size:var(--fs-body);
+  .page-hero{padding:clamp(56px,8vw,104px) 0}
+  .hero-grid{display:flex;flex-wrap:wrap;gap:48px 64px;align-items:center}
+  .hero-copy{flex:1 1 440px;min-width:0}
+  .hero-copy h1{margin:16px 0 20px;max-width:14em}
+  .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light);margin:0 0 20px}
+  .facts{font-family:var(--mono);font-size:var(--fs-label);color:var(--stone-light);margin:0}
+  .hero-form{flex:1 1 380px;min-width:0;max-width:520px}
+  .form-intro{font-family:var(--serif);font-size:var(--fs-h4);color:var(--cream);margin:0 0 14px}
+
+  h2{max-width:20em;margin-bottom:40px}
+  .inside{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 48px;
   }
-  .what li::before{content:"+";position:absolute;left:2px;color:var(--copper);font-family:var(--mono)}
-  .note{font-size:var(--fs-caption);max-width:52ch}
-  .side{display:grid;gap:28px}
-  .lockup{display:block;width:min(420px,90%);height:auto;margin:0 auto}
+  .inside li{
+    display:flex;flex-direction:column;gap:4px;max-width:none;
+    padding:20px 0;border-top:1px solid var(--rule);
+  }
+  .i-title{font-family:var(--serif);font-size:var(--fs-h4);color:var(--navy)}
+  .i-body{color:var(--text-muted)}
+
+  .wont{padding:clamp(56px,7vw,88px) 0}
+  .wont-grid{display:flex;flex-wrap:wrap;gap:32px 56px;align-items:center;justify-content:space-between}
+  .wont-grid > div:first-child{flex:1 1 520px;min-width:0}
+  .wont h2{margin-bottom:16px}
+  .wont-body{color:var(--stone-light);margin:0}
+
+  .why{padding:clamp(40px,5vw,56px) 0}
+  .why-line{color:var(--text-muted);margin:0}
 </style>

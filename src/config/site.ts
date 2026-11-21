@@ -60,12 +60,12 @@ export const GUIDE = {
 export const LEGAL_FOOTER =
   'The Stacked Couple shares our personal experience for educational and informational purposes only. Nothing here is medical advice. Consult your physician before beginning any new health protocol.';
 
+// 2026-11 repositioning: Build Your Stack is public and in the nav (it was a
+// hidden email-only page). "Home" dropped — the logo links home.
 export const NAV = [
-  { label: 'Home', href: '/' },
   { label: 'The Stacks', href: '/the-stacks/' },
+  { label: 'Build Your Stack', href: '/build-your-stack/' },
   { label: 'The Toolkit', href: '/toolkit/' },
   { label: 'The Experiment', href: '/the-experiment/' },
   { label: 'About Us', href: '/about/' },
-  // Build Your Stack (/build-your-stack/) is intentionally NOT in the nav: the
-  // page stays live as a hidden link for email marketing, post-join.
 ] as const;
