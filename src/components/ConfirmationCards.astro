@@ -18,18 +18,25 @@ interface Props {
    *                the guide in their own hero. Remaining cards renumber.
    */
   guide?: 'download' | 'link' | 'none';
+  /**
+   * Show the Build Your Stack card (2026-11: the next step after the guide or
+   * a contact message). Off on the Build Your Stack confirmation itself.
+   */
+  build?: boolean;
   /** Lead-in line above the grid. Defaults to the card count. */
   intro?: string;
 }
-const { guide = 'link', intro } = Astro.props;
+const { guide = 'link', build = true, intro } = Astro.props;
 
 const kinds = [
   ...(COMMUNITY.enabled ? ['community'] : []),
+  ...(build ? ['build'] : []),
   ...(guide === 'none' ? [] : ['guide']),
   'toolkit',
 ];
+const counts = ['', 'one', 'two', 'three', 'four'];
 const introLine =
-  intro ?? `In the meantime, ${kinds.length === 2 ? 'two' : 'three'} things worth doing:`;
+  intro ?? `In the meantime, ${counts[kinds.length] ?? kinds.length} things worth doing:`;
 ---
 <section>
   <div class="wrap">
@@ -52,6 +59,17 @@ const introLine =
             </Fragment>
           )}
 
+          {kind === 'build' && (
+            <Fragment>
+              <h2>Build your stack</h2>
+              <p>
+                A short assessment of your goals and history, then a 15-minute Stack
+                Session with us and your Phase 1 plan.
+              </p>
+              <a class="btn btn-solid" href="/build-your-stack/">Build Your Stack</a>
+            </Fragment>
+          )}
+
           {kind === 'guide' && guide === 'download' && (
             <Fragment>
               <h2>Open the guide</h2>
@@ -66,12 +84,12 @@ const introLine =
 
           {kind === 'guide' && guide === 'link' && (
             <Fragment>
-              <h2>Get the Guide</h2>
+              <h2>Get the free guide</h2>
               <p>
-                {GUIDE.name}, plus the printable dosage tracker, reconstitution
-                cheat sheet, and startup checklist that make it doable.
+                {GUIDE.name}: what peptides actually are, how the legal side works,
+                what’s being studied, and what to sort out before you spend a dollar.
               </p>
-              <a class="btn btn-ghost" href="/get-the-guide/">Get the Guide →</a>
+              <a class="btn btn-ghost" href="/get-the-guide/">Get the Free Guide</a>
             </Fragment>
           )}
 

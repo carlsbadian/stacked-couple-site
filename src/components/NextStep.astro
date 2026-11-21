@@ -1,0 +1,47 @@
+---
+/**
+ * The closing call to action that ends content pages: Build Your Stack, with
+ * the free guide as the lighter option. One component so the offer reads the
+ * same everywhere (2026-11 repositioning). Override the copy per page only
+ * when the context calls for it.
+ */
+interface Props {
+  kicker?: string;
+  heading?: string;
+  body?: string;
+}
+const {
+  kicker = 'Your next step',
+  heading = 'Get a stack built around you.',
+  body = 'Tell us your goals, your history, and where you’re starting from. We’ll talk it through on a 15-minute Stack Session and build your Phase 1 plan.',
+} = Astro.props;
+---
+<section class="next on-dark">
+  <div class="wrap next-inner">
+    <div class="next-copy">
+      <p class="kicker">{kicker}</p>
+      <h2>{heading}</h2>
+      <p class="next-body">{body}</p>
+    </div>
+    <div class="next-ctas">
+      <a class="btn btn-solid" href="/build-your-stack/">Build Your Stack</a>
+      <a class="btn btn-ghost" href="/get-the-guide/">Get the Free Guide</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* the brand pattern sets this band apart from the flat navy footer below it */
+  .next{
+    padding:clamp(56px,7vw,88px) 0;
+    background-image:
+      linear-gradient(rgba(27,47,74,0.9), rgba(27,47,74,0.9)),
+      url('/brand/pattern-dark.webp');
+    background-size:auto, 420px auto;
+  }
+  .next-inner{display:flex;flex-wrap:wrap;gap:28px 56px;align-items:center;justify-content:space-between}
+  .next-copy{flex:1 1 480px;min-width:0}
+  .next h2{margin:0 0 12px;max-width:18em}
+  .next-body{color:var(--stone-light);margin:0}
+  .next-ctas{display:flex;flex-wrap:wrap;gap:14px}
+</style>

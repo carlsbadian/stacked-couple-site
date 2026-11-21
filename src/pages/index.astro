@@ -340,7 +340,12 @@ const photos = [
 
   /* ---------- four stacks ---------- */
   .stacks{background:var(--white)}
-  .stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+  /* the homepage's three four-item grids (stacks, steps, metrics) go 4 → 2 → 1,
+     never 3 + 1 with an orphan on a laptop-width screen */
+  .stack-grid,.steps,.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  @media (max-width:1100px){ .stack-grid,.steps,.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:600px){ .stack-grid,.steps,.metric-grid{grid-template-columns:minmax(0,1fr)} }
+  .stack-grid{gap:20px}
   .stack-card{
     display:flex;flex-direction:column;gap:14px;
     background:var(--cream);border-top:6px solid var(--stack);padding:32px 28px;
@@ -357,10 +362,7 @@ const photos = [
 
   /* ---------- how it works ---------- */
   .how h2{margin-bottom:48px}
-  .steps{
-    list-style:none;margin:0 0 52px;padding:0;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px 28px;
-  }
+  .steps{list-style:none;margin:0 0 52px;padding:0;gap:32px 28px}
   .steps li{
     display:flex;flex-direction:column;gap:12px;max-width:none;
     padding-top:24px;border-top:1px solid var(--line-dark);
@@ -379,7 +381,7 @@ const photos = [
   .steps p{margin:0;color:var(--stone-light)}
 
   /* ---------- proof ---------- */
-  .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .metric-grid{gap:20px}
   .metric{background:var(--white);border:1px solid var(--rule);padding:28px;border-radius:4px}
   .metric-label{
     font-family:var(--mono);font-size:var(--fs-label);font-weight:var(--fw-semibold);

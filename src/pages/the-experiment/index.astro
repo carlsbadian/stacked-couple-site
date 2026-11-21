@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import NextStep from '../../components/NextStep.astro';
 import { getCollection } from 'astro:content';
 import { SITE, SOCIAL } from '../../config/site';
 
@@ -18,6 +19,12 @@ const pillarLabel: Record<string, string> = {
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
 
+const gets = [
+  { title: 'Protocol updates, with the data', body: 'What we started, what changed, and what the numbers showed.' },
+  { title: 'The honest results', body: 'What worked, what didn’t, and what we’d do differently.' },
+  { title: 'First word on what’s next', body: 'New guides, plans, and ways to work with us — before they’re public.' },
+];
+
 /**
  * TODO(Todd): when the Substack publication is live, add its RSS feed here
  * (fetch + parse at build time) and interleave those entries into this feed
@@ -26,25 +33,42 @@ const fmt = (d: Date) =>
 ---
 <BaseLayout
   title={`The Experiment — ${SITE.name}`}
-  description="The ongoing log: deep-dives, reviews, and protocol updates. Run in public, with the data shown."
+  description="What we're testing, what the numbers say, and what we'd do differently — in your inbox first."
 >
   <section class="page-hero on-dark">
     <div class="wrap">
       <div class="label">The Experiment</div>
+      <h1>Follow the experiment.</h1>
       <p class="lede">
-        Be the first to know. Subscribe to our newsletter for protocols, updates on our
-        experiment.
+        What we’re testing, what the numbers say, and what we’d do differently — in
+        your inbox before it’s anywhere else.
       </p>
     </div>
   </section>
 
   <section class="newsletter-sec">
-    <div class="wrap">
+    <div class="wrap nl-grid">
+      <div class="nl-copy">
+        <p class="kicker">What you’ll get</p>
+        <ul class="gets">
+          {gets.map((g) => (
+            <li>
+              <span class="g-title">{g.title}</span>
+              <span class="g-body">{g.body}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div class="nl-constrain">
         <NewsletterSignup />
       </div>
     </div>
   </section>
+
+  <NextStep
+    heading="Want more than updates?"
+    body="Tell us your goals and history, and we’ll help you build a stack that fits you — starting with a 15-minute Stack Session."
+  />
 </BaseLayout>
 
 <style>
@@ -73,6 +97,14 @@ const fmt = (d: Date) =>
   .desc{display:block;font-size:var(--fs-body);color:var(--stone-deep);max-width:var(--measure)}
   .empty{padding:40px 0}
   .empty a{color:var(--copper)}
-  .newsletter-sec{padding-top:0}
-  .nl-constrain{max-width:720px}
+  .nl-grid{display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-start}
+  .nl-copy{flex:1 1 360px;min-width:0}
+  .nl-constrain{flex:1 1 440px;min-width:0;max-width:640px}
+  .gets{list-style:none;margin:0;padding:0}
+  .gets li{
+    display:flex;flex-direction:column;gap:4px;max-width:none;
+    padding:18px 0;border-top:1px solid var(--rule);
+  }
+  .g-title{font-family:var(--serif);font-size:var(--fs-h4);color:var(--navy)}
+  .g-body{color:var(--text-muted)}
 </style>

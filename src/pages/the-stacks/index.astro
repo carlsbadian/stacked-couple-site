@@ -4,6 +4,7 @@
  * from src/config/stacks.ts — the same source the homepage reads.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import NextStep from '../../components/NextStep.astro';
 import { SITE } from '../../config/site';
 import { STACKS } from '../../config/stacks';
 ---
@@ -40,18 +41,11 @@ import { STACKS } from '../../config/stacks';
     </div>
   </section>
 
-  <section class="start on-dark">
-    <div class="wrap start-inner">
-      <div>
-        <p class="kicker">Not sure where to start?</p>
-        <h2>Tell us where you are. We’ll help you pick.</h2>
-      </div>
-      <div class="start-ctas">
-        <a class="btn btn-solid" href="/build-your-stack/">Build Your Stack</a>
-        <a class="btn btn-ghost" href="/get-the-guide/">Get the Free Guide</a>
-      </div>
-    </div>
-  </section>
+  <NextStep
+    kicker="Not sure where to start?"
+    heading="Tell us where you are. We’ll help you pick."
+    body="Answer a short assessment, talk it through with us on a 15-minute Stack Session, and get your Phase 1 plan."
+  />
 </BaseLayout>
 
 <style>
@@ -79,9 +73,4 @@ import { STACKS } from '../../config/stacks';
     .row{grid-template-columns:1fr;gap:12px}
     .go{display:none}
   }
-
-  .start{padding:clamp(56px,7vw,88px) 0}
-  .start-inner{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between}
-  .start h2{margin:0;max-width:18em}
-  .start-ctas{display:flex;flex-wrap:wrap;gap:14px}
 </style>

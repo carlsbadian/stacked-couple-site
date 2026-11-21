@@ -139,8 +139,9 @@ export const TOOLKIT: ToolkitCategory[] = [
 
 export const TOOLKIT_META = {
   title: 'The Toolkit',
+  headline: 'Everything we use, in one place.',
   subtitle:
-    'Curated compounds, labs, equipment, and tracking tools we personally use and trust.',
+    'The sources, tracking tools, labs, and gear we actually run — with our discount codes. If it’s here, it’s in our own stack.',
   disclosure:
     'Disclosure: Some links below contain community discounts or affiliate links where we may earn a commission. We only feature products in our active stack.',
 } as const;

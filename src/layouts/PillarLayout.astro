@@ -1,15 +1,21 @@
 ---
 /**
- * Layout for pillar + optimization-category MDX pages under /the-stacks/.
- * Frontmatter schema is validated by the `stacks` collection in
- * src/content/config.ts (glob-loaded from the pages directory).
+ * Layout for the stack pages (Mind, Fuel, Movement) and the Optimization
+ * category pages under /the-stacks/. Frontmatter is validated by the `stacks`
+ * collection in src/content.config.ts.
+ *
+ * 2026-11 repositioning: the H1 is the reader-facing `headline` (what you
+ * get), the page name moves to the label, and every page ends on the same
+ * next step — Build Your Stack, or the free guide.
  */
 import BaseLayout from './BaseLayout.astro';
+import NextStep from '../components/NextStep.astro';
 import { SITE } from '../config/site';
 
 interface Props {
   frontmatter: {
     title: string;
+    headline?: string;
     description: string;
     pillar: 'movement' | 'fuel' | 'optimization' | 'mind';
     eyebrow?: string;
@@ -17,10 +23,9 @@ interface Props {
   };
 }
 const { frontmatter } = Astro.props;
-const eyebrow = frontmatter.eyebrow ?? 'The Stacks';
-// Pennant badge only on the top-level pillar pages (eyebrow "Pillar NN — …"),
-// not on the Optimization category pages.
-const showPennant = eyebrow.startsWith('Stack');
+// Optimization category pages (Peptide Protocols, Labs, …) vs. a top-level stack page.
+const isCategory = frontmatter.eyebrow === 'Optimization';
+const label = isCategory ? `Optimization · ${frontmatter.title}` : `${frontmatter.title} stack`;
 const pennant = `/brand/stack-banner-${frontmatter.pillar}.svg`;
 ---
 <BaseLayout title={`${frontmatter.title} — ${SITE.name}`} description={frontmatter.description}>
@@ -28,21 +33,21 @@ const pennant = `/brand/stack-banner-${frontmatter.pillar}.svg`;
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/the-stacks/">The Stacks</a>
-        {frontmatter.eyebrow === 'Optimization' && (
+        {isCategory && (
           <><span aria-hidden="true">·</span><a href="/the-stacks/optimization/">Optimization</a></>
         )}
       </nav>
       <div class="hero-row">
         <div>
-          <div class="label">{eyebrow}</div>
-          <h1>{frontmatter.title}</h1>
+          <div class="label">{label}</div>
+          <h1>{frontmatter.headline ?? frontmatter.title}</h1>
           <p class="lede">{frontmatter.description}</p>
         </div>
-        {showPennant && (
+        {!isCategory && (
           <img
             class="pennant"
             src={pennant}
-            alt={`${frontmatter.title} Stack pennant`}
+            alt=""
             width="360"
             height="480"
             loading="eager"
@@ -56,6 +61,7 @@ const pennant = `/brand/stack-banner-${frontmatter.pillar}.svg`;
       <slot />
     </div>
   </section>
+  <NextStep />
 </BaseLayout>
 
 <style>
@@ -64,7 +70,7 @@ const pennant = `/brand/stack-banner-${frontmatter.pillar}.svg`;
   .crumbs a{color:var(--stone-light);text-decoration:none;text-transform:uppercase}
   .crumbs a:hover{color:var(--amber)}
   .crumbs span{margin:0 10px;color:var(--stone-light)}
-  h1{margin:14px 0 18px}
+  h1{margin:14px 0 18px;max-width:16em}
   .lede{max-width:var(--measure);font-size:var(--fs-body-lg);color:var(--stone-light)}
   .hero-row{display:flex;gap:clamp(24px,5vw,64px);align-items:center;justify-content:space-between}
   .pennant{width:clamp(90px,12vw,140px);height:auto;flex-shrink:0}

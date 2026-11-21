@@ -36,6 +36,8 @@ const stacks = defineCollection({
   schema: z.object({
     layout: z.string(),
     title: z.string(),
+    /** Reader-facing H1 (what you get). Falls back to `title`. */
+    headline: z.string().optional(),
     description: z.string(),
     pillar: z.enum(PILLARS),
     eyebrow: z.string().optional(),

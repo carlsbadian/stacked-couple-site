@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import NextStep from '../../components/NextStep.astro';
 import { getCollection, render } from 'astro:content';
 import { SITE, LEGAL_FOOTER } from '../../config/site';
 
@@ -51,6 +52,7 @@ const fmt = (d: Date) =>
       </div>
     </section>
   </article>
+  <NextStep />
 </BaseLayout>
 
 <style>

@@ -70,7 +70,7 @@ Related brand docs also sit one level up in `/Volumes/ClaudeMaster/Claude NAS/Th
 - **Tagline (LOCKED):** "Stacking and Tracking. Thriving in Midlife."
 - **Sub-line (LOCKED):** "Midlife on our own terms. Intentional. Supported. Stacked."
 - The old "Midlife. Optimized." tagline is retired — do not reintroduce it.
-- Use "Gen X" / "midlife" framing. Never pin the brand to a specific age. Never name the specific city — "Southern California," "SoCal," or "Pacific coast" only.
+- Audience (Todd, 2026-11): men, women, and couples, millennials through Gen X to boomers. Write for that range — avoid generation labels in page copy; "midlife" is fine. Never pin the brand to a specific age. Never name the specific city — "Southern California," "SoCal," or "Pacific coast" only.
 
 ## Voice rules
 
